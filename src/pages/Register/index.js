@@ -35,63 +35,80 @@ export default function Register() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">NOME COMPLETO *</label>
-      <input
-        type="text"
-        name="name"
-        id="name"
-        placeholder="Seu belo nome"
-        onChange={event => setName(event.target.value)}
-      />
-      <label htmlFor="cpf">CPF *</label>
-      <input
-        type="text"
-        name="cpf"
-        id="cpf"
-        placeholder="Seu CPF"
-        onChange={event => setCpf(event.target.value)}
-      />
-      <label htmlFor="email">E-MAIL *</label>
-      <input
-        type="email"
-        name="email"
-        id="email"
-        placeholder="Seu melhor e-mail"
-        onChange={event => setEmail(event.target.value)}
-      />
-      <label htmlFor="password">SENHA *</label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        onChange={event => setPassword(event.target.value)}
-      />
-      <label htmlFor="course">CURSO *</label>
-      <select
-        name="course"
-        id="course"
-        onChange={event => setCourse(parseInt(event.target.value))}
-      >
-        <option value="0">Eletromecânica</option>
-        <option value="1">Tecnologia da Informação</option>
-      </select>
-      <label htmlFor="is_tutor">DESEJA SER MONITOR? *</label>
-      <input
-        type="radio"
-        name="is_tutor"
-        value="true"
-        onChange={event => setTutor(handleRadio(event.target.value))}
-      />
-      Sim
-      <input
-        type="radio"
-        name="is_tutor"
-        value="false"
-        onChange={event => setTutor(handleRadio(event.target.value))}
-      />
-      Não
-      <button type="submit">Cadastrar</button>
-    </form>
+    <>
+      <h1>MONITONLINE | CADASTRO</h1>
+
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name">NOME COMPLETO *</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Seu belo nome"
+          onChange={event => setName(event.target.value)}
+        />
+        <label htmlFor="cpf">CPF *</label>
+        <input
+          type="text"
+          name="cpf"
+          id="cpf"
+          placeholder="Seu CPF"
+          onChange={event => setCpf(event.target.value)}
+        />
+        <label htmlFor="email">E-MAIL *</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Seu melhor e-mail"
+          onChange={event => setEmail(event.target.value)}
+        />
+        <label htmlFor="password">SENHA *</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          onChange={event => setPassword(event.target.value)}
+        />
+        <label htmlFor="course">CURSO *</label>
+        <select
+          name="course"
+          id="course"
+          onChange={event => setCourse(parseInt(event.target.value))}
+        >
+          <option value="0">Eletromecânica</option>
+          <option value="1">Tecnologia da Informação</option>
+        </select>
+        <label htmlFor="is_tutor">DESEJA SER MONITOR? *</label>
+
+        <div className="radio-inline">
+          <label>
+            <input
+              type="radio"
+              name="is_tutor"
+              value="true"
+              onChange={event =>
+                setTutor(handleRadio(event.target.value))
+              }
+            />
+            Sim
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="is_tutor"
+              value="false"
+              onChange={event =>
+                setTutor(handleRadio(event.target.value))
+              }
+            />
+            Não
+          </label>
+        </div>
+
+        <button type="submit">Cadastre-se</button>
+      </form>
+    </>
   );
 }
