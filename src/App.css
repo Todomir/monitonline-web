@@ -134,3 +134,7 @@ select {
 .content .subject-list > label {
   margin-top: 10px;
 }
+
+.content form p {
+  margin-top: 10px;
+}

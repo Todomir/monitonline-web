@@ -1,0 +1,23 @@
+.register-link {
+  text-decoration: none;
+  color: #2575fc;
+  cursor: pointer;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+
+.register-link:hover {
+  padding: 5px;
+  margin: 0 5px;
+  color: #fff;
+  font-weight: 700;
+  background: #2575fc;
+  border-radius: 3px;
+}
+
+.register-link:active {
+  background: #6a11cb;
+}
