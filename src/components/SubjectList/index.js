@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
-import styles from './styles.css';
+import './styles.css';
 
 // import { Container } from './styles';
 
@@ -20,17 +20,15 @@ export default function SubjectList(props) {
     return (
       <div className="subject-list">
         {subjects.map(subject => (
-          <>
-            <label>
-              <input
-                type="checkbox"
-                name={subject.subject_description}
-                value={subject.id}
-                key={subject.id}
-              />
-              {subject.subject_description}
-            </label>
-          </>
+          <label key={subject.id}>
+            <input
+              type="checkbox"
+              name={subject.subject_description}
+              value={subject.id}
+              key={subject.id}
+            />
+            {subject.subject_description}
+          </label>
         ))}
       </div>
     );
