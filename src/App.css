@@ -116,3 +116,21 @@ select {
   margin-left: -30px;
   margin-right: 30px;
 }
+
+.content form div.subject-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.content form div.subject-list label {
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.content form div.subject-list input {
+  height: 0;
+  margin-right: 20px;
+}
+.content .subject-list > label {
+  margin-top: 10px;
+}

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import api from '../../services/api';
 
+import SubjectList from '../../components/SubjectList';
+
 export default function Register() {
   const [name, setName] = useState('');
   const [cpf, setCpf] = useState('');
@@ -106,6 +108,8 @@ export default function Register() {
             Não
           </label>
         </div>
+
+        <SubjectList isTutor={is_tutor} />
 
         <button type="submit">Cadastre-se</button>
       </form>
