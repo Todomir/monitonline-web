@@ -10,6 +10,9 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [course, setCourse] = useState(null);
   const [is_tutor, setTutor] = useState(false);
+  const subject_matters = localStorage.getItem('subject_matters');
+
+  console.log(subject_matters);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -21,7 +24,8 @@ export default function Register() {
         cpf,
         password,
         course,
-        is_tutor
+        is_tutor,
+        subject_matters
       });
     } catch (err) {
       console.log(err.response);
