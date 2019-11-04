@@ -7,6 +7,7 @@ export default function SubjectList(props) {
   const ids = [];
 
   const [subjectMatters, setSubjectMatters] = useState([]);
+  const [subjectMattersId, setSubjectMattersId] = useState([]);
 
   useEffect(() => {
     async function fetchSubjectMatters() {
@@ -21,24 +22,26 @@ export default function SubjectList(props) {
   }, []);
 
   function handleCheckbox(event) {
-    const value = event.target.value;
+    const value = parseInt(event.target.value);
     const isChecked = event.target.checked;
     let index;
 
     // check if the check box is checked or unchecked
     if (isChecked) {
       // add the numerical value of the checkbox to options array
-      ids.push(parseInt(value));
+      setSubjectMattersId(subjectMattersId => [
+        ...subjectMattersId,
+        value
+      ]);
     } else {
       // or remove the value from the unchecked checkbox from the array
-      index = ids.indexOf(parseInt(value));
-      ids.splice(index, 1);
+      index = subjectMattersId.indexOf(value);
+      subjectMattersId.splice(index, 1);
+      setSubjectMattersId([...subjectMattersId]);
     }
-
-    console.log(ids);
   }
 
-  localStorage.setItem('subject_matters', ids);
+  console.log(subjectMattersId);
 
   if (props.isTutor) {
     return (

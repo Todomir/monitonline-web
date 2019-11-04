@@ -10,23 +10,20 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [course, setCourse] = useState(null);
   const [is_tutor, setTutor] = useState(false);
-  const subject_matters = localStorage.getItem('subject_matters');
-
-  console.log(subject_matters);
 
   async function handleSubmit(event) {
     event.preventDefault();
 
     try {
-      await api.post('/users', {
+      const response = await api.post('/users', {
         name,
         email,
         cpf,
         password,
         course,
-        is_tutor,
-        subject_matters
+        is_tutor
       });
+      console.log(response.data);
     } catch (err) {
       console.log(err.response);
     }
