@@ -1,16 +1,18 @@
 .subject-matter-list {
   display: flex;
   flex-direction: column;
+  max-width: 100%;
+  width: 500px;
   border: 1px solid #000;
   margin-top: 20px;
 }
 .subject-matter-list span {
   margin: 0 5px;
-  font-weight: normal;
+  font-weight: 400;
   background: #2575fc;
   color: #fff;
   border-radius: 5px;
-  padding: 2px;
+  padding: 4px;
   font-size: 10px;
 }
 
