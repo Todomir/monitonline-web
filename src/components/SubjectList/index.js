@@ -3,9 +3,7 @@ import api from '../../services/api';
 
 import './styles.css';
 
-export default function SubjectList(props) {
-  const ids = [];
-
+export default function SubjectList({ isTutor }) {
   const [subjectMatters, setSubjectMatters] = useState([]);
   const [subjectMattersId, setSubjectMattersId] = useState([]);
 
@@ -41,7 +39,7 @@ export default function SubjectList(props) {
     }
   }
 
-  if (props.isTutor) {
+  if (isTutor) {
     return (
       <div className="subject-matter-list">
         {subjectMatters.map(subjectMatter => (
