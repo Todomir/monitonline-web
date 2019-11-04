@@ -41,8 +41,6 @@ export default function SubjectList(props) {
     }
   }
 
-  console.log(subjectMattersId);
-
   if (props.isTutor) {
     return (
       <div className="subject-matter-list">
