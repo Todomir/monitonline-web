@@ -3,9 +3,13 @@ import api from '../../services/api';
 
 import './styles.css';
 
-export default function SubjectList({ isTutor }) {
+export default function SubjectList({ isTutor, callback }) {
   const [subjectMatters, setSubjectMatters] = useState([]);
   const [subjectMattersId, setSubjectMattersId] = useState([]);
+
+  useEffect(() => {
+    callback(subjectMattersId);
+  }, [subjectMattersId]);
 
   useEffect(() => {
     async function fetchSubjectMatters() {

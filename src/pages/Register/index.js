@@ -8,22 +8,23 @@ export default function Register() {
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [course, setCourse] = useState(null);
+  const [course, setCourse] = useState(0);
   const [is_tutor, setTutor] = useState(false);
+  const [subject_matters, setSubjectMatters] = useState([]);
 
   async function handleSubmit(event) {
     event.preventDefault();
 
     try {
-      const response = await api.post('/users', {
+      await api.post('/users', {
         name,
         email,
         cpf,
         password,
         course,
-        is_tutor
+        is_tutor,
+        subject_matters
       });
-      console.log(response.data);
     } catch (err) {
       console.log(err.response);
     }
@@ -35,6 +36,10 @@ export default function Register() {
       if (value.toLowerCase() === 'false') return false;
     }
     return value;
+  }
+
+  function subjectMattersCallback(subjectMattersId) {
+    setSubjectMatters(subjectMattersId);
   }
 
   return (
@@ -77,6 +82,7 @@ export default function Register() {
         <select
           name="course"
           id="course"
+          value={course}
           onChange={event => setCourse(parseInt(event.target.value))}
         >
           <option value="0">Eletromecânica</option>
@@ -110,7 +116,10 @@ export default function Register() {
           </label>
         </div>
 
-        <SubjectList isTutor={is_tutor} />
+        <SubjectList
+          isTutor={is_tutor}
+          callback={subjectMattersCallback}
+        />
 
         <button type="submit">Cadastre-se</button>
       </form>
