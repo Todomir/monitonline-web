@@ -16,7 +16,9 @@ export default function Login({ history }) {
       email,
       password
     });
-    console.log(response.data);
+
+    localStorage.setItem('user_token', response);
+    history.push('/user');
   }
 
   return (
