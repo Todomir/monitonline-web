@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import api from '../../services/api';
+import { login } from '../../services/auth';
 import './styles.css';
 
 // import { Container } from './styles';
@@ -16,9 +17,8 @@ export default function Login({ history }) {
       email,
       password
     });
-
-    localStorage.setItem('user_token', response);
-    history.push('/user');
+    login(response.data.token);
+    history.push('/userpage');
   }
 
   return (
