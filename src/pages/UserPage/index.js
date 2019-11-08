@@ -4,8 +4,11 @@ import api from '../../services/api';
 import { getToken } from '../../services/auth';
 
 import { MdDateRange, MdBook, MdQueryBuilder } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 import './styles.css';
+
+import StudentOptions from '../../components/StudentOptions';
 
 export default function UserPage() {
   const [user, setUser] = useState({});
@@ -32,14 +35,22 @@ export default function UserPage() {
             <h5>{user.name}</h5>
 
             <label>
-              <MdDateRange /> checar atendimentos
+              <Link>
+                <MdDateRange /> checar atendimentos
+              </Link>
             </label>
             <label>
-              <MdBook /> editar assuntos
+              <Link>
+                <MdBook /> editar assuntos
+              </Link>
             </label>
             <label>
-              <MdQueryBuilder /> adicionar horário
+              <Link to={'/add-schedules'}>
+                <MdQueryBuilder /> adicionar horário
+              </Link>
             </label>
+
+            <StudentOptions />
           </div>
         </div>
       </>
@@ -48,24 +59,8 @@ export default function UserPage() {
     return (
       <>
         <h1>MONITONLINE </h1>
-        <div className="content-container">
-          <div className="profile">
-            <h2>Opções do aluno</h2>
-            <h5>{user.name}</h5>
-
-            <label>
-              <MdDateRange /> marcar atendimento
-              <p>clique aqui para procurar um monitor agora mesmo!</p>
-            </label>
-
-            <label>
-              <MdDateRange /> meus atendimentos
-              <p>
-                clique aqui para ver o status dos atendimentos
-                marcados
-              </p>
-            </label>
-          </div>
+        <div className="profile">
+          <StudentOptions />
         </div>
       </>
     );

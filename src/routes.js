@@ -6,6 +6,7 @@ import { isAuthenticated } from './services/auth';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import UserPage from './pages/UserPage';
+import Schedules from './pages/Schedules';
 
 const PrivateRoute = ({ component, ...options }) => {
   if (isAuthenticated) {
@@ -20,6 +21,7 @@ export default function Routes() {
         <Route path="/" exact component={Login} />
         <Route path="/register" component={Register} />
         <PrivateRoute path="/userpage" component={UserPage} />
+        <PrivateRoute path="/add-schedules" component={Schedules} />
       </Switch>
     </BrowserRouter>
   );

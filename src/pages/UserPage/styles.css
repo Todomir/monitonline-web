@@ -13,11 +13,35 @@
   width: 100%;
   max-width: 500px;
   margin-top: 30px;
+  margin-bottom: 70px;
+  border-radius: 5px;
+}
+.profile a {
+  text-decoration: none;
+  color: black;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+
+.profile a:hover {
+  color: white;
+}
+
+.profile h2:first-of-type {
+  margin-bottom: 5px;
 }
 
 .profile h2 {
-  margin-bottom: 5px;
+  margin-bottom: 20px;
 }
+
+.profile h2:last-of-type {
+  margin-top: 60px;
+}
+
 .profile h5 {
   margin-bottom: 20px;
   font-weight: 400;
