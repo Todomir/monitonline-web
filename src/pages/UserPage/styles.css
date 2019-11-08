@@ -11,21 +11,32 @@
   background: rgb(240, 240, 240);
   padding: 20px;
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
   margin-top: 30px;
 }
 
 .profile h2 {
-  margin-bottom: 15px;
+  margin-bottom: 5px;
+}
+.profile h5 {
+  margin-bottom: 20px;
+  font-weight: 400;
 }
 
 .profile label {
   width: 190px;
+  cursor: pointer;
+  margin-bottom: 3px;
   -webkit-transition: all 500ms ease;
   -moz-transition: all 500ms ease;
   -ms-transition: all 500ms ease;
   -o-transition: all 500ms ease;
   transition: all 500ms ease;
+}
+
+.profile label p {
+  font-size: 9px;
+  margin: 7px 20px;
 }
 
 .profile label:hover {
