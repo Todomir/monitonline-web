@@ -47,7 +47,9 @@ export default function Login({ history }) {
           </Link>
         </p>
 
-        <button type="submit">fazer login</button>
+        <button className="btn" type="submit">
+          fazer login
+        </button>
       </form>
     </>
   );

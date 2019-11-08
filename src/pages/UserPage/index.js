@@ -35,12 +35,12 @@ export default function UserPage() {
             <h5>{user.name}</h5>
 
             <label>
-              <Link>
+              <Link to={'/'}>
                 <MdDateRange /> checar atendimentos
               </Link>
             </label>
             <label>
-              <Link>
+              <Link to={'/'}>
                 <MdBook /> editar assuntos
               </Link>
             </label>

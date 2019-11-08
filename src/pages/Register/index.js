@@ -121,7 +121,9 @@ export default function Register() {
           callback={subjectMattersCallback}
         />
 
-        <button type="submit">Cadastre-se</button>
+        <button className="btn" type="submit">
+          Cadastre-se
+        </button>
       </form>
     </>
   );
