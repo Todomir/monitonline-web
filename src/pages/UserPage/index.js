@@ -20,7 +20,7 @@ export default function UserPage() {
   return (
     <>
       <h1>MONITONLINE </h1>
-      <h3>{user.name}</h3>
+      <h1>{user.name}</h1>
     </>
   );
 }
