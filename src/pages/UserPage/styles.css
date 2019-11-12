@@ -13,7 +13,7 @@
   width: 100%;
   max-width: 500px;
   margin-top: 30px;
-  margin-bottom: 70px;
+  margin-bottom: 50px;
   border-radius: 5px;
 }
 .profile a {
@@ -36,10 +36,6 @@
 
 .profile h2 {
   margin-bottom: 20px;
-}
-
-.profile h2:last-of-type {
-  margin-top: 60px;
 }
 
 .profile h5 {
@@ -70,4 +66,27 @@
   font-weight: 700;
   background: #2575fc;
   border-radius: 3px;
+}
+
+.calendar {
+  margin: 20px 0px;
+}
+
+.calendar a {
+  background: #6a11cb;
+  color: #fff;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+
+.calendar a:hover {
+  background: #8f27ff;
+  padding: 6px;
+  margin: 10px;
 }

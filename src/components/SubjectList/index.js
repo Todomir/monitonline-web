@@ -9,7 +9,7 @@ export default function SubjectList({ isTutor, callback }) {
 
   useEffect(() => {
     callback(subjectMattersId);
-  }, [subjectMattersId]);
+  }, [subjectMattersId, callback]);
 
   useEffect(() => {
     async function fetchSubjectMatters() {

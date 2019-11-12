@@ -76,14 +76,18 @@ export default function UserPage() {
             <label onClick={handleClick}>
               <MdQueryBuilder /> checar horarios
             </label>
+
             <ToggleContainer toggle={toggle}>
-              <FullCalendar
-                defaultView="dayGridMonth"
-                plugins={[dayGridPlugin]}
-                locale="pt-br"
-                events={events}
-              />
+              <div className="calendar">
+                <FullCalendar
+                  defaultView="dayGridMonth"
+                  plugins={[dayGridPlugin]}
+                  locale="pt-br"
+                  events={events}
+                />
+              </div>
             </ToggleContainer>
+
             <label>
               <Link to={'/'}>
                 <MdBook /> editar assuntos
@@ -94,7 +98,9 @@ export default function UserPage() {
                 <MdAddAlarm /> adicionar horário
               </Link>
             </label>
+          </div>
 
+          <div className="profile">
             <StudentOptions />
           </div>
         </div>
@@ -104,8 +110,10 @@ export default function UserPage() {
     return (
       <>
         <h1>MONITONLINE </h1>
-        <div className="profile">
-          <StudentOptions />
+        <div className="content-container">
+          <div className="profile">
+            <StudentOptions />
+          </div>
         </div>
       </>
     );
