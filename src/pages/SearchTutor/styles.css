@@ -19,3 +19,29 @@
   cursor: pointer;
   border-radius: 3px;
 }
+
+.profile .tutor-label {
+  margin-top: 20px;
+  background: #ffffff;
+  padding: 15px;
+  color: rgb(51, 51, 51);
+  border-radius: 5px;
+}
+
+.profile .tutor-label h5 {
+  max-width: 100%;
+  width: 170px;
+  cursor: pointer;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+
+.profile .tutor-label h5:hover {
+  background: #6a11cb;
+  border-radius: 5px;
+  padding: 3px;
+  color: white;
+}
