@@ -68,12 +68,12 @@ export default function UserPage() {
             <h2>Opções do monitor</h2>
             <h5>{user.name}</h5>
 
-            <label>
+            <label className="btn-label">
               <Link to={'/'}>
                 <MdDateRange /> checar atendimentos
               </Link>
             </label>
-            <label onClick={handleClick}>
+            <label onClick={handleClick} className="btn-label">
               <MdQueryBuilder /> checar horarios
             </label>
 
@@ -88,12 +88,12 @@ export default function UserPage() {
               </div>
             </ToggleContainer>
 
-            <label>
+            <label className="btn-label">
               <Link to={'/'}>
                 <MdBook /> editar assuntos
               </Link>
             </label>
-            <label>
+            <label className="btn-label">
               <Link to={'/add-schedules'}>
                 <MdAddAlarm /> adicionar horário
               </Link>

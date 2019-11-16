@@ -43,7 +43,7 @@
   font-weight: 400;
 }
 
-.profile label {
+.profile .btn-label {
   width: 190px;
   cursor: pointer;
   margin-bottom: 3px;
@@ -54,12 +54,12 @@
   transition: all 500ms ease;
 }
 
-.profile label p {
+.profile .btn-label p {
   font-size: 9px;
   margin: 7px 20px;
 }
 
-.profile label:hover {
+.profile .btn-label:hover {
   padding: 5px;
   margin: 0 5px;
   color: #fff;
