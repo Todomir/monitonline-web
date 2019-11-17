@@ -23,19 +23,25 @@ export default function TutorProfile() {
   api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
   useEffect(() => {
-    const response = api.get(`/users/${tutor_id}`);
-    setTutor(response.data);
+    async function getUser() {
+      const response = await api.get(`/users/${tutor_id}`);
+      setTutor(response.data);
+    }
+    getUser();
   }, []);
 
   useEffect(() => {
-    const response = api.get(`/users/schedules/${tutor_id}`);
-    setSchedules(response.data);
+    async function getSchedules() {
+      const response = await api.get(`/users/schedules/${tutor_id}`);
+      setSchedules(response.data);
+    }
+    getSchedules();
   }, []);
 
   return (
     <div className="content-container">
       <div className="profile">
-        <h3>{tutor.name}</h3>
+        <h2>{tutor.name}</h2>
         <h5>Horários do tutor</h5>
         <div className="calendar">
           <FullCalendar
