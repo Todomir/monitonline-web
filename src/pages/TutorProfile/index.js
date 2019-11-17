@@ -43,13 +43,12 @@ export default function TutorProfile() {
   }, []);
 
   async function handleScheduleClick(currentEvent) {
-    const response = await api.post(`/assistances/${tutor_id}`, {
+    await api.post(`/assistances/${tutor_id}`, {
       subject_matter_id,
       schedule_id: parseInt(currentEvent.event._def.publicId)
     });
 
     alert('atendimento marcado com sucesso');
-    console.log(response.data);
   }
 
   return (
