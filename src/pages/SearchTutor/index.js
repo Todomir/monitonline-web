@@ -28,8 +28,11 @@ export default function SearchTutor({ history }) {
     }
   }
 
-  async function handleAssistanceClick(id) {
-    localStorage.setItem('tutor_id', id);
+  async function handleAssistanceClick(tutorId, subjectMatter) {
+    const subjectMatterId = subjectMatter.id;
+    localStorage.setItem('tutor_id', tutorId);
+    localStorage.setItem('subject_matter_id', subjectMatterId);
+
     history.push('/schedule-assistance');
   }
 
@@ -69,7 +72,16 @@ export default function SearchTutor({ history }) {
                 <h5
                   key={tutor.id}
                   onClick={() => {
-                    handleAssistanceClick(tutor.id);
+                    handleAssistanceClick(
+                      tutor.id,
+                      tutor.subjectMatters.find(subjectMatter => {
+                        if (
+                          subjectMatter.subject_matter_description ===
+                          subject_matter_description
+                        )
+                          return subjectMatter;
+                      })
+                    );
                   }}
                 >
                   <MdAssignment key={tutor.id} /> ver horários

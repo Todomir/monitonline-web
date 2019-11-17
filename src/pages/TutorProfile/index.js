@@ -10,6 +10,9 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 
 export default function TutorProfile() {
   const tutor_id = parseInt(localStorage.getItem('tutor_id'));
+  const subject_matter_id = parseInt(
+    localStorage.getItem('subject_matter_id')
+  );
   const [tutor, setTutor] = useState({});
   const [schedules, setSchedules] = useState([]);
   const token = getToken();
@@ -17,7 +20,8 @@ export default function TutorProfile() {
   const events = schedules.map(schedule => ({
     title: 'Horário Disponível',
     start: dateFormat(schedule.schedule_start, 'yyyy-mm-dd HH:MM'),
-    end: dateFormat(schedule.schedule_end, 'yyyy-mm-dd HH:MM')
+    end: dateFormat(schedule.schedule_end, 'yyyy-mm-dd HH:MM'),
+    id: schedule.id
   }));
 
   api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -38,6 +42,16 @@ export default function TutorProfile() {
     getSchedules();
   }, []);
 
+  async function handleScheduleClick(currentEvent) {
+    const response = await api.post(`/assistances/${tutor_id}`, {
+      subject_matter_id,
+      schedule_id: parseInt(currentEvent.event._def.publicId)
+    });
+
+    alert('atendimento marcado com sucesso');
+    console.log(response.data);
+  }
+
   return (
     <div className="content-container">
       <div className="profile">
@@ -49,6 +63,7 @@ export default function TutorProfile() {
             plugins={[dayGridPlugin]}
             locale="pt-br"
             events={events}
+            eventClick={handleScheduleClick}
           />
         </div>
       </div>
