@@ -28,6 +28,10 @@ export default function SearchTutor() {
     }
   }
 
+  async function handleAssistanceClick(id) {
+    localStorage.setItem('tutor_id', id);
+  }
+
   return (
     <>
       <h1>MONITONLINE | TUTORIA</h1>
@@ -60,7 +64,13 @@ export default function SearchTutor() {
             {tutors.map(tutor => (
               <>
                 <h4 key={tutor.name}>{tutor.name}</h4>
-                <h5 key={tutor.id}>
+
+                <h5
+                  key={tutor.id}
+                  onClick={() => {
+                    handleAssistanceClick(tutor.id);
+                  }}
+                >
                   <MdAssignment key={tutor.id} /> ver horários
                   disponíveis
                 </h5>
