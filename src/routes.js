@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import UserPage from './pages/UserPage';
 import Schedules from './pages/Schedules';
 import SearchTutor from './pages/SearchTutor';
+import TutorProfile from './pages/TutorProfile';
 
 const PrivateRoute = ({ component, ...options }) => {
   if (isAuthenticated) {
@@ -24,6 +25,10 @@ export default function Routes() {
         <PrivateRoute path="/userpage" component={UserPage} />
         <PrivateRoute path="/add-schedules" component={Schedules} />
         <PrivateRoute path="/search-tutors" component={SearchTutor} />
+        <PrivateRoute
+          path="/schedule-assistance"
+          component={TutorProfile}
+        />
       </Switch>
     </BrowserRouter>
   );

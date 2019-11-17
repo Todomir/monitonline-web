@@ -7,7 +7,7 @@ import { getToken } from '../../services/auth';
 
 import './styles.css';
 
-export default function SearchTutor() {
+export default function SearchTutor({ history }) {
   const token = getToken();
   api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
@@ -30,6 +30,7 @@ export default function SearchTutor() {
 
   async function handleAssistanceClick(id) {
     localStorage.setItem('tutor_id', id);
+    history.push('/schedule-assistance');
   }
 
   return (
