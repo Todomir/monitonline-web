@@ -4,7 +4,6 @@ import dateFormat from 'dateformat';
 
 import api from '../../services/api';
 
-import './styles.css';
 import {
   CardContainer,
   CardContent,
