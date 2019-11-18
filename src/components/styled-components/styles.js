@@ -15,6 +15,13 @@ export const TextInput = styled.input`
   padding: 10px;
 `;
 
+export const Select = styled.select`
+  border: 1px solid rgb(235, 235, 235);
+  border-radius: 3px;
+  height: 45px;
+  padding: 10px;
+`;
+
 export const RadioButton = styled.input`
   margin: 0 30px;
 `;

@@ -6,7 +6,9 @@ import {
   RadioButton,
   Button,
   FormLabel,
-  TextInput
+  TextInput,
+  Select,
+  Title
 } from '../../components/styled-components/styles';
 
 export default function Register() {
@@ -50,7 +52,7 @@ export default function Register() {
 
   return (
     <>
-      <h1>MONITONLINE | CADASTRO</h1>
+      <Title>MONITONLINE | CADASTRO</Title>
 
       <form onSubmit={handleSubmit}>
         <FormLabel htmlFor="name">NOME COMPLETO *</FormLabel>
@@ -85,7 +87,7 @@ export default function Register() {
           onChange={event => setPassword(event.target.value)}
         />
         <FormLabel htmlFor="course">CURSO *</FormLabel>
-        <select
+        <Select
           name="course"
           id="course"
           value={course}
@@ -93,7 +95,7 @@ export default function Register() {
         >
           <option value="0">Eletromecânica</option>
           <option value="1">Tecnologia da Informação</option>
-        </select>
+        </Select>
         <FormLabel>DESEJA SER MONITOR? *</FormLabel>
 
         <div className="radio-inline">
