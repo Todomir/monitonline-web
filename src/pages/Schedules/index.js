@@ -5,6 +5,14 @@ import dateFormat from 'dateformat';
 import api from '../../services/api';
 
 import './styles.css';
+import {
+  CardContainer,
+  CardContent,
+  FormLabel,
+  Title,
+  SubTitle,
+  Button
+} from '../../components/styled-components/styles';
 
 export default function Schedules({ history }) {
   const [schedule_start, setScheduleStart] = useState(new Date());
@@ -36,24 +44,29 @@ export default function Schedules({ history }) {
 
   return (
     <>
-      <h1>MONITONLINE | HORÁRIOS</h1>
+      <Title>MONITONLINE | HORÁRIOS</Title>
 
-      <div className="content-container">
-        <div className="schedule-form">
-          <label>determine o horário de início do atendimento</label>
+      <CardContainer>
+        <CardContent>
+          <SubTitle marginBottom="7px">
+            Cadastrar um novo horário
+          </SubTitle>
+          <FormLabel>
+            determine o horário de início do atendimento
+          </FormLabel>
           <DateTimePicker
             onChange={handleStart}
             value={schedule_start}
           />
 
-          <label>determine o horário de término do atendimento</label>
+          <FormLabel>
+            determine o horário de término do atendimento
+          </FormLabel>
           <DateTimePicker onChange={handleEnd} value={schedule_end} />
-        </div>
-      </div>
+        </CardContent>
+      </CardContainer>
 
-      <button className="btn" type="submit" onClick={handleSubmit}>
-        cadastrar
-      </button>
+      <Button onClick={handleSubmit}>cadastrar</Button>
     </>
   );
 }
