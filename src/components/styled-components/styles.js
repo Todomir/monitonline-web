@@ -8,6 +8,18 @@ export const CardContainer = styled.div`
   justify-content: center;
 `;
 
+export const CardContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: rgb(240, 240, 240);
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  border-radius: 5px;
+`;
+
 export const Title = styled.h1`
   font-size: 50px;
   font-weight: 900px;
