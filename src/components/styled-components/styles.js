@@ -8,6 +8,13 @@ export const Title = styled.h1`
   margin-bottom: 20px;
 `;
 
+export const SubTitle = styled.h2`
+  margin-bottom: 20px;
+  &:first-of-type {
+    margin-bottom: 5px;
+  }
+`;
+
 export const TextInput = styled.input`
   border: 1px solid rgb(235, 235, 235);
   border-radius: 3px;
