@@ -28,10 +28,12 @@ export const Title = styled.h1`
 `;
 
 export const SubTitle = styled.h2`
-  margin-bottom: 20px;
-  &:first-of-type {
-    margin-bottom: 5px;
-  }
+  margin-bottom: ${props => props.marginBottom};
+`;
+
+export const TextSmall = styled.h5`
+  font-weight: 400;
+  margin-bottom: ${props => props.marginBottom};
 `;
 
 export const TextInput = styled.input`

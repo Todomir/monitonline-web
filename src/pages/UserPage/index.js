@@ -25,7 +25,10 @@ import {
   SubTitle,
   SmallLink,
   StyledLink,
-  Calendar
+  Calendar,
+  CardContainer,
+  CardContent,
+  TextSmall
 } from '../../components/styled-components/styles';
 
 export default function UserPage() {
@@ -65,10 +68,10 @@ export default function UserPage() {
       <>
         <Title>MONITONLINE | PERFIL</Title>
 
-        <div className="content-container">
-          <div className="profile">
-            <SubTitle>Opções do monitor</SubTitle>
-            <h5>{user.name}</h5>
+        <CardContainer>
+          <CardContent>
+            <SubTitle marginBottom="7px">Opções do monitor</SubTitle>
+            <TextSmall marginBottom="20px">{user.name}</TextSmall>
 
             <StyledLink to={'/'}>
               <MdDateRange /> checar atendimentos
@@ -96,23 +99,17 @@ export default function UserPage() {
             <StyledLink to={'/add-schedules'}>
               <MdAddAlarm /> adicionar horário
             </StyledLink>
-          </div>
+          </CardContent>
+        </CardContainer>
 
-          <div className="profile">
-            <StudentOptions />
-          </div>
-        </div>
+        <StudentOptions studentName={user.name} />
       </>
     );
   } else {
     return (
       <>
         <Title>MONITONLINE | PERFIL</Title>
-        <div className="content-container">
-          <div className="profile">
-            <StudentOptions />
-          </div>
-        </div>
+        <StudentOptions />
       </>
     );
   }
