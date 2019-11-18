@@ -14,7 +14,6 @@ import {
   MdAddAlarm
 } from 'react-icons/md';
 
-import './styles.css';
 import '@fullcalendar/core/main.css';
 import '@fullcalendar/daygrid/main.css';
 
