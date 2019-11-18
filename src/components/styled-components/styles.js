@@ -68,6 +68,27 @@ export const Button = styled.button`
   }
 `;
 
+export const SmallLink = styled.button`
+  max-width: 100%;
+  width: 170px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 9px;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease;
+
+  &:hover {
+    background: #6a11cb;
+    border-radius: 5px;
+    padding: 3px;
+    color: white;
+  }
+`;
+
 export const StyledLink = styled(Link)`
   text-decoration: none;
   color: #2575fc;
