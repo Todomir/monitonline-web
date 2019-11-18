@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import api from '../../services/api';
 
 import SubjectList from '../../components/SubjectList';
+import { RadioButton } from '../../components/styled-components/styles';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -92,7 +93,7 @@ export default function Register() {
 
         <div className="radio-inline">
           <label>
-            <input
+            <RadioButton
               type="radio"
               name="is_tutor"
               value="true"
@@ -104,7 +105,7 @@ export default function Register() {
           </label>
 
           <label>
-            <input
+            <RadioButton
               type="radio"
               name="is_tutor"
               value="false"

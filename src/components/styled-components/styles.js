@@ -15,6 +15,10 @@ export const TextInput = styled.input`
   padding: 10px;
 `;
 
+export const RadioButton = styled.input`
+  margin: 0 30px;
+`;
+
 export const FormLabel = styled.label`
   font-weight: 700;
   margin-top: 30px;
