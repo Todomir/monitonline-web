@@ -3,14 +3,10 @@ import React, { useState } from 'react';
 import { MdSearch, MdAssignment } from 'react-icons/md';
 
 import api from '../../services/api';
-import { getToken } from '../../services/auth';
 
 import './styles.css';
 
 export default function SearchTutor({ history }) {
-  const token = getToken();
-  api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
   const [subject_matter_description, setSMDescription] = useState('');
   const [tutors, setTutors] = useState([]);
 

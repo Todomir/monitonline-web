@@ -3,14 +3,10 @@ import DateTimePicker from 'react-datetime-picker';
 import dateFormat from 'dateformat';
 
 import api from '../../services/api';
-import { getToken } from '../../services/auth';
 
 import './styles.css';
 
 export default function Schedules({ history }) {
-  const token = getToken();
-  api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
   const [schedule_start, setScheduleStart] = useState(new Date());
   const [schedule_end, setScheduleEnd] = useState(new Date());
 

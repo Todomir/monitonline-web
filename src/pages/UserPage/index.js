@@ -27,15 +27,12 @@ export default function UserPage() {
   const [user, setUser] = useState({});
   const [schedules, setSchedules] = useState([]);
   const [toggle, setToggle] = useState(false);
-  const token = getToken();
 
   const events = schedules.map(schedule => ({
     title: 'Atendimento',
     start: dateFormat(schedule.schedule_start, 'yyyy-mm-dd HH:MM'),
     end: dateFormat(schedule.schedule_end, 'yyyy-mm-dd HH:MM')
   }));
-
-  api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
   const handleClick = () => {
     setToggle(!toggle);

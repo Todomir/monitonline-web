@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 import api from '../../services/api';
-import { getToken } from '../../services/auth';
 
 import dateFormat from 'dateformat';
 
@@ -15,7 +14,6 @@ export default function TutorProfile() {
   );
   const [tutor, setTutor] = useState({});
   const [schedules, setSchedules] = useState([]);
-  const token = getToken();
 
   const events = schedules.map(schedule => ({
     title: 'Horário Disponível',
@@ -23,8 +21,6 @@ export default function TutorProfile() {
     end: dateFormat(schedule.schedule_end, 'yyyy-mm-dd HH:MM'),
     id: schedule.id
   }));
-
-  api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
   useEffect(() => {
     async function getUser() {
