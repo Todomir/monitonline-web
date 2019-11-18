@@ -13,7 +13,6 @@ import {
   MdQueryBuilder,
   MdAddAlarm
 } from 'react-icons/md';
-import { Link } from 'react-router-dom';
 
 import './styles.css';
 import '@fullcalendar/core/main.css';
@@ -21,6 +20,13 @@ import '@fullcalendar/daygrid/main.css';
 
 import StudentOptions from '../../components/StudentOptions';
 import ToggleContainer from '../../components/ToggleContainer';
+import {
+  Title,
+  SubTitle,
+  SmallLink,
+  StyledLink,
+  Calendar
+} from '../../components/styled-components/styles';
 
 export default function UserPage() {
   const [user, setUser] = useState({});
@@ -57,43 +63,39 @@ export default function UserPage() {
   if (user.is_tutor) {
     return (
       <>
-        <h1>MONITONLINE | PERFIL</h1>
+        <Title>MONITONLINE | PERFIL</Title>
 
         <div className="content-container">
           <div className="profile">
-            <h2>Opções do monitor</h2>
+            <SubTitle>Opções do monitor</SubTitle>
             <h5>{user.name}</h5>
 
-            <label className="btn-label">
-              <Link to={'/'}>
-                <MdDateRange /> checar atendimentos
-              </Link>
-            </label>
-            <label onClick={handleClick} className="btn-label">
+            <StyledLink to={'/'}>
+              <MdDateRange /> checar atendimentos
+            </StyledLink>
+
+            <SmallLink onClick={handleClick}>
               <MdQueryBuilder /> checar horarios
-            </label>
+            </SmallLink>
 
             <ToggleContainer toggle={toggle}>
-              <div className="calendar">
+              <Calendar>
                 <FullCalendar
                   defaultView="dayGridMonth"
                   plugins={[dayGridPlugin]}
                   locale="pt-br"
                   events={events}
                 />
-              </div>
+              </Calendar>
             </ToggleContainer>
 
-            <label className="btn-label">
-              <Link to={'/'}>
-                <MdBook /> editar assuntos
-              </Link>
-            </label>
-            <label className="btn-label">
-              <Link to={'/add-schedules'}>
-                <MdAddAlarm /> adicionar horário
-              </Link>
-            </label>
+            <StyledLink to={'/'}>
+              <MdBook /> editar assuntos
+            </StyledLink>
+
+            <StyledLink to={'/add-schedules'}>
+              <MdAddAlarm /> adicionar horário
+            </StyledLink>
           </div>
 
           <div className="profile">
@@ -105,7 +107,7 @@ export default function UserPage() {
   } else {
     return (
       <>
-        <h1>MONITONLINE </h1>
+        <Title>MONITONLINE | PERFIL</Title>
         <div className="content-container">
           <div className="profile">
             <StudentOptions />

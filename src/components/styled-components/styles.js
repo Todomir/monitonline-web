@@ -68,31 +68,11 @@ export const Button = styled.button`
   }
 `;
 
-export const SmallLink = styled.button`
+export const SmallLink = styled.label`
   max-width: 100%;
-  width: 170px;
+  width: 200px;
   cursor: pointer;
-  border: none;
-  background: none;
-  font-size: 9px;
-  -webkit-transition: all 500ms ease;
-  -moz-transition: all 500ms ease;
-  -ms-transition: all 500ms ease;
-  -o-transition: all 500ms ease;
-  transition: all 500ms ease;
-
-  &:hover {
-    background: #6a11cb;
-    border-radius: 5px;
-    padding: 3px;
-    color: white;
-  }
-`;
-
-export const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: #2575fc;
-  cursor: pointer;
+  font-size: 14px;
   -webkit-transition: all 500ms ease;
   -moz-transition: all 500ms ease;
   -ms-transition: all 500ms ease;
@@ -104,7 +84,57 @@ export const StyledLink = styled(Link)`
     margin: 0 5px;
     color: #fff;
     font-weight: 700;
-    background: #2575fc;
+    background: #6a11cb;
     border-radius: 3px;
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  max-width: 100%;
+  width: 200px;
+  cursor: pointer;
+
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease;
+
+  &:hover {
+    padding: 5px;
+    margin: 0 5px;
+    color: #fff;
+    font-weight: 700;
+    background: #6a11cb;
+    border-radius: 3px;
+  }
+
+  p {
+    font-size: 9px;
+    margin: 7px 20px;
+  }
+`;
+export const Calendar = styled.div`
+  margin: 20px 0px;
+
+  a {
+    background: #6a11cb;
+    color: #fff;
+    border: none;
+    padding: 2px;
+    cursor: pointer;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+
+    &:hover {
+      background: #8f27ff;
+      padding: 6px;
+      margin: 10px;
+    }
   }
 `;

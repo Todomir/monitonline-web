@@ -1,24 +1,22 @@
 import React from 'react';
 
 import { MdDateRange } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { StyledLink, SubTitle } from '../styled-components/styles';
 
 export default function StudentOptions() {
   return (
     <>
-      <h2>Opções do aluno</h2>
+      <SubTitle>Opções do aluno</SubTitle>
 
-      <label className="btn-label">
-        <Link to={'/search-tutors'}>
-          <MdDateRange /> marcar atendimento
-          <p>clique aqui para procurar um monitor agora mesmo!</p>
-        </Link>
-      </label>
+      <StyledLink to={'/search-tutors'}>
+        <MdDateRange /> marcar atendimento
+        <p>clique aqui para procurar um monitor agora mesmo!</p>
+      </StyledLink>
 
-      <label className="btn-label">
+      <StyledLink to={'/search-tutors'}>
         <MdDateRange /> meus atendimentos
         <p>clique aqui para ver o status dos atendimentos marcados</p>
-      </label>
+      </StyledLink>
     </>
   );
 }
