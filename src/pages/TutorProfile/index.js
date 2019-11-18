@@ -6,6 +6,13 @@ import dateFormat from 'dateformat';
 
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import {
+  CardContainer,
+  CardContent,
+  SubTitle,
+  TextSmall,
+  Calendar
+} from '../../components/styled-components/styles';
 
 export default function TutorProfile() {
   const tutor_id = parseInt(localStorage.getItem('tutor_id'));
@@ -48,11 +55,11 @@ export default function TutorProfile() {
   }
 
   return (
-    <div className="content-container">
-      <div className="profile">
-        <h2>{tutor.name}</h2>
-        <h5>Horários do tutor</h5>
-        <div className="calendar">
+    <CardContainer>
+      <CardContent>
+        <SubTitle>{tutor.name}</SubTitle>
+        <TextSmall>Horários do tutor</TextSmall>
+        <Calendar>
           <FullCalendar
             defaultView="dayGridMonth"
             plugins={[dayGridPlugin]}
@@ -60,8 +67,8 @@ export default function TutorProfile() {
             events={events}
             eventClick={handleScheduleClick}
           />
-        </div>
-      </div>
-    </div>
+        </Calendar>
+      </CardContent>
+    </CardContainer>
   );
 }
