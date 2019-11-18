@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import api from '../../services/api';
 
 import SubjectList from '../../components/SubjectList';
-import { RadioButton } from '../../components/styled-components/styles';
+import {
+  RadioButton,
+  Button,
+  FormLabel,
+  TextInput
+} from '../../components/styled-components/styles';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -48,38 +53,38 @@ export default function Register() {
       <h1>MONITONLINE | CADASTRO</h1>
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">NOME COMPLETO *</label>
-        <input
+        <FormLabel htmlFor="name">NOME COMPLETO *</FormLabel>
+        <TextInput
           type="text"
           name="name"
           id="name"
           placeholder="Seu belo nome"
           onChange={event => setName(event.target.value)}
         />
-        <label htmlFor="cpf">CPF *</label>
-        <input
+        <FormLabel htmlFor="cpf">CPF *</FormLabel>
+        <TextInput
           type="text"
           name="cpf"
           id="cpf"
           placeholder="Seu CPF"
           onChange={event => setCpf(event.target.value)}
         />
-        <label htmlFor="email">E-MAIL *</label>
-        <input
+        <FormLabel htmlFor="email">E-MAIL *</FormLabel>
+        <TextInput
           type="email"
           name="email"
           id="email"
           placeholder="Seu melhor e-mail"
           onChange={event => setEmail(event.target.value)}
         />
-        <label htmlFor="password">SENHA *</label>
-        <input
+        <FormLabel htmlFor="password">SENHA *</FormLabel>
+        <TextInput
           type="password"
           name="password"
           id="password"
           onChange={event => setPassword(event.target.value)}
         />
-        <label htmlFor="course">CURSO *</label>
+        <FormLabel htmlFor="course">CURSO *</FormLabel>
         <select
           name="course"
           id="course"
@@ -89,7 +94,7 @@ export default function Register() {
           <option value="0">Eletromecânica</option>
           <option value="1">Tecnologia da Informação</option>
         </select>
-        <label htmlFor="is_tutor">DESEJA SER MONITOR? *</label>
+        <FormLabel>DESEJA SER MONITOR? *</FormLabel>
 
         <div className="radio-inline">
           <label>
@@ -122,9 +127,7 @@ export default function Register() {
           callback={subjectMattersCallback}
         />
 
-        <button className="btn" type="submit">
-          Cadastre-se
-        </button>
+        <Button type="submit">Cadastre-se</Button>
       </form>
     </>
   );
