@@ -1,13 +1,16 @@
 import React from 'react';
-import './styles.css';
-// import { Container } from './styles';
+
+import {
+  StyledModal,
+  ModalContainer
+} from '../styled-components/styles';
 
 export default function Modal({ toggle, children }) {
   if (toggle) {
     return (
-      <div className="modal-bg">
-        <div className="modal-main">{children}</div>
-      </div>
+      <StyledModal>
+        <ModalContainer>{children}</ModalContainer>
+      </StyledModal>
     );
   } else {
     return null;

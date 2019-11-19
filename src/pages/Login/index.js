@@ -8,10 +8,8 @@ import {
   TextInput,
   Button,
   Title,
-  StyledLink,
-  SubTitle
+  StyledLink
 } from '../../components/styled-components/styles';
-import Modal from '../../components/Modal';
 
 // import { Container } from './styles';
 
@@ -59,14 +57,6 @@ export default function Login({ history }) {
           testar modal
         </Button>
       </form>
-
-      <Modal toggle={toggle}>
-        <SubTitle>Teste de Modal</SubTitle>
-        Esse é um teste do componente de modal.
-        <Button onClick={() => setToggle(!toggle)}>
-          fechar modal
-        </Button>
-      </Modal>
     </>
   );
 }
