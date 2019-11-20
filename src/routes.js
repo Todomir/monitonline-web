@@ -22,7 +22,7 @@ export default function Routes() {
       <Switch>
         <Route path="/" exact component={Login} />
         <Route path="/register" component={Register} />
-        <PrivateRoute path="/userpage" component={UserPage} />
+        <PrivateRoute path="/user-profile" component={UserPage} />
         <PrivateRoute path="/add-schedules" component={Schedules} />
         <PrivateRoute path="/search-tutors" component={SearchTutor} />
         <PrivateRoute path="/schedule-assistance" component={TutorProfile} />

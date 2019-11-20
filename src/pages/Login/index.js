@@ -24,7 +24,7 @@ export default function Login({ history }) {
       password
     });
     login(response.data.token);
-    history.push('/userpage');
+    history.push('/user-profile');
   }
 
   return (

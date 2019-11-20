@@ -32,7 +32,7 @@ export default function Schedules({ history }) {
         schedule_end: dateFormat(schedule_end, 'yyyy-mm-dd HH:MM')
       });
 
-      history.push('/userpage');
+      history.push('/user-profile');
     } catch (err) {
       console.log(err.response);
     }
