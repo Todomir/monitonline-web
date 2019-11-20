@@ -30,6 +30,7 @@ export default function TutorProfile() {
     start: dateFormat(schedule.schedule_start, 'yyyy-mm-dd HH:MM-04:00'),
     end: dateFormat(schedule.schedule_end, 'yyyy-mm-dd HH:MM-04:00'),
     timezone: 'UTC',
+    id: schedule.id,
   }));
 
   useEffect(() => {
