@@ -1,7 +1,13 @@
 import React from 'react';
 
 import { MdDateRange } from 'react-icons/md';
-import { StyledLink, SubTitle, CardContainer, CardContent, TextSmall } from '../styled-components/styles';
+import {
+  StyledLink,
+  SubTitle,
+  CardContainer,
+  CardContent,
+  TextSmall
+} from '../styled-components/styles';
 
 export default function StudentOptions({ studentName }) {
   return (

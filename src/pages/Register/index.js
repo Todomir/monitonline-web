@@ -2,7 +2,14 @@ import React, { useState } from 'react';
 import api from '../../services/api';
 
 import SubjectList from '../../components/SubjectList';
-import { RadioButton, Button, FormLabel, TextInput, Select, Title } from '../../components/styled-components/styles';
+import {
+  RadioButton,
+  Button,
+  FormLabel,
+  TextInput,
+  Select,
+  Title
+} from '../../components/styled-components/styles';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -24,7 +31,7 @@ export default function Register() {
         password,
         course,
         is_tutor,
-        subject_matters,
+        subject_matters
       });
     } catch (err) {
       console.log(err.response);
@@ -73,9 +80,19 @@ export default function Register() {
           onChange={event => setEmail(event.target.value)}
         />
         <FormLabel htmlFor="password">SENHA *</FormLabel>
-        <TextInput type="password" name="password" id="password" onChange={event => setPassword(event.target.value)} />
+        <TextInput
+          type="password"
+          name="password"
+          id="password"
+          onChange={event => setPassword(event.target.value)}
+        />
         <FormLabel htmlFor="course">CURSO *</FormLabel>
-        <Select name="course" id="course" value={course} onChange={event => setCourse(parseInt(event.target.value))}>
+        <Select
+          name="course"
+          id="course"
+          value={course}
+          onChange={event => setCourse(parseInt(event.target.value))}
+        >
           <option value="0">Eletromecânica</option>
           <option value="1">Tecnologia da Informação</option>
         </Select>

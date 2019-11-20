@@ -14,7 +14,7 @@ import {
   TextInput,
   SmallLink,
   SubTitle,
-  Button,
+  Button
 } from '../../components/styled-components/styles';
 
 export default function SearchTutor({ history }) {
@@ -26,7 +26,9 @@ export default function SearchTutor({ history }) {
     event.preventDefault();
 
     try {
-      const response = await api.post('/users/fetchUsersByDescription', { subject_matter_description });
+      const response = await api.post('/users/fetchUsersByDescription', {
+        subject_matter_description
+      });
       setTutors(response.data);
     } catch (err) {
       console.log(err.response);
@@ -54,7 +56,9 @@ export default function SearchTutor({ history }) {
           <h2>Pesquisar tutores</h2>
 
           <form onSubmit={handleSubmit}>
-            <FormLabel htmlFor="subject_matter_description">digite o assunto que deseja tutoria *</FormLabel>
+            <FormLabel htmlFor="subject_matter_description">
+              digite o assunto que deseja tutoria *
+            </FormLabel>
             <div className="search-input">
               <TextInput
                 type="text"
@@ -83,7 +87,8 @@ export default function SearchTutor({ history }) {
                 handleAssistanceClick(
                   tutor.id,
                   tutor.subjectMatters.find(subjectMatter => {
-                    if (subjectMatter.subject_matter_description === subject_matter_description) return subjectMatter;
+                    if (subjectMatter.subject_matter_description === subject_matter_description)
+                      return subjectMatter;
                   })
                 );
               }}

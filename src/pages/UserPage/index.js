@@ -21,7 +21,7 @@ import {
   Calendar,
   CardContainer,
   CardContent,
-  TextSmall,
+  TextSmall
 } from '../../components/styled-components/styles';
 
 export default function UserPage() {
@@ -34,7 +34,7 @@ export default function UserPage() {
     start: dateFormat(schedule.schedule_start, 'yyyy-mm-dd HH:MM-04:00'),
     end: dateFormat(schedule.schedule_end, 'yyyy-mm-dd HH:MM-04:00'),
     timezone: 'UTC',
-    id: schedule.id,
+    id: schedule.id
   }));
 
   const handleClick = () => {
@@ -86,7 +86,7 @@ export default function UserPage() {
                   eventTimeFormat={{
                     hour: '2-digit',
                     minute: '2-digit',
-                    meridiem: false,
+                    meridiem: false
                   }}
                 />
               </Calendar>

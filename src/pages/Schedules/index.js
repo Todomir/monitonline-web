@@ -10,7 +10,7 @@ import {
   FormLabel,
   Title,
   SubTitle,
-  Button,
+  Button
 } from '../../components/styled-components/styles';
 
 export default function Schedules({ history }) {
@@ -29,7 +29,7 @@ export default function Schedules({ history }) {
     try {
       await api.post('/schedules', {
         schedule_start: dateFormat(schedule_start, 'yyyy-mm-dd HH:MM'),
-        schedule_end: dateFormat(schedule_end, 'yyyy-mm-dd HH:MM'),
+        schedule_end: dateFormat(schedule_end, 'yyyy-mm-dd HH:MM')
       });
 
       history.push('/userpage');
