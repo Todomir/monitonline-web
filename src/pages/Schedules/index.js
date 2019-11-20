@@ -50,10 +50,10 @@ export default function Schedules({ history }) {
 
           <FormLabel>determine o horário de término do atendimento</FormLabel>
           <DateTimePicker onChange={handleEnd} value={schedule_end} />
+
+          <Button onClick={handleSubmit}>cadastrar</Button>
         </CardContent>
       </CardContainer>
-
-      <Button onClick={handleSubmit}>cadastrar</Button>
     </>
   );
 }

@@ -72,6 +72,7 @@ export const FormLabel = styled.label`
 `;
 
 export const Button = styled.button`
+  margin-top: 30px;
   border: 0;
   border-radius: 3px;
   height: 45px;
