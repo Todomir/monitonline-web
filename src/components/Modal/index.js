@@ -1,9 +1,6 @@
 import React from 'react';
 
-import {
-  StyledModal,
-  ModalContainer
-} from '../styled-components/styles';
+import { StyledModal, ModalContainer } from '../styled-components/styles';
 
 export default function Modal({ toggle, children }) {
   if (toggle) {
@@ -12,7 +9,6 @@ export default function Modal({ toggle, children }) {
         <ModalContainer>{children}</ModalContainer>
       </StyledModal>
     );
-  } else {
-    return null;
   }
+  return null;
 }

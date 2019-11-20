@@ -5,13 +5,7 @@ import { MdSearch, MdAssignment } from 'react-icons/md';
 import api from '../../services/api';
 
 import './styles.css';
-import {
-  CardContainer,
-  CardContent,
-  FormLabel,
-  TextInput,
-  SmallLink
-} from '../../components/styled-components/styles';
+import { CardContainer, CardContent, FormLabel, TextInput, SmallLink } from '../../components/styled-components/styles';
 import ToggleContainer from '../../components/ToggleContainer';
 
 export default function SearchTutor({ history }) {
@@ -23,10 +17,7 @@ export default function SearchTutor({ history }) {
     event.preventDefault();
 
     try {
-      const response = await api.post(
-        '/users/fetchUsersByDescription',
-        { subject_matter_description }
-      );
+      const response = await api.post('/users/fetchUsersByDescription', { subject_matter_description });
       setTutors(response.data);
     } catch (err) {
       console.log(err.response);
@@ -54,18 +45,14 @@ export default function SearchTutor({ history }) {
           <h2>Pesquisar tutores</h2>
 
           <form onSubmit={handleSubmit}>
-            <FormLabel htmlFor="subject_matter_description">
-              digite o assunto que deseja tutoria *
-            </FormLabel>
+            <FormLabel htmlFor="subject_matter_description">digite o assunto que deseja tutoria *</FormLabel>
             <div className="search-input">
               <TextInput
                 type="text"
                 name="subject_matter_description"
                 placeholder="Trigonometria"
                 value={subject_matter_description}
-                onChange={event =>
-                  setSMDescription(event.target.value)
-                }
+                onChange={event => setSMDescription(event.target.value)}
               />
               <button onClick={handleToggle} type="submit">
                 <MdSearch />
@@ -78,9 +65,7 @@ export default function SearchTutor({ history }) {
               <CardContent>
                 {tutors.map(tutor => (
                   <>
-                    <FormLabel key={tutor.name}>
-                      {tutor.name}
-                    </FormLabel>
+                    <FormLabel key={tutor.name}>{tutor.name}</FormLabel>
 
                     <SmallLink
                       key={tutor.id}
@@ -88,17 +73,13 @@ export default function SearchTutor({ history }) {
                         handleAssistanceClick(
                           tutor.id,
                           tutor.subjectMatters.find(subjectMatter => {
-                            if (
-                              subjectMatter.subject_matter_description ===
-                              subject_matter_description
-                            )
+                            if (subjectMatter.subject_matter_description === subject_matter_description)
                               return subjectMatter;
                           })
                         );
                       }}
                     >
-                      <MdAssignment key={tutor.id} /> ver horários
-                      disponíveis
+                      <MdAssignment key={tutor.id} /> ver horários disponíveis
                     </SmallLink>
                   </>
                 ))}

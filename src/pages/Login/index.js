@@ -3,13 +3,7 @@ import React, { useState } from 'react';
 import api from '../../services/api';
 import { login } from '../../services/auth';
 
-import {
-  FormLabel,
-  TextInput,
-  Button,
-  Title,
-  StyledLink
-} from '../../components/styled-components/styles';
+import { FormLabel, TextInput, Button, Title, StyledLink } from '../../components/styled-components/styles';
 
 // import { Container } from './styles';
 
@@ -22,7 +16,7 @@ export default function Login({ history }) {
     event.preventDefault();
     const response = await api.post('/users/auth', {
       email,
-      password
+      password,
     });
     login(response.data.token);
     history.push('/userpage');
@@ -34,28 +28,15 @@ export default function Login({ history }) {
 
       <form onSubmit={handleSubmit}>
         <FormLabel>e-mail *</FormLabel>
-        <TextInput
-          type="email"
-          name="email"
-          id="email"
-          onChange={event => setEmail(event.target.value)}
-        />
+        <TextInput type="email" name="email" id="email" onChange={event => setEmail(event.target.value)} />
         <FormLabel>senha *</FormLabel>
-        <TextInput
-          type="password"
-          name="password"
-          id="password"
-          onChange={event => setPassword(event.target.value)}
-        />
+        <TextInput type="password" name="password" id="password" onChange={event => setPassword(event.target.value)} />
         <p>
-          ainda não tem uma conta?{' '}
-          <StyledLink to={'/register'}>cadastre-se já!</StyledLink>
+          ainda não tem uma conta? <StyledLink to="/register">cadastre-se já!</StyledLink>
         </p>
 
         <Button type="submit">fazer login</Button>
-        <Button onClick={() => setToggle(!toggle)}>
-          testar modal
-        </Button>
+        <Button onClick={() => setToggle(!toggle)}>testar modal</Button>
       </form>
     </>
   );

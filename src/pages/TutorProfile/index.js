@@ -1,24 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
-import api from '../../services/api';
-
 import dateFormat from 'dateformat';
 
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import {
-  CardContainer,
-  CardContent,
-  SubTitle,
-  TextSmall,
-  Calendar
-} from '../../components/styled-components/styles';
+import api from '../../services/api';
+import { CardContainer, CardContent, SubTitle, TextSmall, Calendar } from '../../components/styled-components/styles';
 
 export default function TutorProfile() {
   const tutor_id = parseInt(localStorage.getItem('tutor_id'));
-  const subject_matter_id = parseInt(
-    localStorage.getItem('subject_matter_id')
-  );
+  const subject_matter_id = parseInt(localStorage.getItem('subject_matter_id'));
   const [tutor, setTutor] = useState({});
   const [schedules, setSchedules] = useState([]);
 
@@ -26,7 +17,7 @@ export default function TutorProfile() {
     title: 'Horário Disponível',
     start: dateFormat(schedule.schedule_start, 'yyyy-mm-dd HH:MM'),
     end: dateFormat(schedule.schedule_end, 'yyyy-mm-dd HH:MM'),
-    id: schedule.id
+    id: schedule.id,
   }));
 
   useEffect(() => {
@@ -35,7 +26,7 @@ export default function TutorProfile() {
       setTutor(response.data);
     }
     getUser();
-  }, []);
+  }, [tutor_id]);
 
   useEffect(() => {
     async function getSchedules() {
@@ -43,12 +34,12 @@ export default function TutorProfile() {
       setSchedules(response.data);
     }
     getSchedules();
-  }, []);
+  }, [tutor_id]);
 
   async function handleScheduleClick(currentEvent) {
     await api.post(`/assistances/${tutor_id}`, {
       subject_matter_id,
-      schedule_id: parseInt(currentEvent.event._def.publicId)
+      schedule_id: parseInt(currentEvent.event._def.publicId),
     });
 
     alert('atendimento marcado com sucesso');

@@ -31,10 +31,7 @@ export default function SubjectList({ isTutor, callback }) {
     // check if the check box is checked or unchecked
     if (isChecked) {
       // add the numerical value of the checkbox to options array
-      setSubjectMattersId(subjectMattersId => [
-        ...subjectMattersId,
-        value
-      ]);
+      setSubjectMattersId(subjectMattersId => [...subjectMattersId, value]);
     } else {
       // or remove the value from the unchecked checkbox from the array
       index = subjectMattersId.indexOf(value);
@@ -61,7 +58,6 @@ export default function SubjectList({ isTutor, callback }) {
         ))}
       </div>
     );
-  } else {
-    return null;
   }
+  return null;
 }

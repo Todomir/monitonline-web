@@ -25,10 +25,7 @@ export default function Routes() {
         <PrivateRoute path="/userpage" component={UserPage} />
         <PrivateRoute path="/add-schedules" component={Schedules} />
         <PrivateRoute path="/search-tutors" component={SearchTutor} />
-        <PrivateRoute
-          path="/schedule-assistance"
-          component={TutorProfile}
-        />
+        <PrivateRoute path="/schedule-assistance" component={TutorProfile} />
       </Switch>
     </BrowserRouter>
   );

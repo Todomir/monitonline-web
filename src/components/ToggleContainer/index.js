@@ -5,7 +5,6 @@ import React from 'react';
 export default function ToggleContainer(props) {
   if (props.toggle) {
     return <>{props.children}</>;
-  } else {
-    return null;
   }
+  return null;
 }

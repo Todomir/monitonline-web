@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-import api from '../../services/api';
-
 import dateFormat from 'dateformat';
 
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 
-import {
-  MdDateRange,
-  MdBook,
-  MdQueryBuilder,
-  MdAddAlarm
-} from 'react-icons/md';
+import { MdDateRange, MdBook, MdQueryBuilder, MdAddAlarm } from 'react-icons/md';
+import api from '../../services/api';
 
 import '@fullcalendar/core/main.css';
 import '@fullcalendar/daygrid/main.css';
@@ -27,7 +21,7 @@ import {
   Calendar,
   CardContainer,
   CardContent,
-  TextSmall
+  TextSmall,
 } from '../../components/styled-components/styles';
 
 export default function UserPage() {
@@ -38,7 +32,7 @@ export default function UserPage() {
   const events = schedules.map(schedule => ({
     title: 'Atendimento',
     start: dateFormat(schedule.schedule_start, 'yyyy-mm-dd HH:MM'),
-    end: dateFormat(schedule.schedule_end, 'yyyy-mm-dd HH:MM')
+    end: dateFormat(schedule.schedule_end, 'yyyy-mm-dd HH:MM'),
   }));
 
   const handleClick = () => {
@@ -72,7 +66,7 @@ export default function UserPage() {
             <SubTitle marginBottom="7px">Opções do monitor</SubTitle>
             <TextSmall marginBottom="20px">{user.name}</TextSmall>
 
-            <StyledLink to={'/'}>
+            <StyledLink to="/">
               <MdDateRange /> checar atendimentos
             </StyledLink>
 
@@ -82,20 +76,15 @@ export default function UserPage() {
 
             <ToggleContainer toggle={toggle}>
               <Calendar>
-                <FullCalendar
-                  defaultView="dayGridMonth"
-                  plugins={[dayGridPlugin]}
-                  locale="pt-br"
-                  events={events}
-                />
+                <FullCalendar defaultView="dayGridMonth" plugins={[dayGridPlugin]} locale="pt-br" events={events} />
               </Calendar>
             </ToggleContainer>
 
-            <StyledLink to={'/'}>
+            <StyledLink to="/">
               <MdBook /> editar assuntos
             </StyledLink>
 
-            <StyledLink to={'/add-schedules'}>
+            <StyledLink to="/add-schedules">
               <MdAddAlarm /> adicionar horário
             </StyledLink>
           </CardContent>
@@ -104,12 +93,11 @@ export default function UserPage() {
         <StudentOptions studentName={user.name} />
       </>
     );
-  } else {
-    return (
-      <>
-        <Title>MONITONLINE | PERFIL</Title>
-        <StudentOptions />
-      </>
-    );
   }
+  return (
+    <>
+      <Title>MONITONLINE | PERFIL</Title>
+      <StudentOptions />
+    </>
+  );
 }
