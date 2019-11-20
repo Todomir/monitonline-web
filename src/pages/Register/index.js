@@ -8,7 +8,8 @@ import {
   FormLabel,
   TextInput,
   Select,
-  Title
+  Title,
+  FlexWrapper
 } from '../../components/styled-components/styles';
 
 export default function Register({ history }) {
@@ -100,7 +101,7 @@ export default function Register({ history }) {
         </Select>
         <FormLabel>DESEJA SER MONITOR? *</FormLabel>
 
-        <div className="radio-inline">
+        <FlexWrapper isInline marginLeft="-30px" marginTop="7px">
           <label>
             <RadioButton
               type="radio"
@@ -120,7 +121,7 @@ export default function Register({ history }) {
             />
             Não
           </label>
-        </div>
+        </FlexWrapper>
 
         <SubjectList isTutor={is_tutor} callback={subjectMattersCallback} />
 
