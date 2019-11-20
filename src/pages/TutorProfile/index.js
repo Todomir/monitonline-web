@@ -5,7 +5,14 @@ import dateFormat from 'dateformat';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import api from '../../services/api';
-import { CardContainer, CardContent, SubTitle, TextSmall, Calendar } from '../../components/styled-components/styles';
+import {
+  CardContainer,
+  CardContent,
+  SubTitle,
+  TextSmall,
+  Calendar,
+  Button,
+} from '../../components/styled-components/styles';
 
 import Modal from '../../components/Modal';
 
@@ -40,8 +47,7 @@ export default function TutorProfile() {
     getSchedules();
   }, [tutor_id]);
 
-  function handleScheduleClick(currentEvent) {
-    setScheduleId(parseInt(currentEvent.event._def.publicId));
+  function handleScheduleClick() {
     setToggle(!toggle);
   }
 
@@ -50,6 +56,8 @@ export default function TutorProfile() {
       subject_matter_id,
       schedule_id: scheduleId,
     });
+    alert('Atendimento realizado com sucesso!');
+    setToggle(!toggle);
   }
 
   return (
@@ -57,8 +65,8 @@ export default function TutorProfile() {
       <Modal toggle={toggle}>
         <SubTitle>Confirmação de atendimento</SubTitle>
         Tem certeza que deseja solicitar um atendimento com {tutor.name}?
-        <button onClick={handleConfirmAssistance}>Sim</button>
-        <button onClick={handleScheduleClick}>Não</button>
+        <Button onClick={handleConfirmAssistance}>Sim</Button>
+        <Button onClick={handleScheduleClick}>Não</Button>
       </Modal>
 
       <CardContainer>
@@ -71,7 +79,10 @@ export default function TutorProfile() {
               plugins={[dayGridPlugin]}
               locale="pt-br"
               events={events}
-              eventClick={handleScheduleClick}
+              eventClick={currentEvent => {
+                setScheduleId(parseInt(currentEvent.event._def.publicId));
+                handleScheduleClick();
+              }}
             />
           </Calendar>
         </CardContent>
