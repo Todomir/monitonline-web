@@ -64,7 +64,7 @@ export default function TutorProfile() {
   return (
     <>
       <Modal toggle={toggle}>
-        <SubTitle>Confirmação de atendimento</SubTitle>
+        <SubTitle marginBottom="7px">Confirmação de atendimento</SubTitle>
         Tem certeza que deseja solicitar um atendimento com {tutor.name}?
         <FlexWrapper isInline marginTop="40px">
           <EditableButton width="200px" onClick={handleConfirmAssistance}>
