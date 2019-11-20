@@ -88,6 +88,7 @@ export const Button = styled.button`
 `;
 
 export const EditableButton = styled(Button)`
+  max-width: 100%;
   width: ${props => props.width};
   margin: 0 auto;
   margin-top: ${props => props.marginTop};
