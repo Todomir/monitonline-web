@@ -11,7 +11,7 @@ import {
   SubTitle,
   TextSmall,
   Calendar,
-  Button,
+  EditableButton,
 } from '../../components/styled-components/styles';
 
 import Modal from '../../components/Modal';
@@ -65,8 +65,12 @@ export default function TutorProfile() {
       <Modal toggle={toggle}>
         <SubTitle>Confirmação de atendimento</SubTitle>
         Tem certeza que deseja solicitar um atendimento com {tutor.name}?
-        <Button onClick={handleConfirmAssistance}>Sim</Button>
-        <Button onClick={handleScheduleClick}>Não</Button>
+        <EditableButton width="200px" marginTop="10px" onClick={handleConfirmAssistance}>
+          Sim
+        </EditableButton>
+        <EditableButton width="200px" marginTop="10px" onClick={handleScheduleClick}>
+          Não
+        </EditableButton>
       </Modal>
 
       <CardContainer>
