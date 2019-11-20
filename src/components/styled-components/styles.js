@@ -62,10 +62,8 @@ export const FormLabel = styled.label`
 `;
 
 export const Button = styled.button`
-  margin-top: 40px;
   border: 0;
   border-radius: 3px;
-  width: 100%;
   height: 45px;
   padding: 0 20px;
   font-size: 16px;
@@ -87,6 +85,13 @@ export const Button = styled.button`
   &:active {
     background: #2575f2;
   }
+`;
+
+export const EditableButton = styled(Button)`
+  width: ${props => props.width};
+  margin: 0 auto;
+  margin-top: ${props => props.marginTop};
+  margin-bottom: ${props => props.marginBottom};
 `;
 
 export const SmallLink = styled.label`
