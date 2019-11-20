@@ -10,7 +10,6 @@ import { FormLabel, TextInput, Button, Title, StyledLink } from '../../component
 export default function Login({ history }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [toggle, setToggle] = useState(false);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -36,7 +35,6 @@ export default function Login({ history }) {
         </p>
 
         <Button type="submit">fazer login</Button>
-        <Button onClick={() => setToggle(!toggle)}>testar modal</Button>
       </form>
     </>
   );

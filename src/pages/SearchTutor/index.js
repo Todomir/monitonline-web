@@ -5,8 +5,17 @@ import { MdSearch, MdAssignment } from 'react-icons/md';
 import api from '../../services/api';
 
 import './styles.css';
-import { CardContainer, CardContent, FormLabel, TextInput, SmallLink } from '../../components/styled-components/styles';
-import ToggleContainer from '../../components/ToggleContainer';
+
+import Modal from '../../components/Modal';
+import {
+  CardContainer,
+  CardContent,
+  FormLabel,
+  TextInput,
+  SmallLink,
+  SubTitle,
+  Button,
+} from '../../components/styled-components/styles';
 
 export default function SearchTutor({ history }) {
   const [subject_matter_description, setSMDescription] = useState('');
@@ -59,35 +68,33 @@ export default function SearchTutor({ history }) {
               </button>
             </div>
           </form>
-
-          <ToggleContainer toggle={toggle}>
-            <CardContainer>
-              <CardContent>
-                {tutors.map(tutor => (
-                  <>
-                    <FormLabel key={tutor.name}>{tutor.name}</FormLabel>
-
-                    <SmallLink
-                      key={tutor.id}
-                      onClick={() => {
-                        handleAssistanceClick(
-                          tutor.id,
-                          tutor.subjectMatters.find(subjectMatter => {
-                            if (subjectMatter.subject_matter_description === subject_matter_description)
-                              return subjectMatter;
-                          })
-                        );
-                      }}
-                    >
-                      <MdAssignment key={tutor.id} /> ver horários disponíveis
-                    </SmallLink>
-                  </>
-                ))}
-              </CardContent>
-            </CardContainer>
-          </ToggleContainer>
         </CardContent>
       </CardContainer>
+
+      <Modal toggle={toggle}>
+        {tutors.map(tutor => (
+          <>
+            <SubTitle>Monitores</SubTitle>
+            <FormLabel key={tutor.name}>{tutor.name}</FormLabel>
+
+            <SmallLink
+              key={tutor.id}
+              onClick={() => {
+                handleAssistanceClick(
+                  tutor.id,
+                  tutor.subjectMatters.find(subjectMatter => {
+                    if (subjectMatter.subject_matter_description === subject_matter_description) return subjectMatter;
+                  })
+                );
+              }}
+            >
+              <MdAssignment key={tutor.id} /> ver horários disponíveis
+            </SmallLink>
+
+            <Button onClick={handleToggle}>voltar</Button>
+          </>
+        ))}
+      </Modal>
     </>
   );
 }

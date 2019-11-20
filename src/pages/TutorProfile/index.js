@@ -7,11 +7,15 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import api from '../../services/api';
 import { CardContainer, CardContent, SubTitle, TextSmall, Calendar } from '../../components/styled-components/styles';
 
+import Modal from '../../components/Modal';
+
 export default function TutorProfile() {
   const tutor_id = parseInt(localStorage.getItem('tutor_id'));
   const subject_matter_id = parseInt(localStorage.getItem('subject_matter_id'));
   const [tutor, setTutor] = useState({});
   const [schedules, setSchedules] = useState([]);
+  const [scheduleId, setScheduleId] = useState([]);
+  const [toggle, setToggle] = useState(false);
 
   const events = schedules.map(schedule => ({
     title: 'Horário Disponível',
@@ -36,30 +40,42 @@ export default function TutorProfile() {
     getSchedules();
   }, [tutor_id]);
 
-  async function handleScheduleClick(currentEvent) {
+  function handleScheduleClick(currentEvent) {
+    setScheduleId(parseInt(currentEvent.event._def.publicId));
+    setToggle(!toggle);
+  }
+
+  async function handleConfirmAssistance() {
     await api.post(`/assistances/${tutor_id}`, {
       subject_matter_id,
-      schedule_id: parseInt(currentEvent.event._def.publicId),
+      schedule_id: scheduleId,
     });
-
-    alert('atendimento marcado com sucesso');
   }
 
   return (
-    <CardContainer>
-      <CardContent>
-        <SubTitle>{tutor.name}</SubTitle>
-        <TextSmall>Horários do tutor</TextSmall>
-        <Calendar>
-          <FullCalendar
-            defaultView="dayGridMonth"
-            plugins={[dayGridPlugin]}
-            locale="pt-br"
-            events={events}
-            eventClick={handleScheduleClick}
-          />
-        </Calendar>
-      </CardContent>
-    </CardContainer>
+    <>
+      <Modal toggle={toggle}>
+        <SubTitle>Confirmação de atendimento</SubTitle>
+        Tem certeza que deseja solicitar um atendimento com {tutor.name}?
+        <button onClick={handleConfirmAssistance}>Sim</button>
+        <button onClick={handleScheduleClick}>Não</button>
+      </Modal>
+
+      <CardContainer>
+        <CardContent>
+          <SubTitle>{tutor.name}</SubTitle>
+          <TextSmall>Horários do tutor</TextSmall>
+          <Calendar>
+            <FullCalendar
+              defaultView="dayGridMonth"
+              plugins={[dayGridPlugin]}
+              locale="pt-br"
+              events={events}
+              eventClick={handleScheduleClick}
+            />
+          </Calendar>
+        </CardContent>
+      </CardContainer>
+    </>
   );
 }
