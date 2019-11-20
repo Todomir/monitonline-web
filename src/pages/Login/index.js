@@ -47,7 +47,10 @@ export default function Login({ history }) {
           onChange={event => setPassword(event.target.value)}
         />
         <p>
-          ainda não tem uma conta? <StyledLink to="/register">cadastre-se já!</StyledLink>
+          ainda não tem uma conta?{' '}
+          <strong>
+            <StyledLink to="/register">cadastre-se já!</StyledLink>
+          </strong>
         </p>
 
         <Button type="submit">fazer login</Button>
