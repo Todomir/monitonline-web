@@ -11,7 +11,7 @@ import {
   Title
 } from '../../components/styled-components/styles';
 
-export default function Register() {
+export default function Register({ history }) {
   const [name, setName] = useState('');
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
@@ -33,6 +33,8 @@ export default function Register() {
         is_tutor,
         subject_matters
       });
+
+      history.push('/');
     } catch (err) {
       console.log(err.response);
     }
