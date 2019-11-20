@@ -8,6 +8,16 @@ export const CardContainer = styled.div`
   justify-content: center;
 `;
 
+export const FlexWrapper = styled.div`
+  display: flex;
+  margin-top: ${props => props.marginTop};
+  margin-bottom: ${props => props.marginBottom};
+  margin-left: ${props => props.marginLeft};
+  margin-right: ${props => props.marginRight};
+  flex-direction: ${props => (props.isInline ? 'row' : 'column')};
+  align-items: center;
+`;
+
 export const CardContent = styled.div`
   display: flex;
   flex-direction: column;
