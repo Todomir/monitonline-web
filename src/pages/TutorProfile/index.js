@@ -27,9 +27,9 @@ export default function TutorProfile() {
 
   const events = schedules.map(schedule => ({
     title: 'Horário Disponível',
-    start: dateFormat(schedule.schedule_start, 'yyyy-mm-dd HH:MM'),
-    end: dateFormat(schedule.schedule_end, 'yyyy-mm-dd HH:MM'),
-    id: schedule.id,
+    start: dateFormat(schedule.schedule_start, 'yyyy-mm-dd HH:MM-04:00'),
+    end: dateFormat(schedule.schedule_end, 'yyyy-mm-dd HH:MM-04:00'),
+    timezone: 'UTC',
   }));
 
   useEffect(() => {
@@ -89,6 +89,11 @@ export default function TutorProfile() {
               eventClick={currentEvent => {
                 setScheduleId(parseInt(currentEvent.event._def.publicId));
                 handleScheduleClick();
+              }}
+              eventTimeFormat={{
+                hour: '2-digit',
+                minute: '2-digit',
+                meridiem: false,
               }}
             />
           </Calendar>
