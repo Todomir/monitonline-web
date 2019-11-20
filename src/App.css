@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700,900&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700,900&display=swap");
 
 * {
   margin: 0;
@@ -14,11 +14,7 @@ body,
 }
 
 body {
-  background-image: linear-gradient(
-    to right,
-    #6a11cb 0%,
-    #2575fc 100%
-  );
+  background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
   -webkit-font-smoothing: antialiased !important;
 }
 
@@ -26,7 +22,7 @@ body,
 input,
 select,
 button {
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
   font-size: 14px;
 }
 
@@ -56,6 +52,10 @@ button {
 .content form {
   display: flex;
   flex-direction: column;
+}
+
+.content form p {
+  margin-bottom: 30px;
 }
 
 .content form div.radio-inline {
