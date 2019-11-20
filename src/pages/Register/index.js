@@ -65,6 +65,7 @@ export default function Register({ history }) {
           id="name"
           placeholder="Seu belo nome"
           onChange={event => setName(event.target.value)}
+          required
         />
         <FormLabel htmlFor="cpf">CPF *</FormLabel>
         <TextInput
@@ -73,6 +74,7 @@ export default function Register({ history }) {
           id="cpf"
           placeholder="Seu CPF"
           onChange={event => setCpf(event.target.value)}
+          required
         />
         <FormLabel htmlFor="email">E-MAIL *</FormLabel>
         <TextInput
@@ -81,6 +83,7 @@ export default function Register({ history }) {
           id="email"
           placeholder="Seu melhor e-mail"
           onChange={event => setEmail(event.target.value)}
+          required
         />
         <FormLabel htmlFor="password">SENHA *</FormLabel>
         <TextInput
@@ -88,6 +91,7 @@ export default function Register({ history }) {
           name="password"
           id="password"
           onChange={event => setPassword(event.target.value)}
+          required
         />
         <FormLabel htmlFor="course">CURSO *</FormLabel>
         <Select
