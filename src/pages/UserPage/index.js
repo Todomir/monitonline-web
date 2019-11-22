@@ -38,7 +38,7 @@ export default function UserPage() {
     id: schedule.id
   }));
 
-  const handleClick = () => {
+  const handleScheduleClick = () => {
     setToggle(!toggle);
   };
 
@@ -82,7 +82,7 @@ export default function UserPage() {
               <MdDateRange /> checar atendimentos
             </StyledLink>
 
-            <SmallLink onClick={handleClick}>
+            <SmallLink onClick={handleScheduleClick}>
               <MdQueryBuilder /> checar horarios
             </SmallLink>
 
