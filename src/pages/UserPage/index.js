@@ -91,7 +91,7 @@ export default function UserPage() {
             </StyledLink>
 
             <ToggleContainer toggle={assistanceToggle}>
-              <SubTitle>Meus atendimentos</SubTitle>
+              <SubTitle marginTop="20px">Meus atendimentos</SubTitle>
               <TextSmall marginBottom="20px">{user.name}</TextSmall>
               <TextSmall>
                 <Assistances assistances={assistances} />
