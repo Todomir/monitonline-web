@@ -29,6 +29,7 @@ export default function UserPage() {
   const [schedules, setSchedules] = useState([]);
   const [assistances, setAssistances] = useState([]);
   const [scheduleToggle, setScheduleToggle] = useState(false);
+  const [assistanceToggle, setAssistanceToggle] = useState(false);
 
   const events = schedules.map(schedule => ({
     title: 'Atendimento',
@@ -40,6 +41,10 @@ export default function UserPage() {
 
   const handleScheduleClick = () => {
     setScheduleToggle(!scheduleToggle);
+  };
+
+  const handleAssistanceClick = () => {
+    setAssistanceToggle(!assistanceToggle);
   };
 
   useEffect(() => {
