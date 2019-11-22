@@ -66,7 +66,7 @@ export default function UserPage() {
 
   useEffect(() => {
     async function fetchAssistances() {
-      const response = await api.get(`/users/assistances/${user.id}`);
+      const response = await api.get(`/user/assistances/${user.id}`);
       setAssistances(response.data);
     }
 
@@ -83,9 +83,27 @@ export default function UserPage() {
             <SubTitle marginBottom="7px">Opções do monitor</SubTitle>
             <TextSmall marginBottom="20px">{user.name}</TextSmall>
 
-            <StyledLink to="/">
+            <StyledLink onClick={handleAssistanceClick}>
               <MdDateRange /> checar atendimentos
             </StyledLink>
+
+            <ToggleContainer toggle={assistanceToggle}>
+              <CardContent>
+                <SubTitle>Meus atendimentos</SubTitle>
+                <TextSmall>{user.name}</TextSmall>
+
+                <TextSmall>
+                  {assistances.map(assistance => (
+                    <>
+                      <br />
+                      <ul>{assistance.student_id}</ul>
+                      <ul>{assistance.schedule_id}</ul>
+                      <br />
+                    </>
+                  ))}
+                </TextSmall>
+              </CardContent>
+            </ToggleContainer>
 
             <SmallLink onClick={handleScheduleClick}>
               <MdQueryBuilder /> checar horarios
