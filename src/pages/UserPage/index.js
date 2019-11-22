@@ -28,7 +28,7 @@ export default function UserPage() {
   const [user, setUser] = useState({});
   const [schedules, setSchedules] = useState([]);
   const [assistances, setAssistances] = useState([]);
-  const [toggle, setToggle] = useState(false);
+  const [scheduleToggle, setScheduleToggle] = useState(false);
 
   const events = schedules.map(schedule => ({
     title: 'Atendimento',
@@ -39,7 +39,7 @@ export default function UserPage() {
   }));
 
   const handleScheduleClick = () => {
-    setToggle(!toggle);
+    setScheduleToggle(!scheduleToggle);
   };
 
   useEffect(() => {
@@ -86,7 +86,7 @@ export default function UserPage() {
               <MdQueryBuilder /> checar horarios
             </SmallLink>
 
-            <ToggleContainer toggle={toggle}>
+            <ToggleContainer toggle={scheduleToggle}>
               <Calendar>
                 <FullCalendar
                   defaultView="dayGridMonth"
