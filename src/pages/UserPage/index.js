@@ -27,6 +27,7 @@ import {
 export default function UserPage() {
   const [user, setUser] = useState({});
   const [schedules, setSchedules] = useState([]);
+  const [assistances, setAssistances] = useState([]);
   const [toggle, setToggle] = useState(false);
 
   const events = schedules.map(schedule => ({
@@ -56,7 +57,16 @@ export default function UserPage() {
     }
 
     fetchSchedules();
-  });
+  }, [user.id]);
+
+  useEffect(() => {
+    async function fetchAssistances() {
+      const response = await api.get(`/users/assistances/${user.id}`);
+      setAssistances(response.data);
+    }
+
+    fetchAssistances();
+  }, [user.id]);
 
   if (user.is_tutor) {
     return (
