@@ -91,13 +91,11 @@ export default function UserPage() {
             </StyledLink>
 
             <ToggleContainer toggle={assistanceToggle}>
-              <CardContent>
-                <SubTitle>Meus atendimentos</SubTitle>
-                <TextSmall>{user.name}</TextSmall>
-                <TextSmall>
-                  <Assistances assistances={assistances} />
-                </TextSmall>
-              </CardContent>
+              <SubTitle>Meus atendimentos</SubTitle>
+              <TextSmall marginBottom="20px">{user.name}</TextSmall>
+              <TextSmall>
+                <Assistances assistances={assistances} />
+              </TextSmall>
             </ToggleContainer>
 
             <SmallLink onClick={handleScheduleClick}>
