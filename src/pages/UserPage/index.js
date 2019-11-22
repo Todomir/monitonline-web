@@ -23,6 +23,7 @@ import {
   CardContent,
   TextSmall
 } from '../../components/styled-components/styles';
+import Assistances from '../../components/Assistances';
 
 export default function UserPage() {
   const [user, setUser] = useState({});
@@ -93,6 +94,9 @@ export default function UserPage() {
               <CardContent>
                 <SubTitle>Meus atendimentos</SubTitle>
                 <TextSmall>{user.name}</TextSmall>
+                <TextSmall>
+                  <Assistances assistances={assistances} />
+                </TextSmall>
               </CardContent>
             </ToggleContainer>
 

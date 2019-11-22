@@ -1,7 +1,7 @@
 import React from 'react';
 import dateFormat from 'dateformat';
 
-export default function Assistances(assistances) {
+export default function Assistances({ assistances }) {
   return assistances.map(assistance => (
     <>
       <ul>
