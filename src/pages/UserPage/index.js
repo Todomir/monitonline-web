@@ -26,8 +26,10 @@ import {
 
 export default function UserPage() {
   const [user, setUser] = useState({});
+
   const [schedules, setSchedules] = useState([]);
   const [assistances, setAssistances] = useState([]);
+
   const [scheduleToggle, setScheduleToggle] = useState(false);
   const [assistanceToggle, setAssistanceToggle] = useState(false);
 
@@ -91,17 +93,6 @@ export default function UserPage() {
               <CardContent>
                 <SubTitle>Meus atendimentos</SubTitle>
                 <TextSmall>{user.name}</TextSmall>
-
-                <TextSmall>
-                  {assistances.map(assistance => (
-                    <>
-                      <br />
-                      <ul>{assistance.student_id}</ul>
-                      <ul>{assistance.schedule_id}</ul>
-                      <br />
-                    </>
-                  ))}
-                </TextSmall>
               </CardContent>
             </ToggleContainer>
 
