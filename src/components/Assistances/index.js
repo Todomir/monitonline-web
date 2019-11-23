@@ -1,6 +1,5 @@
 import React from 'react';
 import dateFormat from 'dateformat';
-import { SmallLink } from '../styled-components/styles';
 
 export default function Assistances({ assistances }) {
   const status = id => {
@@ -19,6 +18,7 @@ export default function Assistances({ assistances }) {
         break;
       default:
         return '404';
+        break;
     }
   };
 
