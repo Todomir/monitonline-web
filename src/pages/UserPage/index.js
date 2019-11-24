@@ -29,7 +29,8 @@ export default function UserPage() {
   const [user, setUser] = useState({});
 
   const [schedules, setSchedules] = useState([]);
-  const [assistances, setAssistances] = useState([]);
+  const [tutorAssistances, setTutorAssistances] = useState([]);
+  const [studentAssistances, setStudentAssistances] = useState([]);
 
   const [scheduleToggle, setScheduleToggle] = useState(false);
   const [assistanceToggle, setAssistanceToggle] = useState(false);
@@ -68,12 +69,21 @@ export default function UserPage() {
   }, [user.id]);
 
   useEffect(() => {
-    async function fetchAssistances() {
-      const response = await api.get(`/user/assistances/${user.id}`);
-      setAssistances(response.data);
+    async function fetchTutorAssistances() {
+      const response = await api.get(`/user/assistances/tutor/${user.id}`);
+      setTutorAssistances(response.data);
     }
 
-    fetchAssistances();
+    fetchTutorAssistances();
+  }, [user.id]);
+
+  useEffect(() => {
+    async function fetchStudentAssistances() {
+      const response = await api.get(`/user/assistances/student/${user.id}`);
+      setStudentAssistances(response.data);
+    }
+
+    fetchStudentAssistances();
   }, [user.id]);
 
   if (user.is_tutor) {
@@ -94,7 +104,7 @@ export default function UserPage() {
               <SubTitle marginTop="20px">Meus atendimentos</SubTitle>
               <TextSmall marginBottom="20px">{user.name}</TextSmall>
               <TextSmall>
-                <Assistances assistances={assistances} />
+                <Assistances assistances={tutorAssistances} />
               </TextSmall>
             </ToggleContainer>
 
