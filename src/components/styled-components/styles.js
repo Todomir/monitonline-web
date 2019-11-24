@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Status from '../Status';
 
 export const CardContainer = styled.div`
   display: flex;

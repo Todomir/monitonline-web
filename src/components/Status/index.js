@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { StyledLink } from '../styled-components/styles';
+import {
+  StyledLink,
+  SubTitle,
+  TextSmall,
+  Select,
+  FlexWrapper,
+  EditableButton
+} from '../styled-components/styles';
+import Modal from '../Modal';
 
 // import { Container } from './styles';
 
@@ -25,6 +33,7 @@ export default function Status({ statusId }) {
   };
 
   const [status, setStatus] = useState(statusMessage(statusId));
+  const [toggle, setToggle] = useState(false);
 
   function setMessageUpdate() {
     setStatus('Atualizar');
@@ -34,12 +43,37 @@ export default function Status({ statusId }) {
     setStatus(statusMessage(statusId));
   }
 
+  function handleToggle() {
+    setToggle(!toggle);
+  }
+
   return (
-    <ul>
-      <strong>Status: </strong>{' '}
-      <StyledLink to="/" onMouseEnter={setMessageUpdate} onMouseLeave={setMessageStatus}>
-        {status}
-      </StyledLink>
-    </ul>
+    <>
+      <ul>
+        <strong>Status: </strong>{' '}
+        <StyledLink
+          onClick={handleToggle}
+          onMouseEnter={setMessageUpdate}
+          onMouseLeave={setMessageStatus}
+        >
+          {status}
+        </StyledLink>
+      </ul>
+
+      <Modal toggle={toggle}>
+        <SubTitle>Atualizar status</SubTitle>
+        <TextSmall marginBottom="20px">Basta selecionar o novo status para o atendimento</TextSmall>
+        <Select>
+          <option value="1">Marcado</option>
+          <option value="2">Realizado</option>
+          <option value="3">Cancelado pelo aluno</option>
+          <option value="4">Cancelado pelo monitor</option>
+        </Select>
+        <FlexWrapper isInline marginTop="40px">
+          <EditableButton>Confirmar</EditableButton>
+          <EditableButton>Cancelar</EditableButton>
+        </FlexWrapper>
+      </Modal>
+    </>
   );
 }
