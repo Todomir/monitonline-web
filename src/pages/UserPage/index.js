@@ -104,7 +104,7 @@ export default function UserPage() {
               <SubTitle marginTop="20px">Meus atendimentos</SubTitle>
               <TextSmall marginBottom="20px">{user.name}</TextSmall>
               <TextSmall>
-                <Assistances assistances={tutorAssistances} />
+                <Assistances assistances={tutorAssistances} isTutor />
               </TextSmall>
             </ToggleContainer>
 
@@ -138,7 +138,7 @@ export default function UserPage() {
           </CardContent>
         </CardContainer>
 
-        <StudentOptions studentName={user.name} assistances={studentAssistances} />
+        <StudentOptions studentName={user.name} studentAssistances={studentAssistances} />
       </>
     );
   }
