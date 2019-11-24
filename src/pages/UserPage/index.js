@@ -138,7 +138,7 @@ export default function UserPage() {
           </CardContent>
         </CardContainer>
 
-        <StudentOptions studentName={user.name} />
+        <StudentOptions studentName={user.name} assistances={studentAssistances} />
       </>
     );
   }
