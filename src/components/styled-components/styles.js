@@ -106,6 +106,7 @@ export const EditableButton = styled(Button)`
   margin-top: ${props => props.marginTop};
   margin-bottom: ${props => props.marginBottom};
   font-size: ${props => props.fontSize};
+  font-weight: ${props => props.fontWeight};
 `;
 
 export const SmallLink = styled.label`
