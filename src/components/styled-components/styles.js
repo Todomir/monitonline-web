@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import Status from '../Status';
 
 export const CardContainer = styled.div`
   display: flex;
@@ -157,6 +158,7 @@ export const StyledLink = styled(Link)`
     margin: 7px 20px;
   }
 `;
+
 export const Calendar = styled.div`
   margin: 20px 0px;
 

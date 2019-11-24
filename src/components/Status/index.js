@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { StyledLink } from '../styled-components/styles';
 
 // import { Container } from './styles';
 
@@ -36,9 +37,9 @@ export default function Status({ statusId }) {
   return (
     <ul>
       <strong>Status: </strong>{' '}
-      <label onMouseEnter={setMessageUpdate} onMouseLeave={setMessageStatus}>
+      <StyledLink to="/" onMouseEnter={setMessageUpdate} onMouseLeave={setMessageStatus}>
         {status}
-      </label>
+      </StyledLink>
     </ul>
   );
 }
