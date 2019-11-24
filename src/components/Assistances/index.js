@@ -16,7 +16,7 @@ export default function Assistances({ assistances }) {
         {dateFormat(assistance.schedule.schedule_end, 'dd-mm-yyyy HH:MM')}
       </ul>
 
-      <Status statusId={assistance.status_id} />
+      <Status statusId={assistance.status_id} assistanceId={assistance.id} />
 
       <br />
     </>

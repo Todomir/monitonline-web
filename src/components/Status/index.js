@@ -7,11 +7,14 @@ import {
   FlexWrapper,
   EditableButton
 } from '../styled-components/styles';
+
 import Modal from '../Modal';
+
+import api from '../../services/api';
 
 // import { Container } from './styles';
 
-export default function Status({ statusId }) {
+export default function Status({ statusId, assistanceId }) {
   const statusMessage = id => {
     switch (id) {
       case 1:
@@ -33,6 +36,7 @@ export default function Status({ statusId }) {
   };
 
   const [status, setStatus] = useState(statusMessage(statusId));
+  const [statusValue, setStatusValue] = useState(1);
   const [toggle, setToggle] = useState(false);
 
   function setMessageUpdate() {
@@ -45,6 +49,11 @@ export default function Status({ statusId }) {
 
   function handleToggle() {
     setToggle(!toggle);
+  }
+
+  async function handleConfirm() {
+    await api.put(`/assistances/${assistanceId}`, { status_id: statusValue });
+    window.location.reload(false);
   }
 
   return (
@@ -63,15 +72,15 @@ export default function Status({ statusId }) {
       <Modal toggle={toggle}>
         <SubTitle>Atualizar status</SubTitle>
         <TextSmall marginBottom="20px">Basta selecionar o novo status para o atendimento</TextSmall>
-        <Select>
+        <Select name="status" onChange={event => setStatusValue(parseInt(event.target.value))}>
           <option value="1">Marcado</option>
           <option value="2">Realizado</option>
           <option value="3">Cancelado pelo aluno</option>
           <option value="4">Cancelado pelo monitor</option>
         </Select>
         <FlexWrapper isInline marginTop="40px">
-          <EditableButton>Confirmar</EditableButton>
-          <EditableButton>Cancelar</EditableButton>
+          <EditableButton onClick={handleConfirm}>Confirmar</EditableButton>
+          <EditableButton onClick={handleToggle}>Cancelar</EditableButton>
         </FlexWrapper>
       </Modal>
     </>
