@@ -103,9 +103,11 @@ export default function UserPage() {
             <ToggleContainer toggle={assistanceToggle}>
               <SubTitle marginTop="20px">Meus atendimentos</SubTitle>
               <TextSmall marginBottom="20px">{user.name}</TextSmall>
-              <TextSmall>
-                <Assistances assistances={tutorAssistances} isTutor />
-              </TextSmall>
+              {tutorAssistances.map(assistance => (
+                <TextSmall>
+                  <Assistances assistance={assistance} name={assistance.student.name} isTutor />
+                </TextSmall>
+              ))}
             </ToggleContainer>
 
             <SmallLink onClick={handleScheduleClick}>
@@ -138,14 +140,14 @@ export default function UserPage() {
           </CardContent>
         </CardContainer>
 
-        <StudentOptions studentName={user.name} studentAssistances={studentAssistances} />
+        <StudentOptions student={user} studentAssistances={studentAssistances} />
       </>
     );
   }
   return (
     <>
       <Title>MONITONLINE | PERFIL</Title>
-      <StudentOptions />
+      <StudentOptions student={user} studentAssistances={studentAssistances} />
     </>
   );
 }

@@ -14,7 +14,7 @@ import api from '../../services/api';
 
 // import { Container } from './styles';
 
-export default function Status({ statusId, assistanceId }) {
+export default function Status({ statusId, assistanceId, isTutor }) {
   const statusMessage = id => {
     switch (id) {
       case 1:
@@ -60,13 +60,17 @@ export default function Status({ statusId, assistanceId }) {
     <>
       <ul>
         <strong>Status: </strong>{' '}
-        <StyledLink
-          onClick={handleToggle}
-          onMouseEnter={setMessageUpdate}
-          onMouseLeave={setMessageStatus}
-        >
-          {status}
-        </StyledLink>
+        {isTutor ? (
+          <StyledLink
+            onClick={handleToggle}
+            onMouseEnter={setMessageUpdate}
+            onMouseLeave={setMessageStatus}
+          >
+            {status}
+          </StyledLink>
+        ) : (
+          status
+        )}
       </ul>
 
       <Modal toggle={toggle}>

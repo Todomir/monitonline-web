@@ -12,7 +12,7 @@ import {
 import ToggleContainer from '../ToggleContainer';
 import Assistances from '../Assistances';
 
-export default function StudentOptions({ studentName, studentAssistances }) {
+export default function StudentOptions({ student, studentAssistances }) {
   const [assistanceToggle, setAssistanceToggle] = useState(false);
 
   const handleAssistanceClick = () => {
@@ -23,7 +23,7 @@ export default function StudentOptions({ studentName, studentAssistances }) {
     <CardContainer>
       <CardContent>
         <SubTitle marginBottom="7px">Opções do aluno</SubTitle>
-        <TextSmall marginBottom="20px">{studentName}</TextSmall>
+        <TextSmall marginBottom="20px">{student.name}</TextSmall>
 
         <StyledLink to="/search-tutors">
           <MdDateRange /> marcar atendimento
@@ -37,10 +37,12 @@ export default function StudentOptions({ studentName, studentAssistances }) {
 
         <ToggleContainer toggle={assistanceToggle}>
           <SubTitle marginTop="20px">Meus atendimentos</SubTitle>
-          <TextSmall marginBottom="20px">{studentName}</TextSmall>
-          <TextSmall>
-            <Assistances assistances={studentAssistances} />
-          </TextSmall>
+          <TextSmall marginBottom="20px">{student.name}</TextSmall>
+          {studentAssistances.map(assistance => (
+            <TextSmall>
+              <Assistances assistance={assistance} name={assistance.name} />
+            </TextSmall>
+          ))}
         </ToggleContainer>
       </CardContent>
     </CardContainer>
