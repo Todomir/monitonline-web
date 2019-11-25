@@ -110,10 +110,11 @@ export const EditableButton = styled(Button)`
 `;
 
 export const SmallLink = styled.label`
+  font-size: ${props => props.fontSize};
+  font-weight: ${props => props.fontWeight};
   max-width: 100%;
   width: 200px;
   cursor: pointer;
-  font-size: 14px;
   -webkit-transition: all 500ms ease;
   -moz-transition: all 500ms ease;
   -ms-transition: all 500ms ease;
@@ -131,6 +132,8 @@ export const SmallLink = styled.label`
 `;
 
 export const StyledLink = styled(Link)`
+  font-size: ${props => props.fontSize};
+  font-weight: ${props => props.fontWeight};
   text-decoration: none;
   color: black;
   max-width: 100%;
