@@ -113,6 +113,9 @@ export const SmallLink = styled.label`
   font-size: ${props => props.fontSize};
   font-weight: ${props => props.fontWeight};
   background: ${props => props.background};
+  color: ${props => props.color};
+  padding: ${props => props.padding};
+  border-radius: 3px;
   max-width: 100%;
   width: 200px;
   cursor: pointer;
@@ -136,6 +139,9 @@ export const StyledLink = styled(Link)`
   font-size: ${props => props.fontSize};
   font-weight: ${props => props.fontWeight};
   background: ${props => props.background};
+  color: ${props => props.color};
+  padding: ${props => props.padding};
+  border-radius: 3px;
   text-decoration: none;
   color: black;
   max-width: 100%;
