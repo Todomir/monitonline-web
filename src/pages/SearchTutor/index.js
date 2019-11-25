@@ -76,9 +76,9 @@ export default function SearchTutor({ history }) {
       </CardContainer>
 
       <Modal toggle={toggle}>
+        <SubTitle>Monitores</SubTitle>
         {tutors.map(tutor => (
           <>
-            <SubTitle>Monitores</SubTitle>
             <FormLabel key={tutor.name}>{tutor.name}</FormLabel>
 
             <SmallLink
@@ -95,10 +95,9 @@ export default function SearchTutor({ history }) {
             >
               <MdAssignment key={tutor.id} /> ver horários disponíveis
             </SmallLink>
-
-            <Button onClick={handleToggle}>voltar</Button>
           </>
         ))}
+        <Button onClick={handleToggle}>voltar</Button>
       </Modal>
     </>
   );
