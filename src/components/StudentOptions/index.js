@@ -42,7 +42,13 @@ export default function StudentOptions({ student, studentAssistances }) {
           {studentAssistances.map(assistance => (
             <TextSmall>
               <Assistances assistance={assistance} name={assistance.name} />
-              <SmallLink>
+              <SmallLink
+                color="#FFF"
+                background="#2575f2"
+                padding="5px"
+                fontSize="12px"
+                fontWeight="bold"
+              >
                 <MdMessage /> deixar comentário
               </SmallLink>
             </TextSmall>
