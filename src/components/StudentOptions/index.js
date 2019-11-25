@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 
-import { MdDateRange } from 'react-icons/md';
+import { MdDateRange, MdMessage } from 'react-icons/md';
 import {
   StyledLink,
   SubTitle,
   CardContainer,
   CardContent,
-  TextSmall
+  TextSmall,
+  SmallLink
 } from '../styled-components/styles';
 
 import ToggleContainer from '../ToggleContainer';
@@ -41,6 +42,9 @@ export default function StudentOptions({ student, studentAssistances }) {
           {studentAssistances.map(assistance => (
             <TextSmall>
               <Assistances assistance={assistance} name={assistance.name} />
+              <SmallLink>
+                <MdMessage /> deixar comentário
+              </SmallLink>
             </TextSmall>
           ))}
         </ToggleContainer>
