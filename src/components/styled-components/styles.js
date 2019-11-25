@@ -112,6 +112,7 @@ export const EditableButton = styled(Button)`
 export const SmallLink = styled.label`
   font-size: ${props => props.fontSize};
   font-weight: ${props => props.fontWeight};
+  background: ${props => props.background};
   max-width: 100%;
   width: 200px;
   cursor: pointer;
@@ -134,6 +135,7 @@ export const SmallLink = styled.label`
 export const StyledLink = styled(Link)`
   font-size: ${props => props.fontSize};
   font-weight: ${props => props.fontWeight};
+  background: ${props => props.background};
   text-decoration: none;
   color: black;
   max-width: 100%;
