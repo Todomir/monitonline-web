@@ -40,7 +40,7 @@ export default function StudentOptions({ student, studentAssistances }) {
           <SubTitle marginTop="20px">Meus atendimentos</SubTitle>
           <TextSmall marginBottom="20px">{student.name}</TextSmall>
           {studentAssistances.map(assistance => (
-            <TextSmall>
+            <TextSmall marginBottom="20px">
               <Assistances assistance={assistance} name={assistance.name} />
               <SmallLink
                 color="#FFF"
