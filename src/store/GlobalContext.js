@@ -1,6 +1,7 @@
 import React from 'react';
 import { UserProvider } from './UserContext';
 import { AssistanceProvider } from './AssistanceContext';
+import { CommentProvider } from './CommentContext';
 
 function ProviderComposer({ contexts, children }) {
   return contexts.reduceRight(
@@ -14,7 +15,7 @@ function ProviderComposer({ contexts, children }) {
 
 function GlobalProvider({ children }) {
   return (
-    <ProviderComposer contexts={[<UserProvider />, <AssistanceProvider />]}>
+    <ProviderComposer contexts={[<UserProvider />, <AssistanceProvider />, <CommentProvider />]}>
       {children}
     </ProviderComposer>
   );
