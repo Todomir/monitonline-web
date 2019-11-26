@@ -148,14 +148,14 @@ export default function UserPage() {
           </CardContent>
         </CardContainer>
 
-        <StudentOptions studentAssistances={studentAssistances} />
+        <StudentOptions />
       </>
     );
   }
   return (
     <>
       <Title>MONITONLINE | PERFIL</Title>
-      <StudentOptions studentAssistances={studentAssistances} />
+      <StudentOptions />
     </>
   );
 }

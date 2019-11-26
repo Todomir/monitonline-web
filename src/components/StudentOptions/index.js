@@ -13,9 +13,12 @@ import ToggleContainer from '../ToggleContainer';
 import Assistances from '../Assistances';
 
 import { UserContext } from '../../store/UserContext';
+import { AssistanceContext } from '../../store/AssistanceContext';
 
-export default function StudentOptions({ studentAssistances }) {
+export default function StudentOptions() {
   const { name } = useContext(UserContext);
+  const { studentAssistances } = useContext(AssistanceContext);
+
   const [assistanceToggle, setAssistanceToggle] = useState(false);
 
   const handleAssistanceClick = () => {
