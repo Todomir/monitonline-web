@@ -6,8 +6,7 @@ import {
   SubTitle,
   CardContainer,
   CardContent,
-  TextSmall,
-  SmallLink
+  TextSmall
 } from '../styled-components/styles';
 
 import ToggleContainer from '../ToggleContainer';
@@ -42,15 +41,16 @@ export default function StudentOptions({ student, studentAssistances }) {
           {studentAssistances.map(assistance => (
             <TextSmall marginBottom="20px">
               <Assistances assistance={assistance} name={assistance.name} />
-              <SmallLink
+              <StyledLink
                 color="#FFF"
                 background="#2575f2"
                 padding="5px"
                 fontSize="12px"
                 fontWeight="bold"
+                to="/comments"
               >
                 <MdMessage /> deixar comentário
-              </SmallLink>
+              </StyledLink>
             </TextSmall>
           ))}
         </ToggleContainer>

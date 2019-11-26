@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import dateFormat from 'dateformat';
 
@@ -7,6 +7,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 
 import { MdDateRange, MdBook, MdQueryBuilder, MdAddAlarm } from 'react-icons/md';
 import api from '../../services/api';
+
+import { UserContext } from '../../store/UserContext';
 
 import '@fullcalendar/core/main.css';
 import '@fullcalendar/daygrid/main.css';
@@ -26,14 +28,14 @@ import {
 import Assistances from '../../components/Assistances';
 
 export default function UserPage() {
-  const [user, setUser] = useState({});
-
   const [schedules, setSchedules] = useState([]);
   const [tutorAssistances, setTutorAssistances] = useState([]);
   const [studentAssistances, setStudentAssistances] = useState([]);
 
   const [scheduleToggle, setScheduleToggle] = useState(false);
   const [assistanceToggle, setAssistanceToggle] = useState(false);
+
+  const { user, setUser, id, name, isTutor } = useContext(UserContext);
 
   const events = schedules.map(schedule => ({
     title: 'Atendimento',
@@ -61,32 +63,32 @@ export default function UserPage() {
 
   useEffect(() => {
     async function fetchSchedules() {
-      const response = await api.get(`/users/schedules/${user.id}`);
+      const response = await api.get(`/users/schedules/${id}`);
       setSchedules(response.data);
     }
 
     fetchSchedules();
-  }, [user.id]);
+  }, [id]);
 
   useEffect(() => {
     async function fetchTutorAssistances() {
-      const response = await api.get(`/user/assistances/tutor/${user.id}`);
+      const response = await api.get(`/user/assistances/tutor/${id}`);
       setTutorAssistances(response.data);
     }
 
     fetchTutorAssistances();
-  }, [user.id]);
+  }, [id]);
 
   useEffect(() => {
     async function fetchStudentAssistances() {
-      const response = await api.get(`/user/assistances/student/${user.id}`);
+      const response = await api.get(`/user/assistances/student/${id}`);
       setStudentAssistances(response.data);
     }
 
     fetchStudentAssistances();
-  }, [user.id]);
+  }, [id]);
 
-  if (user.is_tutor) {
+  if (isTutor) {
     return (
       <>
         <Title>MONITONLINE | PERFIL</Title>
@@ -94,7 +96,7 @@ export default function UserPage() {
         <CardContainer>
           <CardContent>
             <SubTitle marginBottom="7px">Opções do monitor</SubTitle>
-            <TextSmall marginBottom="20px">{user.name}</TextSmall>
+            <TextSmall marginBottom="20px">{name}</TextSmall>
 
             <StyledLink onClick={handleAssistanceClick}>
               <MdDateRange /> checar atendimentos
@@ -102,7 +104,7 @@ export default function UserPage() {
 
             <ToggleContainer toggle={assistanceToggle}>
               <SubTitle marginTop="20px">Meus atendimentos</SubTitle>
-              <TextSmall marginBottom="20px">{user.name}</TextSmall>
+              <TextSmall marginBottom="20px">{name}</TextSmall>
               {tutorAssistances.map(assistance => (
                 <TextSmall>
                   <Assistances assistance={assistance} name={assistance.student.name} isTutor />
