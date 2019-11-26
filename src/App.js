@@ -2,15 +2,15 @@ import React from 'react';
 import './App.css';
 
 import Routes from './routes';
-import { UserProvider } from './store/UserContext';
+import { GlobalProvider } from './store/GlobalContext';
 
 function App() {
   return (
     <div className="container">
       <div className="content">
-        <UserProvider>
+        <GlobalProvider>
           <Routes />
-        </UserProvider>
+        </GlobalProvider>
       </div>
     </div>
   );
