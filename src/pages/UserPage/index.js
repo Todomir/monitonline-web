@@ -9,6 +9,7 @@ import { MdDateRange, MdBook, MdQueryBuilder, MdAddAlarm } from 'react-icons/md'
 import api from '../../services/api';
 
 import { UserContext } from '../../store/UserContext';
+import { AssistanceContext } from '../../store/AssistanceContext';
 
 import '@fullcalendar/core/main.css';
 import '@fullcalendar/daygrid/main.css';
@@ -29,13 +30,18 @@ import Assistances from '../../components/Assistances';
 
 export default function UserPage() {
   const [schedules, setSchedules] = useState([]);
-  const [tutorAssistances, setTutorAssistances] = useState([]);
-  const [studentAssistances, setStudentAssistances] = useState([]);
+
+  const {
+    tutorAssistances,
+    setTutorAssistances,
+    studentAssistances,
+    setStudentAssistances
+  } = useContext(AssistanceContext);
+
+  const { user, setUser, id, name, isTutor } = useContext(UserContext);
 
   const [scheduleToggle, setScheduleToggle] = useState(false);
   const [assistanceToggle, setAssistanceToggle] = useState(false);
-
-  const { user, setUser, id, name, isTutor } = useContext(UserContext);
 
   const events = schedules.map(schedule => ({
     title: 'Atendimento',
