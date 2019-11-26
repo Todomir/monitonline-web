@@ -31,12 +31,9 @@ import Assistances from '../../components/Assistances';
 export default function UserPage() {
   const [schedules, setSchedules] = useState([]);
 
-  const {
-    tutorAssistances,
-    setTutorAssistances,
-    studentAssistances,
-    setStudentAssistances
-  } = useContext(AssistanceContext);
+  const { tutorAssistances, setTutorAssistances, setStudentAssistances } = useContext(
+    AssistanceContext
+  );
 
   const { setUser, id, name, isTutor } = useContext(UserContext);
 
