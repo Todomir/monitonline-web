@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   StyledLink,
   SubTitle,
@@ -12,9 +12,12 @@ import Modal from '../Modal';
 
 import api from '../../services/api';
 
+import { UserContext } from '../../store/UserContext';
+
 // import { Container } from './styles';
 
-export default function Status({ statusId, assistanceId, isTutor }) {
+export default function Status({ statusId, assistanceId }) {
+  const { isTutor } = useContext(UserContext);
   const statusMessage = id => {
     switch (id) {
       case 1:

@@ -2,7 +2,7 @@ import React from 'react';
 import dateFormat from 'dateformat';
 import Status from '../Status';
 
-export default function Assistances({ assistance, name, isTutor }) {
+export default function Assistances({ assistance, name }) {
   if (assistance) {
     return (
       <>
@@ -17,11 +17,11 @@ export default function Assistances({ assistance, name, isTutor }) {
           {dateFormat(assistance.schedule.schedule_end, 'dd-mm-yyyy HH:MM')}
         </ul>
 
-        <Status statusId={assistance.status_id} assistanceId={assistance.id} isTutor={isTutor} />
+        <Status statusId={assistance.status_id} assistanceId={assistance.id} />
 
         <br />
       </>
     );
   }
-  return null;
+  return <ul>Sem atendimentos aqui. :(</ul>;
 }

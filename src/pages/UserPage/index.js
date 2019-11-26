@@ -31,12 +31,9 @@ import Assistances from '../../components/Assistances';
 export default function UserPage() {
   const [schedules, setSchedules] = useState([]);
 
-  const {
-    tutorAssistances,
-    setTutorAssistances,
-    setStudentAssistances,
-    setCurrentAssistance
-  } = useContext(AssistanceContext);
+  const { tutorAssistances, setTutorAssistances, setStudentAssistances } = useContext(
+    AssistanceContext
+  );
 
   const { setUser, id, name, isTutor } = useContext(UserContext);
 
@@ -113,7 +110,7 @@ export default function UserPage() {
               <TextSmall marginBottom="20px">{name}</TextSmall>
               {tutorAssistances.map(assistance => (
                 <TextSmall>
-                  <Assistances assistance={assistance} name={assistance.student.name} isTutor />
+                  <Assistances assistance={assistance} name={assistance.student.name} />
                 </TextSmall>
               ))}
             </ToggleContainer>
