@@ -17,7 +17,7 @@ import { AssistanceContext } from '../../store/AssistanceContext';
 
 export default function StudentOptions() {
   const { name } = useContext(UserContext);
-  const { studentAssistances } = useContext(AssistanceContext);
+  const { studentAssistances, setCurrentAssistance } = useContext(AssistanceContext);
 
   const [assistanceToggle, setAssistanceToggle] = useState(false);
 
@@ -45,7 +45,12 @@ export default function StudentOptions() {
           <SubTitle marginTop="20px">Meus atendimentos</SubTitle>
           <TextSmall marginBottom="20px">{name}</TextSmall>
           {studentAssistances.map(assistance => (
-            <TextSmall marginBottom="20px">
+            <TextSmall
+              onClick={() => {
+                setCurrentAssistance(assistance);
+              }}
+              marginBottom="20px"
+            >
               <Assistances assistance={assistance} name={assistance.name} />
               <StyledLink
                 color="#FFF"

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { AssistanceContext } from '../../store/AssistanceContext';
 
 // import { Container } from './styles';
 
 export default function CommentPage() {
-  return <div />;
+  const { currentAssistance } = useContext(AssistanceContext);
+  return <div>{JSON.stringify(currentAssistance)}</div>;
 }
