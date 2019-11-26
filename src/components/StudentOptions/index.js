@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import { MdDateRange, MdMessage } from 'react-icons/md';
 import {
@@ -12,7 +12,10 @@ import {
 import ToggleContainer from '../ToggleContainer';
 import Assistances from '../Assistances';
 
-export default function StudentOptions({ student, studentAssistances }) {
+import { UserContext } from '../../store/UserContext';
+
+export default function StudentOptions({ studentAssistances }) {
+  const { name } = useContext(UserContext);
   const [assistanceToggle, setAssistanceToggle] = useState(false);
 
   const handleAssistanceClick = () => {
@@ -23,7 +26,7 @@ export default function StudentOptions({ student, studentAssistances }) {
     <CardContainer>
       <CardContent>
         <SubTitle marginBottom="7px">Opções do aluno</SubTitle>
-        <TextSmall marginBottom="20px">{student.name}</TextSmall>
+        <TextSmall marginBottom="20px">{name}</TextSmall>
 
         <StyledLink to="/search-tutors">
           <MdDateRange /> marcar atendimento
@@ -37,7 +40,7 @@ export default function StudentOptions({ student, studentAssistances }) {
 
         <ToggleContainer toggle={assistanceToggle}>
           <SubTitle marginTop="20px">Meus atendimentos</SubTitle>
-          <TextSmall marginBottom="20px">{student.name}</TextSmall>
+          <TextSmall marginBottom="20px">{name}</TextSmall>
           {studentAssistances.map(assistance => (
             <TextSmall marginBottom="20px">
               <Assistances assistance={assistance} name={assistance.name} />

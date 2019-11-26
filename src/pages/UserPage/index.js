@@ -38,7 +38,7 @@ export default function UserPage() {
     setStudentAssistances
   } = useContext(AssistanceContext);
 
-  const { user, setUser, id, name, isTutor } = useContext(UserContext);
+  const { setUser, id, name, isTutor } = useContext(UserContext);
 
   const [scheduleToggle, setScheduleToggle] = useState(false);
   const [assistanceToggle, setAssistanceToggle] = useState(false);
@@ -148,14 +148,14 @@ export default function UserPage() {
           </CardContent>
         </CardContainer>
 
-        <StudentOptions student={user} studentAssistances={studentAssistances} />
+        <StudentOptions studentAssistances={studentAssistances} />
       </>
     );
   }
   return (
     <>
       <Title>MONITONLINE | PERFIL</Title>
-      <StudentOptions student={user} studentAssistances={studentAssistances} />
+      <StudentOptions studentAssistances={studentAssistances} />
     </>
   );
 }
