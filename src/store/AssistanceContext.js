@@ -5,12 +5,12 @@ import React, { useState, createContext } from 'react';
 export const AssistanceContext = createContext();
 
 export function AssistanceProvider({ children }) {
-  const [studentAssistance, setStudentAssistance] = useState([]);
-  const [tutorAssistance, setTutorAssistance] = useState([]);
+  const [studentAssistances, setStudentAssistances] = useState([]);
+  const [tutorAssistances, setTutorAssistances] = useState([]);
 
   return (
     <AssistanceContext.Provider
-      value={{ studentAssistance, setStudentAssistance, tutorAssistance, setTutorAssistance }}
+      value={{ studentAssistances, setStudentAssistances, tutorAssistances, setTutorAssistances }}
     >
       {children}
     </AssistanceContext.Provider>
