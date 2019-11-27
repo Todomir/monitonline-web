@@ -6,7 +6,9 @@ import {
   SubTitle,
   CardContainer,
   CardContent,
-  TextSmall
+  TextSmall,
+  SmallLink,
+  Button
 } from '../styled-components/styles';
 
 import ToggleContainer from '../ToggleContainer';
@@ -15,11 +17,15 @@ import Assistances from '../Assistances';
 import { UserContext } from '../../store/UserContext';
 import { AssistanceContext } from '../../store/AssistanceContext';
 
+import Modal from '../Modal';
+import Comments from '../Comments';
+
 export default function StudentOptions() {
   const { name } = useContext(UserContext);
   const { studentAssistances, setCurrentAssistance } = useContext(AssistanceContext);
 
   const [assistanceToggle, setAssistanceToggle] = useState(false);
+  const [commentsToggle, setCommentsToggle] = useState(false);
 
   const handleAssistanceClick = () => {
     setAssistanceToggle(!assistanceToggle);
@@ -45,26 +51,36 @@ export default function StudentOptions() {
           <SubTitle marginTop="20px">Meus atendimentos</SubTitle>
           <TextSmall marginBottom="20px">{name}</TextSmall>
           {studentAssistances.map(assistance => (
-            <TextSmall
-              onClick={() => {
-                setCurrentAssistance(assistance);
-              }}
-              marginBottom="20px"
-            >
+            <TextSmall key={assistance.id} marginBottom="20px">
               <Assistances assistance={assistance} name={assistance.name} />
-              <StyledLink
+
+              <SmallLink
                 color="#FFF"
                 background="#2575f2"
                 padding="5px"
                 fontSize="12px"
                 fontWeight="bold"
-                to="/comments"
+                onClick={() => {
+                  setCommentsToggle(!commentsToggle);
+                  setCurrentAssistance(assistance);
+                }}
               >
                 <MdMessage /> deixar comentário
-              </StyledLink>
+              </SmallLink>
             </TextSmall>
           ))}
         </ToggleContainer>
+
+        <Modal toggle={commentsToggle}>
+          <Comments />
+          <Button
+            onClick={() => {
+              setCommentsToggle(!commentsToggle);
+            }}
+          >
+            voltar
+          </Button>
+        </Modal>
       </CardContent>
     </CardContainer>
   );
