@@ -7,8 +7,7 @@ import {
   CardContainer,
   CardContent,
   TextSmall,
-  SmallLink,
-  Button
+  SmallLink
 } from '../styled-components/styles';
 
 import ToggleContainer from '../ToggleContainer';
@@ -72,14 +71,14 @@ export default function StudentOptions() {
         </ToggleContainer>
 
         <Modal toggle={commentsToggle}>
-          <Comments />
-          <Button
+          <button
             onClick={() => {
               setCommentsToggle(!commentsToggle);
             }}
           >
-            voltar
-          </Button>
+            X
+          </button>
+          <Comments />
         </Modal>
       </CardContent>
     </CardContainer>
