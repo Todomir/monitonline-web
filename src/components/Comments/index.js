@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { AssistanceContext } from '../../store/AssistanceContext';
 
+import api from '../../services/api';
+
 // import { Container } from './styles';
 
 export default function Comments() {
@@ -8,7 +10,11 @@ export default function Comments() {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    setComments(currentAssistance.comments);
+    async function fetchComments() {
+      const response = await api.get(`/comments/schedule/${currentAssistance.schedule_id}`);
+      setComments(response.data);
+    }
+    fetchComments();
   }, [currentAssistance]);
 
   return (
