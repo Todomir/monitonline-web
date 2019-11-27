@@ -13,7 +13,9 @@ export default function Comments() {
 
   useEffect(() => {
     async function fetchComments() {
-      const response = await api.get(`/comments/schedule/${currentAssistance.schedule_id}`);
+      const response = await api.get(
+        `user/${currentAssistance.tutor_id}/comments/subject-matter/${currentAssistance.subject_matter_id}`
+      );
       setComments(response.data);
     }
     fetchComments();
