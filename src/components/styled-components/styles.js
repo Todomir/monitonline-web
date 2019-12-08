@@ -11,10 +11,15 @@ export const Container = styled.div`
 export const Box = styled.div`
   width: 100%;
 
-  background-color: ${props => props.bgColor};
+  text-align: ${props => props.align};
   height: ${props => props.height};
+  background-color: ${props => props.bgColor};
   padding: ${props => props.padding};
   color: ${props => props.color};
+  margin-top: ${props => props.marginTop};
+  margin-bottom: ${props => props.marginBottom};
+  margin-left: ${props => props.marginLeft};
+  margin-right: ${props => props.marginRight};
 `;
 
 export const CardContainer = styled(Container)`
