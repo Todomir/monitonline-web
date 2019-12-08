@@ -66,6 +66,10 @@ export const TextSmall = styled.h5`
   margin-bottom: ${props => props.marginBottom};
 `;
 
+export const Paragraph = styled.p`
+  font-size: 14px;
+`;
+
 export const TextInput = styled.input`
   border: 1px solid rgb(235, 235, 235);
   border-radius: 3px;
