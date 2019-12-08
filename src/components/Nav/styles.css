@@ -4,6 +4,7 @@ nav {
   grid-column-gap: 20px;
   align-items: center;
   max-width: 100%;
+
   padding-top: 30px;
 }
 
@@ -13,13 +14,16 @@ nav a {
 }
 
 .logo {
-  grid-column: 2/3;
+  grid-column: 2;
 }
 
-.list {
-  grid-column: 10/12;
+.login {
+  grid-column: 10;
 }
 
+.sign-up {
+  grid-column: 11;
+}
 .list span {
   padding: 0 20px;
 }

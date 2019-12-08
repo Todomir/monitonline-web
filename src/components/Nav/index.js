@@ -11,14 +11,13 @@ export default function Nav() {
           <strong>Monitonline</strong>
         </Link>
       </div>
-      <div className="list">
-        <span>
-          <Link to="/">Fazer login</Link>
-        </span>
-        <span>
-          <Link to="/">Cadastre-se</Link>
-        </span>
-      </div>
+
+      <span className="login">
+        <Link to="/">Fazer login</Link>
+      </span>
+      <span className="sign-up">
+        <Link to="/">Cadastre-se</Link>
+      </span>
     </nav>
   );
 }
