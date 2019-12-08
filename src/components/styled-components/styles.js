@@ -1,10 +1,23 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const CardContainer = styled.div`
+export const Container = styled.div`
+  background-color: ${props => props.bgColor};
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+export const Box = styled.div`
+  width: 100%;
+
+  background-color: ${props => props.bgColor};
+  height: ${props => props.height};
+  padding: ${props => props.padding};
+  color: ${props => props.color};
+`;
+
+export const CardContainer = styled(Container)`
   justify-content: center;
 `;
 
@@ -31,15 +44,22 @@ export const CardContent = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 50px;
+  font-size: 64px;
   font-weight: 900px;
-  text-align: center;
-  margin-bottom: 20px;
+
+  margin-top: ${props => props.marginTop};
+  margin-bottom: ${props => props.marginBottom};
+  padding-top: ${props => props.paddingTop};
+  padding-bottom: ${props => props.paddingBottom};
 `;
 
 export const SubTitle = styled.h2`
+  font-size: 36px;
+
   margin-top: ${props => props.marginTop};
   margin-bottom: ${props => props.marginBottom};
+  padding-top: ${props => props.paddingTop};
+  padding-bottom: ${props => props.paddingBottom};
 `;
 
 export const TextSmall = styled.h5`
@@ -55,7 +75,6 @@ export const TextInput = styled.input`
 `;
 
 export const Select = styled.select`
-  border: 1px solid rgb(235, 235, 235);
   border-radius: 3px;
   height: 45px;
   padding: 10px;
@@ -73,30 +92,17 @@ export const FormLabel = styled.label`
 `;
 
 export const Button = styled.button`
-  margin-top: 30px;
-  border: 0;
-  border-radius: 3px;
-  height: 45px;
-  padding: 0 20px;
-  font-size: 16px;
-  font-weight: 900;
-  color: #fff;
-  background: #2575fc;
+  border-radius: 20px;
+  box-sizing: border-box;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 10px 40px;
   cursor: pointer;
-  box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.29);
-  -webkit-transition: all 500ms ease;
-  -moz-transition: all 500ms ease;
-  -ms-transition: all 500ms ease;
-  -o-transition: all 500ms ease;
-  transition: all 500ms ease;
 
-  &:hover {
-    background: #6a11cb;
-  }
-
-  &:active {
-    background: #2575f2;
-  }
+  border: ${props => (props.outline ? '3px solid #FFFFFF' : 'rgba(0, 0, 0, 0)')};
+  background-color: ${props => (props.outline ? 'rgba(0, 0, 0, 0)' : '#B276FF')};
+  margin-top: ${props => props.marginTop};
+  margin-bottom: ${props => props.marginBottom};
 `;
 
 export const EditableButton = styled(Button)`

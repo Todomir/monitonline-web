@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import { isAuthenticated } from './services/auth';
 
+import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import UserPage from './pages/UserPage';
@@ -20,7 +21,7 @@ export default function Routes() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" exact component={Login} />
+        <Route path="/" exact component={Home} />
         <Route path="/register" component={Register} />
         <PrivateRoute path="/user-profile" component={UserPage} />
         <PrivateRoute path="/add-schedules" component={Schedules} />
