@@ -28,7 +28,6 @@ export const FlexWrapper = styled.div`
   margin-left: ${props => props.marginLeft};
   margin-right: ${props => props.marginRight};
   flex-direction: ${props => (props.isInline ? 'row' : 'column')};
-  align-items: center;
 `;
 
 export const CardContent = styled.div`

@@ -1,9 +1,13 @@
 import React from 'react';
+
+import Nav from '../../components/Nav/index';
+
 import { Box, Title, Button, SubTitle } from '../../components/styled-components/styles';
 
 export default function Home() {
   return (
     <>
+      <Nav />
       <Box bgColor="#B276FF" color="#FFF" padding="0 230px" height="512px">
         <Title paddingTop="163px">Monitonline</Title>
         <p>

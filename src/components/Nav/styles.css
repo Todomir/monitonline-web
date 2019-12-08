@@ -1,0 +1,25 @@
+nav {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-column-gap: 20px;
+  align-items: center;
+  max-width: 100%;
+  padding-top: 30px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.logo {
+  grid-column: 2/3;
+}
+
+.list {
+  grid-column: 10/12;
+}
+
+.list span {
+  padding: 0 20px;
+}
