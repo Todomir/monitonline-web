@@ -22,6 +22,7 @@ export default function Routes() {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Home} />
+        <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <PrivateRoute path="/user-profile" component={UserPage} />
         <PrivateRoute path="/add-schedules" component={Schedules} />
