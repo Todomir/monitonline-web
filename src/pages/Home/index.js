@@ -12,7 +12,7 @@ import {
   FlexWrapper
 } from '../../components/styled-components/styles';
 
-export default function Home() {
+export default function Home({ history }) {
   return (
     <>
       <Nav />
@@ -24,10 +24,24 @@ export default function Home() {
               Um sistema de monitoria entre <strong>alunos</strong>, de <strong>alunos</strong>,
               para <strong>alunos</strong>.
             </Paragraph>
-            <Button outline marginTop="80px" marginBottom="105px">
+            <Button
+              outline
+              marginTop="80px"
+              marginBottom="105px"
+              onClick={() => {
+                history.push('/register');
+              }}
+            >
               Cadastre-se
             </Button>
-            <Button outline marginTop="80px" marginBottom="105px">
+            <Button
+              outline
+              marginTop="80px"
+              marginBottom="105px"
+              onClick={() => {
+                history.push('/login');
+              }}
+            >
               Fazer login
             </Button>
           </Box>
