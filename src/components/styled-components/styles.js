@@ -2,16 +2,27 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-column-gap: 20px;
+  max-width: 100%;
+
   background-color: ${props => props.bgColor};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: ${props => props.content};
+  align-items: ${props => props.alignItems};
+  width: ${props => props.width};
+  height: ${props => props.height};
 `;
 
 export const Box = styled.div`
-  width: 100%;
+  display: flex;
 
+  grid-column: ${props => props.gridColumn};
+  flex-direction: ${props => (props.isInline ? 'row' : 'column')};
+  justify-content: ${props => props.content};
+  align-items: ${props => props.alignItems};
   text-align: ${props => props.align};
+  width: ${props => props.width};
   height: ${props => props.height};
   background-color: ${props => props.bgColor};
   padding: ${props => props.padding};
@@ -24,6 +35,17 @@ export const Box = styled.div`
 
 export const CardContainer = styled(Container)`
   justify-content: center;
+`;
+
+export const Form = styled.form`
+  display: flex;
+
+  width: ${props => props.width};
+  height: ${props => props.height};
+  flex-direction: ${props => (props.isInline ? 'row' : 'column')};
+  justify-content: ${props => props.content};
+  align-items: ${props => props.alignItems};
+  text-align: ${props => props.align};
 `;
 
 export const FlexWrapper = styled.div`
@@ -106,6 +128,7 @@ export const Button = styled.button`
   font-weight: bold;
   padding: 10px 40px;
   cursor: pointer;
+  max-width: 230px;
 
   border: ${props => (props.outline ? '3px solid #FFFFFF' : 'rgba(0, 0, 0, 0)')};
   background-color: ${props => (props.outline ? 'rgba(0, 0, 0, 0)' : '#B276FF')};
@@ -161,7 +184,7 @@ export const StyledLink = styled(Link)`
   padding: ${props => props.padding};
   border-radius: 3px;
   text-decoration: none;
-  color: black;
+  color: #fff;
   max-width: 100%;
   width: 200px;
   cursor: pointer;
