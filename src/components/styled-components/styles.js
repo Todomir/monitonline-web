@@ -48,7 +48,7 @@ export const CardContent = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 64px;
+  font-size: 70px;
   font-weight: 900px;
 
   margin-top: ${props => props.marginTop};
@@ -72,7 +72,7 @@ export const TextSmall = styled.h5`
 `;
 
 export const Paragraph = styled.p`
-  font-size: 14px;
+  font-size: 18px;
 `;
 
 export const TextInput = styled.input`

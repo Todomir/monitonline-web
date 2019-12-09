@@ -8,7 +8,6 @@ import {
   Box,
   Title,
   Button,
-  SubTitle,
   Paragraph,
   FlexWrapper
 } from '../../components/styled-components/styles';
@@ -28,16 +27,19 @@ export default function Home() {
             <Button outline marginTop="80px" marginBottom="105px">
               Cadastre-se
             </Button>
+            <Button outline marginTop="80px" marginBottom="105px">
+              Fazer login
+            </Button>
           </Box>
           <Box align="right">
-            <img src={studying} width="833px" alt="" />
+            <img src={studying} width="880px" alt="" />
           </Box>
         </FlexWrapper>
       </Box>
       <Box bgColor="#F8F8F8" color="#3F3D56" padding="0 230px" height="50%">
         <FlexWrapper isInline>
-          <Box>
-            <img src={coffee} width="833px" alt="" />
+          <Box marginTop="30px">
+            <img src={coffee} width="880px" alt="" />
           </Box>
           <Box align="right">
             <Title paddingTop="163px">Precisa de um help?</Title>
