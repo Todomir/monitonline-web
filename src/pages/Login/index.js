@@ -35,7 +35,7 @@ export default function Login({ history }) {
   return (
     <Container height="100%">
       <Box gridColumn="2/6" style={{ zIndex: 2, marginTop: '200px' }}>
-        <img src={auth} width="1200px" alt="" />
+        <img src={auth} width="130%" alt="" />
       </Box>
       <Box
         bgColor="#B276FF"
