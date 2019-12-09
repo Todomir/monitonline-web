@@ -13,10 +13,10 @@ export default function Nav() {
       </div>
 
       <span className="login">
-        <Link to="/">Fazer login</Link>
+        <Link to="/login">Fazer login</Link>
       </span>
       <span className="sign-up">
-        <Link to="/">Cadastre-se</Link>
+        <Link to="/register">Cadastre-se</Link>
       </span>
     </nav>
   );
