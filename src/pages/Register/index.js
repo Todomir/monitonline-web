@@ -19,7 +19,7 @@ export default function Register({ history }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    history.push('/');
+    history.push('/proceed-register');
   }
 
   // function handleRadio(value) {

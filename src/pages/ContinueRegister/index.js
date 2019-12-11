@@ -1,7 +1,17 @@
 import React from 'react';
 
-// import { Container } from './styles';
+import Nav from '../../components/Nav';
+
+import { Box, Title, Button } from '../../components/styled-components/styles';
 
 export default function ContinueRegister() {
-  return <div />;
+  return (
+    <>
+      <Nav light />
+      <Box>
+        <Title>TESTE</Title>
+        <Button>Cadastrar</Button>
+      </Box>
+    </>
+  );
 }
