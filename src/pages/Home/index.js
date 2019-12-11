@@ -10,7 +10,7 @@ export default function Home({ history }) {
   return (
     <Box height="100%">
       <Nav />
-      <Box bgColor="#B276FF" color="#FFF" padding="0 230px" height="50%" isInline>
+      <Box bgColor="#B276FF" color="#FFF" padding="0 230px" isInline>
         <Box marginRight="auto">
           <Title paddingTop="163px">Monitonline</Title>
           <Paragraph>
@@ -45,7 +45,7 @@ export default function Home({ history }) {
           <img src={studying} width="880px" alt="" />
         </Box>
       </Box>
-      <Box bgColor="#F8F8F8" color="#3F3D56" padding="0 230px" height="50%" isInline>
+      <Box bgColor="#F8F8F8" color="#3F3D56" padding="0 230px" isInline>
         <Box marginTop="30px" marginRight="auto">
           <img src={coffee} width="880px" alt="" />
         </Box>
