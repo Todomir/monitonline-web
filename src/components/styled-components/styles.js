@@ -251,3 +251,5 @@ export const ModalContainer = styled(CardContent)`
   left: 50%;
   transform: translate(-50%, -50%);
 `;
+
+export const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })``;

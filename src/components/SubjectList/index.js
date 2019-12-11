@@ -3,33 +3,51 @@ import api from '../../services/api';
 
 import './styles.css';
 
+import Checkbox from '../Checkbox';
+
+import { Box, FormLabel, TextSmall } from '../styled-components/styles';
+
 export default function SubjectList({ isTutor, callback }) {
   const [subjectMatters, setSubjectMatters] = useState([]);
+  const [subjects, setSubjects] = useState([]);
+
   const [subjectMattersId, setSubjectMattersId] = useState([]);
+  const [subjectsId, setSubjectsId] = useState([]);
 
   useEffect(() => {
     callback(subjectMattersId);
   }, [subjectMattersId, callback]);
 
   useEffect(() => {
-    async function fetchSubjectMatters() {
-      try {
-        const response = await api.get('/subjectmatters');
-        setSubjectMatters(response.data);
-      } catch (err) {
-        console.log(err.response);
-      }
+    if (!isTutor) {
+      setSubjectsId([]);
+      setSubjectMattersId([]);
     }
-    fetchSubjectMatters();
+  }, [isTutor]);
+
+  useEffect(() => {
+    async function fetchSubjects() {
+      const response = await api.get('/subjects');
+      setSubjects(response.data);
+    }
+    fetchSubjects();
   }, []);
 
-  function handleCheckbox(event) {
+  useEffect(() => {
+    async function fetchSubjectMatters() {
+      const response = await api.post('/subjects/subjectmatters', { subject_id: subjectsId });
+      setSubjectMatters(response.data);
+    }
+    fetchSubjectMatters();
+  }, [subjectsId]);
+
+  function handleSubjectMatterClick(event) {
     const value = parseInt(event.target.value);
-    const isChecked = event.target.checked;
+    const selected = event.target.checked;
     let index;
 
     // check if the check box is checked or unchecked
-    if (isChecked) {
+    if (selected) {
       // add the numerical value of the checkbox to options array
       setSubjectMattersId(subjectMattersId => [...subjectMattersId, value]);
     } else {
@@ -40,23 +58,58 @@ export default function SubjectList({ isTutor, callback }) {
     }
   }
 
+  function handleSubjectClick(event) {
+    const value = parseInt(event.target.value);
+    const selected = event.target.checked;
+    let index;
+
+    // check if the check box is checked or unchecked
+    if (selected) {
+      // add the numerical value of the checkbox to options array
+      setSubjectsId(subjectsId => [...subjectsId, value]);
+    } else {
+      // or remove the value from the unchecked checkbox from the array
+      index = subjectsId.indexOf(value);
+      subjectsId.splice(index, 1);
+      setSubjectsId([...subjectsId]);
+    }
+  }
+
   if (isTutor) {
     return (
-      <div className="subject-matter-list">
-        {subjectMatters.map(subjectMatter => (
-          <label key={subjectMatter.id}>
-            <input
-              type="checkbox"
-              name={subjectMatter.subject_matter_description}
-              value={subjectMatter.id}
-              onChange={handleCheckbox}
-              key={subjectMatter.id}
-            />
-            {subjectMatter.subject_matter_description}
-            <span>{subjectMatter.subject.subject_description}</span>
-          </label>
-        ))}
-      </div>
+      <Box isInline>
+        <Box marginRight="120px">
+          <FormLabel>Disciplinas</FormLabel>
+          <div className="subject-matter-list">
+            <ul>
+              {subjects.map(subject => (
+                <li htmlFor={subject.id} key={subject.id}>
+                  <Checkbox value={subject.id} id={subject.id} onChange={handleSubjectClick} />
+                  {subject.subject_description}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Box>
+
+        <Box>
+          <FormLabel>Assuntos</FormLabel>
+          <div className="subject-matter-list">
+            <ul>
+              {subjectMatters.map(subjectMatter => (
+                <li htmlFor={subjectMatter.id} key={subjectMatter.id}>
+                  <Checkbox
+                    value={subjectMatter.id}
+                    id={subjectMatter.id}
+                    onChange={handleSubjectMatterClick}
+                  />
+                  {subjectMatter.subject_matter_description}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Box>
+      </Box>
     );
   }
   return null;
