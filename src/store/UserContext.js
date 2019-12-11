@@ -6,8 +6,13 @@ export const UserContext = createContext();
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState({});
-  const { id, name, cpf, email, subjectMatters } = user;
-  const isTutor = user.is_tutor;
+  const [id, setId] = useState(user.id);
+  const [name, setName] = useState(user.name);
+  const [cpf, setCpf] = useState(user.cpf);
+  const [email, setEmail] = useState(user.email);
+  const [password, setPassword] = useState(user.password);
+  const [isTutor, setTutor] = useState(user.is_tutor);
+  const [subjectMatters, setSubjectMatters] = useState([]);
 
   return (
     <UserContext.Provider
@@ -15,11 +20,19 @@ export function UserProvider({ children }) {
         user,
         setUser,
         id,
+        setId,
         name,
+        setName,
         cpf,
+        setCpf,
         email,
+        setEmail,
+        password,
+        setPassword,
         isTutor,
-        subjectMatters
+        setTutor,
+        subjectMatters,
+        setSubjectMatters
       }}
     >
       {children}

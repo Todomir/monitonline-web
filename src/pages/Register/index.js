@@ -1,136 +1,97 @@
-import React, { useState } from 'react';
-import api from '../../services/api';
+import React, { useContext } from 'react';
+import { UserContext } from '../../store/UserContext';
 
-import SubjectList from '../../components/SubjectList';
 import {
-  RadioButton,
   Button,
   FormLabel,
   TextInput,
-  Select,
-  Title,
-  FlexWrapper
+  Box,
+  SubTitle,
+  Container,
+  Form,
+  StyledLink
 } from '../../components/styled-components/styles';
 
+import register from '../../assets/undraw_click_here_2li1.svg';
+
 export default function Register({ history }) {
-  const [name, setName] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [course, setCourse] = useState(0);
-  const [is_tutor, setTutor] = useState(false);
-  const [subject_matters, setSubjectMatters] = useState([]);
+  const { setEmail, setPassword } = useContext(UserContext);
 
   async function handleSubmit(event) {
     event.preventDefault();
-
-    try {
-      await api.post('/users', {
-        name,
-        email,
-        cpf,
-        password,
-        course,
-        is_tutor,
-        subject_matters
-      });
-
-      history.push('/');
-    } catch (err) {
-      console.log(err.response);
-    }
+    history.push('/');
   }
 
-  function handleRadio(value) {
-    if (value && typeof value === 'string') {
-      if (value.toLowerCase() === 'true') return true;
-      if (value.toLowerCase() === 'false') return false;
-    }
-    return value;
-  }
+  // function handleRadio(value) {
+  //   if (value && typeof value === 'string') {
+  //     if (value.toLowerCase() === 'true') return true;
+  //     if (value.toLowerCase() === 'false') return false;
+  //   }
+  //   return value;
+  // }
 
-  function subjectMattersCallback(subjectMattersId) {
-    setSubjectMatters(subjectMattersId);
-  }
+  // function subjectMattersCallback(subjectMattersId) {
+  //   setSubjectMatters(subjectMattersId);
+  // }
 
   return (
-    <>
-      <Title>MONITONLINE | CADASTRO</Title>
+    <Container height="100%">
+      <Box
+        bgColor="#B276FF"
+        color="#fff"
+        gridColumn="1/8"
+        alignItems="center"
+        height="100%"
+        style={{
+          borderTopRightRadius: '62px',
+          borderBottomRightRadius: '62px',
+          boxShadow: '10px 0px 20px rgba(0, 0, 0, 0.25)'
+        }}
+      >
+        <Form onSubmit={handleSubmit}>
+          <SubTitle marginBottom="42px" marginTop="212px" style={{ alignSelf: 'center' }}>
+            Seja bem vindo! Vamos nos <br />
+            conhecer um pouco...
+          </SubTitle>
+          <FormLabel htmlFor="email">E-MAIL *</FormLabel>
+          <TextInput
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Seu melhor e-mail"
+            onChange={event => setEmail(event.target.value)}
+            required
+          />
+          <FormLabel htmlFor="password">SENHA *</FormLabel>
+          <TextInput
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Sua senha super segura"
+            onChange={event => setPassword(event.target.value)}
+            required
+          />
 
-      <form onSubmit={handleSubmit}>
-        <FormLabel htmlFor="name">NOME COMPLETO *</FormLabel>
-        <TextInput
-          type="text"
-          name="name"
-          id="name"
-          placeholder="Seu belo nome"
-          onChange={event => setName(event.target.value)}
-          required
-        />
-        <FormLabel htmlFor="cpf">CPF *</FormLabel>
-        <TextInput
-          type="text"
-          name="cpf"
-          id="cpf"
-          placeholder="Seu CPF"
-          onChange={event => setCpf(event.target.value)}
-          required
-        />
-        <FormLabel htmlFor="email">E-MAIL *</FormLabel>
-        <TextInput
-          type="email"
-          name="email"
-          id="email"
-          placeholder="Seu melhor e-mail"
-          onChange={event => setEmail(event.target.value)}
-          required
-        />
-        <FormLabel htmlFor="password">SENHA *</FormLabel>
-        <TextInput
-          type="password"
-          name="password"
-          id="password"
-          onChange={event => setPassword(event.target.value)}
-          required
-        />
-        <FormLabel htmlFor="course">CURSO *</FormLabel>
-        <Select
-          name="course"
-          id="course"
-          value={course}
-          onChange={event => setCourse(parseInt(event.target.value))}
-        >
-          <option value="0">Eletromecânica</option>
-          <option value="1">Tecnologia da Informação</option>
-        </Select>
-        <FormLabel>DESEJA SER MONITOR? *</FormLabel>
-
-        <FlexWrapper isInline marginLeft="-30px" marginTop="7px">
-          <label>
-            <RadioButton
-              type="radio"
-              name="is_tutor"
-              value="true"
-              onChange={event => setTutor(handleRadio(event.target.value))}
-            />
-            Sim
-          </label>
-
-          <label>
-            <RadioButton
-              type="radio"
-              name="is_tutor"
-              value="false"
-              onChange={event => setTutor(handleRadio(event.target.value))}
-            />
-            Não
-          </label>
-        </FlexWrapper>
-
-        <SubjectList isTutor={is_tutor} callback={subjectMattersCallback} />
-
-        <Button type="submit">Cadastre-se</Button>
-      </form>
-    </>
+          <Button
+            outline
+            type="submit"
+            marginTop="60px"
+            marginBottom="15px"
+            style={{ alignSelf: 'center' }}
+          >
+            Continuar
+          </Button>
+          <p style={{ alignSelf: 'center' }}>
+            Já possui uma conta?{' '}
+            <strong>
+              <StyledLink to="/login">Fazer login!</StyledLink>
+            </strong>
+          </p>
+        </Form>
+      </Box>
+      <Box gridColumn="8/10" style={{ zIndex: 2, marginTop: '112px', marginRight: '15px' }}>
+        <img src={register} alt="" />
+      </Box>
+    </Container>
   );
 }
