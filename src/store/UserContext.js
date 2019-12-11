@@ -11,7 +11,8 @@ export function UserProvider({ children }) {
   const [cpf, setCpf] = useState(user.cpf);
   const [email, setEmail] = useState(user.email);
   const [password, setPassword] = useState(user.password);
-  const [isTutor, setTutor] = useState(user.is_tutor);
+  const [course, setCourse] = useState(user.course);
+  const [is_tutor, setTutor] = useState(user.is_tutor);
   const [subjectMatters, setSubjectMatters] = useState([]);
 
   return (
@@ -29,7 +30,9 @@ export function UserProvider({ children }) {
         setEmail,
         password,
         setPassword,
-        isTutor,
+        course,
+        setCourse,
+        is_tutor,
         setTutor,
         subjectMatters,
         setSubjectMatters

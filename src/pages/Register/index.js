@@ -22,18 +22,6 @@ export default function Register({ history }) {
     history.push('/proceed-register');
   }
 
-  // function handleRadio(value) {
-  //   if (value && typeof value === 'string') {
-  //     if (value.toLowerCase() === 'true') return true;
-  //     if (value.toLowerCase() === 'false') return false;
-  //   }
-  //   return value;
-  // }
-
-  // function subjectMattersCallback(subjectMattersId) {
-  //   setSubjectMatters(subjectMattersId);
-  // }
-
   return (
     <Container height="100%">
       <Box

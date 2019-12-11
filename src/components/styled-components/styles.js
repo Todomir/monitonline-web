@@ -33,8 +33,9 @@ export const Box = styled.div`
   margin-right: ${props => props.marginRight};
 `;
 
-export const CardContainer = styled(Container)`
-  justify-content: center;
+export const CardContainer = styled(Box)`
+  border-radius: 38px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
 `;
 
 export const Form = styled.form`
@@ -105,6 +106,7 @@ export const TextInput = styled.input`
 `;
 
 export const Select = styled.select`
+  background-color: #fff;
   border-radius: 3px;
   height: 45px;
   padding: 10px;
