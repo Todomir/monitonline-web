@@ -274,3 +274,19 @@ export const StyledListItem = styled.li`
     color: #fff;
   }
 `;
+export const NavBar = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+  padding: 30px 250px;
+
+  background-color: ${props => (props.light ? '#fff' : '#b276ff')};
+`;
+
+export const NavLink = styled(Link)`
+  text-decoration: none;
+  padding: 0 20px;
+
+  color: ${props => (props.light ? '#b276ff' : '#fff')};
+`;

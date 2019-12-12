@@ -62,7 +62,7 @@ export default function ContinueRegister({ history }) {
 
   return (
     <>
-      <Nav light />
+      <Nav isLight />
       <Container height="100%">
         <Box marginTop="141px" alignItems="center" gridColumn="2/12">
           <CardContainer padding="85px 100px" width="100%">

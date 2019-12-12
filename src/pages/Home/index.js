@@ -1,10 +1,9 @@
 import React from 'react';
 
-import Nav from '../../components/Nav/index';
+import Nav from '../../components/Nav';
+import { Box, Title, Button, Paragraph } from '../../components/styled-components/styles';
 import studying from '../../assets/undraw_studying_s3l7.svg';
 import coffee from '../../assets/undraw_getting_coffee_wntr.svg';
-
-import { Box, Title, Button, Paragraph } from '../../components/styled-components/styles';
 
 export default function Home({ history }) {
   return (
