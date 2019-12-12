@@ -2,17 +2,16 @@ import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 
 import './styles.css';
+import ListItem from '../ListItem';
 
-import Checkbox from '../Checkbox';
-
-import { Box, FormLabel, TextSmall } from '../styled-components/styles';
+import { Box, FormLabel } from '../styled-components/styles';
 
 export default function SubjectList({ isTutor, callback }) {
   const [subjectMatters, setSubjectMatters] = useState([]);
   const [subjects, setSubjects] = useState([]);
 
-  const [subjectMattersId, setSubjectMattersId] = useState([]);
   const [subjectsId, setSubjectsId] = useState([]);
+  const [subjectMattersId, setSubjectMattersId] = useState([]);
 
   useEffect(() => {
     callback(subjectMattersId);
@@ -35,43 +34,37 @@ export default function SubjectList({ isTutor, callback }) {
 
   useEffect(() => {
     async function fetchSubjectMatters() {
-      const response = await api.post('/subjects/subjectmatters', { subject_id: subjectsId });
-      setSubjectMatters(response.data);
+      try {
+        const response = await api.post('/subjects/subjectmatters', { subject_id: subjectsId });
+        setSubjectMatters(response.data);
+      } catch (error) {
+        console.log(error.response);
+      }
     }
     fetchSubjectMatters();
   }, [subjectsId]);
 
-  function handleSubjectMatterClick(event) {
-    const value = parseInt(event.target.value);
-    const selected = event.target.checked;
+  function handleSubjectCallback(id, selected) {
     let index;
 
-    // check if the check box is checked or unchecked
     if (selected) {
-      // add the numerical value of the checkbox to options array
-      setSubjectMattersId(subjectMattersId => [...subjectMattersId, value]);
+      setSubjectsId(subjectsId => [...subjectsId, id]);
     } else {
-      // or remove the value from the unchecked checkbox from the array
-      index = subjectMattersId.indexOf(value);
-      subjectMattersId.splice(index, 1);
-      setSubjectMattersId([...subjectMattersId]);
+      index = subjectsId.indexOf(id);
+      subjectsId.splice(index, 1);
+      setSubjectsId([...subjectsId]);
     }
   }
 
-  function handleSubjectClick(event) {
-    const value = parseInt(event.target.value);
-    const selected = event.target.checked;
+  function handleSubjectMattersCallback(id, selected) {
     let index;
 
-    // check if the check box is checked or unchecked
     if (selected) {
-      // add the numerical value of the checkbox to options array
-      setSubjectsId(subjectsId => [...subjectsId, value]);
+      setSubjectMattersId(subjectMattersId => [...subjectMattersId, id]);
     } else {
-      // or remove the value from the unchecked checkbox from the array
-      index = subjectsId.indexOf(value);
-      subjectsId.splice(index, 1);
-      setSubjectsId([...subjectsId]);
+      index = subjectMattersId.indexOf(id);
+      subjectMattersId.splice(index, 1);
+      setSubjectMattersId([...subjectMattersId]);
     }
   }
 
@@ -82,11 +75,10 @@ export default function SubjectList({ isTutor, callback }) {
           <FormLabel>Disciplinas</FormLabel>
           <div className="subject-matter-list">
             <ul>
-              {subjects.map(subject => (
-                <li htmlFor={subject.id} key={subject.id}>
-                  <Checkbox value={subject.id} id={subject.id} onChange={handleSubjectClick} />
-                  {subject.subject_description}
-                </li>
+              {subjects.map(item => (
+                <ListItem callback={handleSubjectCallback} key={item.id} item={item}>
+                  {item.subject_description}
+                </ListItem>
               ))}
             </ul>
           </div>
@@ -96,15 +88,10 @@ export default function SubjectList({ isTutor, callback }) {
           <FormLabel>Assuntos</FormLabel>
           <div className="subject-matter-list">
             <ul>
-              {subjectMatters.map(subjectMatter => (
-                <li htmlFor={subjectMatter.id} key={subjectMatter.id}>
-                  <Checkbox
-                    value={subjectMatter.id}
-                    id={subjectMatter.id}
-                    onChange={handleSubjectMatterClick}
-                  />
-                  {subjectMatter.subject_matter_description}
-                </li>
+              {subjectMatters.map(item => (
+                <ListItem callback={handleSubjectMattersCallback} key={item.id} item={item}>
+                  {item.subject_matter_description}
+                </ListItem>
               ))}
             </ul>
           </div>

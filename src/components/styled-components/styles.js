@@ -252,4 +252,25 @@ export const ModalContainer = styled(CardContent)`
   transform: translate(-50%, -50%);
 `;
 
-export const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })``;
+export const StyledListItem = styled.li`
+  margin: 0px 5px;
+  cursor: pointer;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease;
+
+  font-weight: ${props => (props.isSelected ? '700' : '400')};
+  color: ${props => (props.isSelected ? '#fff' : '#3f3d56')};
+  background-color: ${props => (props.isSelected ? '#b276ff' : 'none')};
+  padding: ${props => (props.isSelected ? '5px' : 'none')};
+  margin: ${props => (props.isSelected ? '5px 0' : 'none')};
+
+  &:hover {
+    padding: 5px;
+    background-color: #b276ff;
+    font-weight: 700;
+    color: #fff;
+  }
+`;

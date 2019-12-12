@@ -36,7 +36,6 @@ export default function ContinueRegister({ history }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-
     await api.post('/users', {
       name,
       cpf,
@@ -44,7 +43,7 @@ export default function ContinueRegister({ history }) {
       password,
       course,
       is_tutor,
-      subjectMatters
+      subject_matters: subjectMatters
     });
     history.push('/login');
   }
