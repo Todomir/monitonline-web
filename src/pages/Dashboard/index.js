@@ -111,12 +111,14 @@ export default function Dashboard({ history }) {
     <Box height="100%" bgColor="#FAF6FF" isInline>
       <Box height="100%" width="256px" marginRight="75px" bgColor="#FFF" elevated>
         <MenuLogo>Monitonline</MenuLogo>
-        <Box>
-          <TextSmall>{user.name}</TextSmall>
-          <TextSmall>{user.is_tutor ? 'Monitor(a)' : 'Aluno'}</TextSmall>
+        <Box marginLeft="24px" marginBottom="40px" isInline>
+          <Box>
+            <TextSmall>{user.name}</TextSmall>
+            <TextSmall>{user.is_tutor ? 'Monitor(a)' : 'Aluno'}</TextSmall>
+          </Box>
         </Box>
 
-        <MenuItem>
+        <MenuItem isSelected>
           <MdDashboard /> Dashboard
         </MenuItem>
 
@@ -159,19 +161,19 @@ export default function Dashboard({ history }) {
             <h3>MEUS ATENDIMENTOS</h3>
 
             {studentAssistances.map(assistance => (
-              <>
-                <h4>
+              <Box marginTop="10px">
+                <p>
                   <strong>Assunto: </strong>
                   {assistance.subjectMatter.subject_matter_description}
-                </h4>
-                <h4>
+                </p>
+                <p>
                   <strong>Monitor: </strong>
                   {assistance.name}
-                </h4>
-                <h4>
+                </p>
+                <p>
                   <Status statusId={assistance.status_id} assistanceId={assistance.id} />
-                </h4>
-              </>
+                </p>
+              </Box>
             ))}
           </CardContainer>
         </Container>

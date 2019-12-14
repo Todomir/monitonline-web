@@ -99,7 +99,7 @@ export const MenuItem = styled.label`
   font-size: 13px;
   margin-left: 24px;
   margin-bottom: 20px;
-  color: #334d6e;
+  color: ${props => (props.isSelected ? '#b276ff' : '#334d6e')};
   cursor: pointer;
 `;
 
