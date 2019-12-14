@@ -22,19 +22,18 @@ export default function Status({ statusId, assistanceId }) {
     switch (id) {
       case 1:
         return 'Marcado';
-        break;
+
       case 2:
         return 'Realizado';
-        break;
+
       case 3:
         return 'Cancelado pelo aluno';
-        break;
+
       case 4:
         return 'Cancelado pelo monitor';
-        break;
+
       default:
         return '404';
-        break;
     }
   };
 
@@ -61,7 +60,7 @@ export default function Status({ statusId, assistanceId }) {
 
   return (
     <>
-      <ul>
+      <label>
         <strong>Status: </strong>{' '}
         {isTutor ? (
           <StyledLink
@@ -74,7 +73,7 @@ export default function Status({ statusId, assistanceId }) {
         ) : (
           status
         )}
-      </ul>
+      </label>
 
       <Modal toggle={toggle}>
         <SubTitle>Atualizar status</SubTitle>

@@ -17,6 +17,8 @@ import {
 import api from '../../services/api';
 import { logout } from '../../services/auth';
 
+import Status from '../../components/Status';
+
 import { UserContext } from '../../store/UserContext';
 import { AssistanceContext } from '../../store/AssistanceContext';
 
@@ -44,7 +46,7 @@ export default function Dashboard({ history }) {
     setStudentAssistances
   } = useContext(AssistanceContext);
 
-  const { user, setUser, id, name, isTutor } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   const [scheduleToggle, setScheduleToggle] = useState(false);
   const [assistanceToggle, setAssistanceToggle] = useState(false);
@@ -75,30 +77,30 @@ export default function Dashboard({ history }) {
 
   useEffect(() => {
     async function fetchSchedules() {
-      const response = await api.get(`/users/schedules/${id}`);
+      const response = await api.get(`/users/schedules/${user.id}`);
       setSchedules(response.data);
     }
 
     fetchSchedules();
-  }, [id]);
+  }, [user.id]);
 
   useEffect(() => {
     async function fetchTutorAssistances() {
-      const response = await api.get(`/user/assistances/tutor/${id}`);
+      const response = await api.get(`/user/assistances/tutor/${user.id}`);
       setTutorAssistances(response.data);
     }
 
     fetchTutorAssistances();
-  }, [id]);
+  }, [user.id]);
 
   useEffect(() => {
     async function fetchStudentAssistances() {
-      const response = await api.get(`/user/assistances/student/${id}`);
+      const response = await api.get(`/user/assistances/student/${user.id}`);
       setStudentAssistances(response.data);
     }
 
     fetchStudentAssistances();
-  }, [id]);
+  }, [user.id]);
 
   function handleLogout() {
     logout();
@@ -155,8 +157,21 @@ export default function Dashboard({ history }) {
         <Container width="100%" height="150px">
           <CardContainer padding="36px" marginRight bgColor="#FFF" gridColumn="1/9">
             <h3>MEUS ATENDIMENTOS</h3>
+
             {studentAssistances.map(assistance => (
-              <h2>{assistance.id}</h2>
+              <>
+                <h4>
+                  <strong>Assunto: </strong>
+                  {assistance.subjectMatter.subject_matter_description}
+                </h4>
+                <h4>
+                  <strong>Monitor: </strong>
+                  {assistance.name}
+                </h4>
+                <h4>
+                  <Status statusId={assistance.status_id} assistanceId={assistance.id} />
+                </h4>
+              </>
             ))}
           </CardContainer>
         </Container>
