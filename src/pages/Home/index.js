@@ -34,7 +34,7 @@ export default function Home({ history }) {
               marginTop="80px"
               marginBottom="105px"
               onClick={() => {
-                history.push('/register');
+                history.push('/login');
               }}
             >
               Fazer login

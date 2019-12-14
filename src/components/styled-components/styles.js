@@ -13,6 +13,10 @@ export const Container = styled.div`
   align-items: ${props => props.alignItems};
   width: ${props => props.width};
   height: ${props => props.height};
+  margin-top: ${props => props.marginTop};
+  margin-bottom: ${props => props.marginBottom};
+  margin-left: ${props => props.marginLeft};
+  margin-right: ${props => props.marginRight};
 `;
 
 export const Box = styled.div`
@@ -32,10 +36,12 @@ export const Box = styled.div`
   margin-bottom: ${props => props.marginBottom};
   margin-left: ${props => props.marginLeft};
   margin-right: ${props => props.marginRight};
+  box-shadow: ${props =>
+    props.elevated ? '0px 10px 20px rgba(0, 0, 0, 0.25)' : '0px 0px 0px rgba(0, 0, 0, 0)'};
 `;
 
 export const CardContainer = styled(Box)`
-  border-radius: 38px;
+  border-radius: 10px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
 `;
 
@@ -79,6 +85,22 @@ export const Title = styled.h1`
   margin-bottom: ${props => props.marginBottom};
   padding-top: ${props => props.paddingTop};
   padding-bottom: ${props => props.paddingBottom};
+`;
+
+export const MenuLogo = styled.h2`
+  font-weight: 900;
+  font-size: 18px;
+  margin: 24px;
+  margin-bottom: 42px;
+  color: #b276ff;
+`;
+export const MenuItem = styled.label`
+  font-weight: 500;
+  font-size: 13px;
+  margin-left: 24px;
+  margin-bottom: 20px;
+  color: #334d6e;
+  cursor: pointer;
 `;
 
 export const SubTitle = styled.h2`
