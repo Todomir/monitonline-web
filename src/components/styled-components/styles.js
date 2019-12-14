@@ -94,7 +94,7 @@ export const MenuLogo = styled.h2`
   margin-bottom: 42px;
   color: #b276ff;
 `;
-export const MenuItem = styled.label`
+export const MenuItem = styled(animated.label)`
   font-weight: 500;
   font-size: 13px;
   margin-left: 24px;

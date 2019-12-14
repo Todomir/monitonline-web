@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { Spring } from 'react-spring/renderprops';
 
 import dateFormat from 'dateformat';
 
@@ -109,39 +110,52 @@ export default function Dashboard({ history }) {
 
   return (
     <Box height="100%" bgColor="#FAF6FF" isInline>
-      <Box height="100%" width="256px" marginRight="75px" bgColor="#FFF" elevated>
-        <MenuLogo>Monitonline</MenuLogo>
-        <Box marginLeft="24px" marginBottom="40px" isInline>
-          <Box>
-            <TextSmall>{user.name}</TextSmall>
-            <TextSmall>{user.is_tutor ? 'Monitor(a)' : 'Aluno'}</TextSmall>
+      <Spring from={{ width: 0, opacity: 0 }} to={{ width: 256, opacity: 1 }}>
+        {props => (
+          <Box style={props} height="100%" width="256px" marginRight="75px" bgColor="#FFF" elevated>
+            <Spring
+              from={{ paddingRight: -10, opacity: 0 }}
+              to={{ paddingRight: 0, opacity: 1 }}
+              delay={500}
+            >
+              {props => (
+                <>
+                  <MenuLogo style={props}>Monitonline</MenuLogo>
+                  <Box style={props} marginLeft="24px" marginBottom="40px" isInline>
+                    <Box>
+                      <TextSmall>{user.name}</TextSmall>
+                      <TextSmall>{user.is_tutor ? 'Monitor(a)' : 'Aluno'}</TextSmall>
+                    </Box>
+                  </Box>
+                  <MenuItem style={props} isSelected>
+                    <MdDashboard /> Dashboard
+                  </MenuItem>
+
+                  <MenuItem style={props}>
+                    <MdAccessTime /> Horários
+                  </MenuItem>
+
+                  <MenuItem style={props}>
+                    <MdChatBubbleOutline /> Comentários
+                  </MenuItem>
+
+                  <MenuItem style={props}>
+                    <MdPermIdentity /> Procurar monitor
+                  </MenuItem>
+
+                  <MenuItem style={props}>
+                    <MdAssignmentInd /> Atendimentos
+                  </MenuItem>
+
+                  <MenuItem style={props} onClick={handleLogout}>
+                    <MdExitToApp /> Logout
+                  </MenuItem>
+                </>
+              )}
+            </Spring>
           </Box>
-        </Box>
-
-        <MenuItem isSelected>
-          <MdDashboard /> Dashboard
-        </MenuItem>
-
-        <MenuItem>
-          <MdAccessTime /> Horários
-        </MenuItem>
-
-        <MenuItem>
-          <MdChatBubbleOutline /> Comentários
-        </MenuItem>
-
-        <MenuItem>
-          <MdPermIdentity /> Procurar monitor
-        </MenuItem>
-
-        <MenuItem>
-          <MdAssignmentInd /> Atendimentos
-        </MenuItem>
-
-        <MenuItem onClick={handleLogout}>
-          <MdExitToApp /> Logout
-        </MenuItem>
-      </Box>
+        )}
+      </Spring>
       <Box width="100%" height="100%">
         <SubTitle marginTop="45px" marginBottom="20px">
           Dashboard
