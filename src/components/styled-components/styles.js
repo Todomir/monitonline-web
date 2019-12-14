@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { animated } from 'react-spring';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
@@ -117,6 +118,13 @@ export const RadioButton = styled.input`
 `;
 
 export const FormLabel = styled.label`
+  font-weight: 700;
+  margin-top: 30px;
+  margin-bottom: 4px;
+  font-size: 16px;
+`;
+
+export const AnimatedLabel = styled(animated.label)`
   font-weight: 700;
   margin-top: 30px;
   margin-bottom: 4px;

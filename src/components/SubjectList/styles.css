@@ -1,24 +1,8 @@
 ul {
   text-decoration: none;
   list-style: none;
+  overflow: auto;
   margin: 20px 20px;
-}
-
-li {
-  margin: 0px 5px;
-  cursor: pointer;
-  -webkit-transition: all 500ms ease;
-  -moz-transition: all 500ms ease;
-  -ms-transition: all 500ms ease;
-  -o-transition: all 500ms ease;
-  transition: all 500ms ease;
-}
-
-li:hover {
-  padding: 5px;
-  background-color: #b276ff;
-  font-weight: 700;
-  color: #fff;
 }
 
 .subject-matter-list {
@@ -26,6 +10,7 @@ li:hover {
   flex-direction: column;
   max-width: 100%;
   width: 500px;
+  height: 310px;
   border: 1px solid #3f3d56;
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);

@@ -28,12 +28,13 @@ export default function Home({ history }) {
             >
               Cadastre-se
             </Button>
+
             <Button
               outline
               marginTop="80px"
               marginBottom="105px"
               onClick={() => {
-                history.push('/login');
+                history.push('/register');
               }}
             >
               Fazer login

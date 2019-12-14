@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Spring } from 'react-spring/renderprops';
 import { UserContext } from '../../store/UserContext';
 
 import Nav from '../../components/Nav';
@@ -111,9 +112,19 @@ export default function ContinueRegister({ history }) {
                 />{' '}
                 Não
               </Box>
-              <Box marginBottom="30px">
-                <SubjectList isTutor={is_tutor} callback={subjectMattersCallback} />
-              </Box>
+
+              <Spring
+                hold={is_tutor}
+                from={{ opacity: 0, height: 0 }}
+                to={{ opacity: is_tutor ? 1 : 0, height: is_tutor ? 400 : 0 }}
+                delay={100}
+              >
+                {props => (
+                  <Box style={props} marginBottom="30px">
+                    <SubjectList isTutor={is_tutor} callback={subjectMattersCallback} />
+                  </Box>
+                )}
+              </Spring>
               <Button type="submit">Cadastrar</Button>
             </Form>
           </CardContainer>

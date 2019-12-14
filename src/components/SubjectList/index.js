@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { animated, useSpring } from 'react-spring';
+import { Transition } from 'react-spring/renderprops';
 import api from '../../services/api';
 
 import './styles.css';
 import ListItem from '../ListItem';
 
-import { Box, FormLabel } from '../styled-components/styles';
+import { Box, AnimatedLabel } from '../styled-components/styles';
 
 export default function SubjectList({ isTutor, callback }) {
   const [subjectMatters, setSubjectMatters] = useState([]);
@@ -12,6 +14,15 @@ export default function SubjectList({ isTutor, callback }) {
 
   const [subjectsId, setSubjectsId] = useState([]);
   const [subjectMattersId, setSubjectMattersId] = useState([]);
+
+  const boxProps = useSpring({
+    height: isTutor ? 310 : 0,
+    opacity: isTutor ? 1 : 0
+  });
+
+  const labelProps = useSpring({
+    opacity: isTutor ? 1 : 0
+  });
 
   useEffect(() => {
     callback(subjectMattersId);
@@ -68,36 +79,44 @@ export default function SubjectList({ isTutor, callback }) {
     }
   }
 
-  if (isTutor) {
-    return (
-      <Box isInline>
-        <Box marginRight="120px">
-          <FormLabel>Disciplinas</FormLabel>
-          <div className="subject-matter-list">
-            <ul>
-              {subjects.map(item => (
-                <ListItem callback={handleSubjectCallback} key={item.id} item={item}>
-                  {item.subject_description}
-                </ListItem>
-              ))}
-            </ul>
-          </div>
-        </Box>
-
-        <Box>
-          <FormLabel>Assuntos</FormLabel>
-          <div className="subject-matter-list">
-            <ul>
-              {subjectMatters.map(item => (
-                <ListItem callback={handleSubjectMattersCallback} key={item.id} item={item}>
-                  {item.subject_matter_description}
-                </ListItem>
-              ))}
-            </ul>
-          </div>
-        </Box>
+  return (
+    <Box isInline>
+      <Box marginRight="120px">
+        <AnimatedLabel style={labelProps}>Disciplinas</AnimatedLabel>
+        <animated.div style={boxProps} className="subject-matter-list">
+          <ul>
+            {subjects.map(item => (
+              <ListItem key={item.id} callback={handleSubjectCallback} item={item}>
+                {item.subject_description}
+              </ListItem>
+            ))}
+          </ul>
+        </animated.div>
       </Box>
-    );
-  }
-  return null;
+
+      <Box>
+        <AnimatedLabel style={labelProps}>Assuntos</AnimatedLabel>
+        <animated.div style={boxProps} className="subject-matter-list">
+          <ul>
+            <Transition
+              items={subjectMatters}
+              keys={subjectMatter => subjectMatter.id}
+              from={{ opacity: 0 }}
+              enter={{ opacity: 1 }}
+              leave={{ opacity: 0 }}
+              trail={100}
+            >
+              {item => props => (
+                <label style={props}>
+                  <ListItem callback={handleSubjectMattersCallback} item={item}>
+                    {item.subject_matter_description}
+                  </ListItem>
+                </label>
+              )}
+            </Transition>
+          </ul>
+        </animated.div>
+      </Box>
+    </Box>
+  );
 }

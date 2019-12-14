@@ -19,6 +19,7 @@
     "react-icons": "^3.8.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
+    "react-spring": "^8.0.27",
     "remove": "^0.1.5",
     "styled-components": "^4.4.1",
     "styled-tools": "^1.7.1"
