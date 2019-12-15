@@ -121,7 +121,7 @@ export default function ContinueRegister({ history }) {
               >
                 {props => (
                   <Box style={props} marginBottom="30px">
-                    <SubjectList isTutor={is_tutor} callback={subjectMattersCallback} />
+                    <SubjectList multi toggle={is_tutor} callback={subjectMattersCallback} />
                   </Box>
                 )}
               </Spring>

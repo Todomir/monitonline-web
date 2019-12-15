@@ -1,38 +1,31 @@
-import React, { useState } from 'react';
-
-import { MdSearch, MdAssignment } from 'react-icons/md';
+import React, { useState, useEffect } from 'react';
+import { Spring } from 'react-spring/renderprops';
 
 import api from '../../services/api';
 
 import './styles.css';
 
-import Modal from '../../components/Modal';
+import Nav from '../../components/Nav';
+import SubjectList from '../../components/SubjectList';
 import {
+  Container,
   CardContainer,
-  CardContent,
+  Box,
   FormLabel,
   TextInput,
-  SmallLink,
+  Paragraph,
   SubTitle,
   Button
 } from '../../components/styled-components/styles';
 
 export default function SearchTutor({ history }) {
-  const [subject_matter_description, setSMDescription] = useState('');
+  const [subjectMatters, setSubjectMatters] = useState('');
+  const [subjects, setSubjects] = useState('');
   const [toggle, setToggle] = useState(false);
   const [tutors, setTutors] = useState([]);
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-
-    try {
-      const response = await api.post('/users/fetchUsersByDescription', {
-        subject_matter_description
-      });
-      setTutors(response.data);
-    } catch (err) {
-      console.log(err.response);
-    }
+  function subjectMattersCallback(subjectMattersId) {
+    setSubjectMatters(subjectMattersId);
   }
 
   function handleToggle() {
@@ -49,56 +42,28 @@ export default function SearchTutor({ history }) {
 
   return (
     <>
-      <h1>MONITONLINE | TUTORIA</h1>
+      <Nav isLight />
+      <Container height="100%">
+        <Box marginTop="141px" alignItems="center" gridColumn="2/12">
+          <CardContainer padding="85px 100px" width="100%">
+            <SubTitle>O processo é bastante simples.</SubTitle>
+            <Paragraph>
+              Basta você selecionar a disciplina que você deseja tutoria, em seguida o assunto.
+              <br />
+              Nós assumimos daí. ;)
+            </Paragraph>
 
-      <CardContainer>
-        <CardContent>
-          <h2>Pesquisar tutores</h2>
-
-          <form onSubmit={handleSubmit}>
-            <FormLabel htmlFor="subject_matter_description">
-              digite o assunto que deseja tutoria *
-            </FormLabel>
-            <div className="search-input">
-              <TextInput
-                type="text"
-                name="subject_matter_description"
-                placeholder="Trigonometria"
-                value={subject_matter_description}
-                onChange={event => setSMDescription(event.target.value)}
-              />
-              <button onClick={handleToggle} type="submit">
-                <MdSearch />
-              </button>
-            </div>
-          </form>
-        </CardContent>
-      </CardContainer>
-
-      <Modal toggle={toggle}>
-        <SubTitle>Monitores</SubTitle>
-        {tutors.map(tutor => (
-          <>
-            <FormLabel key={tutor.name}>{tutor.name}</FormLabel>
-
-            <SmallLink
-              key={tutor.id}
-              onClick={() => {
-                handleAssistanceClick(
-                  tutor.id,
-                  tutor.subjectMatters.find(subjectMatter => {
-                    if (subjectMatter.subject_matter_description === subject_matter_description)
-                      return subjectMatter;
-                  })
-                );
-              }}
-            >
-              <MdAssignment key={tutor.id} /> ver horários disponíveis
-            </SmallLink>
-          </>
-        ))}
-        <Button onClick={handleToggle}>voltar</Button>
-      </Modal>
+            <Spring from={{ opacity: 0, height: 0 }} to={{ opacity: 1, height: 400 }} delay={100}>
+              {props => (
+                <Box style={props} marginBottom="30px">
+                  <SubjectList toggle callback={subjectMattersCallback} />
+                </Box>
+              )}
+            </Spring>
+            <Button type="submit">Pesquisar monitor</Button>
+          </CardContainer>
+        </Box>
+      </Container>
     </>
   );
 }

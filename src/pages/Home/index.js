@@ -55,7 +55,14 @@ export default function Home({ history }) {
             Deixa que a gente resolve! Encontre agora mesmo <br />
             um monitor para te auxiliar com suas dificuldades!
           </Paragraph>
-          <Button marginTop="80px" marginBottom="105px" style={{ alignSelf: 'end' }}>
+          <Button
+            marginTop="80px"
+            onClick={() => {
+              history.push('/search-tutors');
+            }}
+            marginBottom="105px"
+            style={{ alignSelf: 'end' }}
+          >
             Procurar monitor
           </Button>
         </Box>

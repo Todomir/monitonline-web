@@ -8,20 +8,23 @@ import ListItem from '../ListItem';
 
 import { Box, AnimatedLabel } from '../styled-components/styles';
 
-export default function SubjectList({ isTutor, callback }) {
+export default function SubjectList({ toggle, callback, multi }) {
   const [subjectMatters, setSubjectMatters] = useState([]);
   const [subjects, setSubjects] = useState([]);
 
   const [subjectsId, setSubjectsId] = useState([]);
   const [subjectMattersId, setSubjectMattersId] = useState([]);
 
+  const [subjectId, setSubjectId] = useState(0);
+  const [subjectMatterId, setSubjectMatterId] = useState(0);
+
   const boxProps = useSpring({
-    height: isTutor ? 310 : 0,
-    opacity: isTutor ? 1 : 0
+    height: toggle ? 310 : 0,
+    opacity: toggle ? 1 : 0
   });
 
   const labelProps = useSpring({
-    opacity: isTutor ? 1 : 0
+    opacity: toggle ? 1 : 0
   });
 
   useEffect(() => {
@@ -29,11 +32,11 @@ export default function SubjectList({ isTutor, callback }) {
   }, [subjectMattersId, callback]);
 
   useEffect(() => {
-    if (!isTutor) {
+    if (!toggle) {
       setSubjectsId([]);
       setSubjectMattersId([]);
     }
-  }, [isTutor]);
+  }, [toggle]);
 
   useEffect(() => {
     async function fetchSubjects() {
@@ -46,16 +49,21 @@ export default function SubjectList({ isTutor, callback }) {
   useEffect(() => {
     async function fetchSubjectMatters() {
       try {
-        const response = await api.post('/subjects/subjectmatters', { subject_id: subjectsId });
-        setSubjectMatters(response.data);
+        if (multi) {
+          const response = await api.post('/subjects/subjectmatters', { subject_id: subjectsId });
+          setSubjectMatters(response.data);
+        } else {
+          const response = await api.post('/subjects/subjectmatters', { subject_id: [subjectId] });
+          setSubjectMatters(response.data);
+        }
       } catch (error) {
         console.log(error.response);
       }
     }
     fetchSubjectMatters();
-  }, [subjectsId]);
+  }, [subjectsId, subjectId]);
 
-  function handleSubjectCallback(id, selected) {
+  function handleMultiSubjectCallback(id, selected) {
     let index;
 
     if (selected) {
@@ -66,8 +74,15 @@ export default function SubjectList({ isTutor, callback }) {
       setSubjectsId([...subjectsId]);
     }
   }
+  function handleSubjectCallback(id, selected) {
+    if (selected) {
+      setSubjectId(id);
+    } else {
+      setSubjectId(null);
+    }
+  }
 
-  function handleSubjectMattersCallback(id, selected) {
+  function handleMultiSubjectMattersCallback(id, selected) {
     let index;
 
     if (selected) {
@@ -76,6 +91,14 @@ export default function SubjectList({ isTutor, callback }) {
       index = subjectMattersId.indexOf(id);
       subjectMattersId.splice(index, 1);
       setSubjectMattersId([...subjectMattersId]);
+    }
+  }
+
+  function handleSubjectMattersCallback(id, selected) {
+    if (selected) {
+      setSubjectMatterId(id);
+    } else {
+      setSubjectMatterId(null);
     }
   }
 
@@ -108,9 +131,15 @@ export default function SubjectList({ isTutor, callback }) {
             >
               {item => props => (
                 <label style={props}>
-                  <ListItem callback={handleSubjectMattersCallback} item={item}>
-                    {item.subject_matter_description}
-                  </ListItem>
+                  {multi ? (
+                    <ListItem callback={handleMultiSubjectMattersCallback} item={item}>
+                      {item.subject_matter_description}
+                    </ListItem>
+                  ) : (
+                    <ListItem callback={handleSubjectMattersCallback} item={item}>
+                      {item.subject_matter_description}
+                    </ListItem>
+                  )}
                 </label>
               )}
             </Transition>
