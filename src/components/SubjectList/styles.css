@@ -1,14 +1,15 @@
 ul {
   text-decoration: none;
   list-style: none;
-  overflow: auto;
   margin: 20px 20px;
 }
 
 .subject-matter-list {
   display: flex;
+  overflow: auto;
   flex-direction: column;
   max-width: 100%;
+  padding: 20px;
   width: 500px;
   height: 310px;
   border: 1px solid #3f3d56;

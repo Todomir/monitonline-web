@@ -282,20 +282,47 @@ export const ModalContainer = styled(CardContent)`
   transform: translate(-50%, -50%);
 `;
 
-export const StyledListItem = styled.li`
+export const HiddenRadioButton = styled.input.attrs({ type: 'radio' })`
+  border: 0;
+  clip: rect(0 0 0 0);
+  clippath: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+`;
+
+export const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
+  border: 0;
+  clip: rect(0 0 0 0);
+  clippath: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+`;
+
+export const StyledCbItem = styled.div`
   margin: 0px 5px;
   cursor: pointer;
+
   -webkit-transition: all 500ms ease;
   -moz-transition: all 500ms ease;
   -ms-transition: all 500ms ease;
   -o-transition: all 500ms ease;
   transition: all 500ms ease;
 
-  font-weight: ${props => (props.isSelected ? '700' : '400')};
-  color: ${props => (props.isSelected ? '#fff' : '#3f3d56')};
-  background-color: ${props => (props.isSelected ? '#b276ff' : 'none')};
-  padding: ${props => (props.isSelected ? '5px' : 'none')};
-  margin: ${props => (props.isSelected ? '5px 0' : 'none')};
+  font-weight: ${props => (props.selected ? '700' : '400')};
+  color: ${props => (props.selected ? '#fff' : '#3f3d56')};
+  background-color: ${props => (props.selected ? '#b276ff' : 'none')};
+  padding: ${props => (props.selected ? '5px' : 'none')};
+  margin: ${props => (props.selected ? '5px 0' : 'none')};
 
   &:hover {
     padding: 5px;
@@ -304,6 +331,32 @@ export const StyledListItem = styled.li`
     color: #fff;
   }
 `;
+export const StyledRbItem = styled.div`
+  margin: 0px 5px;
+  cursor: pointer;
+
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease;
+
+  ${HiddenRadioButton}:focus + & {
+    font-weight: 700;
+    color: #fff;
+    background-color: #b276ff;
+    padding: 5px;
+    margin: 5px 0;
+  }
+
+  &:hover {
+    padding: 5px;
+    background-color: #b276ff;
+    font-weight: 700;
+    color: #fff;
+  }
+`;
+
 export const NavBar = styled.nav`
   display: flex;
   justify-content: space-between;

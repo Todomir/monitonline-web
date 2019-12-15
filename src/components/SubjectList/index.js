@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { animated, useSpring } from 'react-spring';
-import { Transition } from 'react-spring/renderprops';
 import api from '../../services/api';
 
 import './styles.css';
-import ListItem from '../ListItem';
+
+import Checkbox from '../Checkbox';
+import RadioButton from '../RadioButton';
 
 import { Box, AnimatedLabel } from '../styled-components/styles';
 
@@ -107,43 +108,62 @@ export default function SubjectList({ toggle, callback, multi }) {
       <Box marginRight="120px">
         <AnimatedLabel style={labelProps}>Disciplinas</AnimatedLabel>
         <animated.div style={boxProps} className="subject-matter-list">
-          <ul>
-            {subjects.map(item => (
-              <ListItem key={item.id} callback={handleSubjectCallback} item={item}>
-                {item.subject_description}
-              </ListItem>
-            ))}
-          </ul>
+          {multi
+            ? subjects.map(item => (
+                <label>
+                  <Checkbox
+                    callback={handleMultiSubjectCallback}
+                    name="group"
+                    key={item.id}
+                    item={item}
+                    text={item.subject_description}
+                    value={item.id}
+                  />
+                </label>
+              ))
+            : subjects.map(item => (
+                <label>
+                  <RadioButton
+                    callback={handleSubjectCallback}
+                    name="group"
+                    key={item.id}
+                    item={item}
+                    text={item.subject_description}
+                    value={item.id}
+                  />
+                </label>
+              ))}
         </animated.div>
       </Box>
 
       <Box>
         <AnimatedLabel style={labelProps}>Assuntos</AnimatedLabel>
         <animated.div style={boxProps} className="subject-matter-list">
-          <ul>
-            <Transition
-              items={subjectMatters}
-              keys={subjectMatter => subjectMatter.id}
-              from={{ opacity: 0 }}
-              enter={{ opacity: 1 }}
-              leave={{ opacity: 0 }}
-              trail={100}
-            >
-              {item => props => (
-                <label style={props}>
-                  {multi ? (
-                    <ListItem callback={handleMultiSubjectMattersCallback} item={item}>
-                      {item.subject_matter_description}
-                    </ListItem>
-                  ) : (
-                    <ListItem callback={handleSubjectMattersCallback} item={item}>
-                      {item.subject_matter_description}
-                    </ListItem>
-                  )}
+          {multi
+            ? subjectMatters.map(item => (
+                <label>
+                  <Checkbox
+                    callback={handleMultiSubjectMattersCallback}
+                    name="group"
+                    key={item.id}
+                    item={item}
+                    text={item.subject_matter_description}
+                    value={item.id}
+                  />
                 </label>
-              )}
-            </Transition>
-          </ul>
+              ))
+            : subjectMatters.map(item => (
+                <label>
+                  <RadioButton
+                    callback={handleSubjectMattersCallback}
+                    name="group"
+                    key={item.id}
+                    item={item}
+                    text={item.subject_matter_description}
+                    value={item.id}
+                  />
+                </label>
+              ))}
         </animated.div>
       </Box>
     </Box>

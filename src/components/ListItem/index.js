@@ -10,7 +10,7 @@ export default function ListItem({ callback, item, children }) {
   };
 
   return (
-    <StyledListItem isSelected={selected} onClick={handleClick}>
+    <StyledListItem selected={selected} onClick={handleClick}>
       {children}
     </StyledListItem>
   );
