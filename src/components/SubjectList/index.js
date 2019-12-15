@@ -110,11 +110,10 @@ export default function SubjectList({ toggle, callback, multi }) {
         <animated.div style={boxProps} className="subject-matter-list">
           {multi
             ? subjects.map(item => (
-                <label>
+                <label key={item.id}>
                   <Checkbox
                     callback={handleMultiSubjectCallback}
                     name="group"
-                    key={item.id}
                     item={item}
                     text={item.subject_description}
                     value={item.id}
@@ -122,11 +121,10 @@ export default function SubjectList({ toggle, callback, multi }) {
                 </label>
               ))
             : subjects.map(item => (
-                <label>
+                <label key={item.id}>
                   <RadioButton
                     callback={handleSubjectCallback}
                     name="group"
-                    key={item.id}
                     item={item}
                     text={item.subject_description}
                     value={item.id}
@@ -141,11 +139,10 @@ export default function SubjectList({ toggle, callback, multi }) {
         <animated.div style={boxProps} className="subject-matter-list">
           {multi
             ? subjectMatters.map(item => (
-                <label>
+                <label key={item.id}>
                   <Checkbox
                     callback={handleMultiSubjectMattersCallback}
                     name="group"
-                    key={item.id}
                     item={item}
                     text={item.subject_matter_description}
                     value={item.id}
@@ -153,11 +150,10 @@ export default function SubjectList({ toggle, callback, multi }) {
                 </label>
               ))
             : subjectMatters.map(item => (
-                <label>
+                <label key={item.id}>
                   <RadioButton
                     callback={handleSubjectMattersCallback}
                     name="group"
-                    key={item.id}
                     item={item}
                     text={item.subject_matter_description}
                     value={item.id}
