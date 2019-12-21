@@ -8,8 +8,6 @@ import {
   Container,
   CardContainer,
   Box,
-  FormLabel,
-  TextInput,
   Paragraph,
   SubTitle,
   Button
@@ -18,26 +16,22 @@ import SubjectList from '../../components/SubjectList';
 import api from '../../services/api';
 
 export default function SearchTutor({ history }) {
-  const [subjectMatters, setSubjectMatters] = useState('');
-  const [subjects, setSubjects] = useState('');
-  const [toggle, setToggle] = useState(false);
-  const [tutors, setTutors] = useState([]);
+  const [smId, setSmId] = useState(0);
+  const [subjectMatter, setSubjectMatter] = useState({});
 
-  function subjectMattersCallback(subjectMattersId) {
-    setSubjectMatters(subjectMattersId);
+  localStorage.setItem('subject_matter_description', subjectMatter.subject_matter_description);
+
+  function subjectMattersCallback(id) {
+    setSmId(id);
   }
 
-  function handleToggle() {
-    setToggle(!toggle);
-  }
-
-  async function handleAssistanceClick(tutorId, subjectMatter) {
-    const subjectMatterId = subjectMatter.id;
-    localStorage.setItem('tutor_id', tutorId);
-    localStorage.setItem('subject_matter_id', subjectMatterId);
-
-    history.push('/schedule-assistance');
-  }
+  useEffect(() => {
+    async function getSubjectMatter() {
+      const response = await api.get(`/subjectmatters/${smId}`);
+      setSubjectMatter(response.data);
+    }
+    getSubjectMatter();
+  }, [smId]);
 
   return (
     <>
@@ -59,7 +53,14 @@ export default function SearchTutor({ history }) {
                 </Box>
               )}
             </Spring>
-            <Button type="submit">Pesquisar monitor</Button>
+            <Button
+              type="submit"
+              onClick={() => {
+                history.push('/tutors');
+              }}
+            >
+              Pesquisar monitor
+            </Button>
           </CardContainer>
         </Box>
       </Container>

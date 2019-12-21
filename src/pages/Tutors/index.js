@@ -18,7 +18,7 @@ import api from '../../services/api';
 
 export default function Tutors() {
   const [tutors, setTutors] = useState([]);
-  const [smDescription, setSmDescription] = useState('');
+  const smDescription = localStorage.getItem('subject_matter_description');
 
   useEffect(() => {
     async function getTutors() {
@@ -30,8 +30,8 @@ export default function Tutors() {
       } catch (err) {
         console.log(err.response);
       }
-      getTutors();
     }
+    getTutors();
   }, [tutors]);
 
   return (
