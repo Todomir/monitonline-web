@@ -15,9 +15,11 @@ import {
 } from '../../components/styled-components/styles';
 import SubjectList from '../../components/SubjectList';
 import api from '../../services/api';
+import { SubjectMatterContext } from '../../store/SubjectMatterContext';
 import { UserContext } from '../../store/UserContext';
 
 export default function ContinueRegister({ history }) {
+  const { subjectMatterId } = useContext(SubjectMatterContext);
   const {
     email,
     password,
@@ -28,9 +30,7 @@ export default function ContinueRegister({ history }) {
     course,
     setCourse,
     is_tutor,
-    setTutor,
-    subjectMatters,
-    setSubjectMatters
+    setTutor
   } = useContext(UserContext);
 
   async function handleSubmit(event) {
@@ -42,7 +42,7 @@ export default function ContinueRegister({ history }) {
       password,
       course,
       is_tutor,
-      subject_matters: subjectMatters
+      subject_matters: subjectMatterId
     });
     history.push('/login');
   }
@@ -53,10 +53,6 @@ export default function ContinueRegister({ history }) {
       if (value.toLowerCase() === 'false') return false;
     }
     return value;
-  }
-
-  function subjectMattersCallback(subjectMattersId) {
-    setSubjectMatters(subjectMattersId);
   }
 
   return (
@@ -119,7 +115,7 @@ export default function ContinueRegister({ history }) {
               >
                 {props => (
                   <Box style={props} marginBottom="30px">
-                    <SubjectList multi toggle={is_tutor} callback={subjectMattersCallback} />
+                    <SubjectList multi toggle={is_tutor} />
                   </Box>
                 )}
               </Spring>

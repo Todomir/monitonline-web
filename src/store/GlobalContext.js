@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { AssistanceProvider } from './AssistanceContext';
+import { SubjectMatterProvider } from './SubjectMatterContext';
 import { UserProvider } from './UserContext';
 
 function ProviderComposer({ contexts, children }) {
@@ -15,7 +16,9 @@ function ProviderComposer({ contexts, children }) {
 
 function GlobalProvider({ children }) {
   return (
-    <ProviderComposer contexts={[<UserProvider />, <AssistanceProvider />]}>
+    <ProviderComposer
+      contexts={[<UserProvider />, <AssistanceProvider />, <SubjectMatterProvider />]}
+    >
       {children}
     </ProviderComposer>
   );

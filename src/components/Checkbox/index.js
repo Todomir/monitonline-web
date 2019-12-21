@@ -7,7 +7,7 @@ export default function Checkbox({ callback, item, text, ...props }) {
 
   function handleClick(event) {
     setChecked(event.target.checked);
-    callback(item.id, !checked);
+    callback(item, !checked);
   }
 
   return (

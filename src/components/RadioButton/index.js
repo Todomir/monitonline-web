@@ -7,7 +7,7 @@ export default function RadioButton({ callback, item, text, ...props }) {
 
   function handleClick() {
     setChecked(!checked);
-    callback(item.id, !checked);
+    callback(item, !checked);
   }
   return (
     <Box>

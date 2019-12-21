@@ -1,23 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { animated, useSpring } from 'react-spring';
 
 import api from '../../services/api';
 
 import './styles.css';
 
+import { SubjectMatterContext } from '../../store/SubjectMatterContext';
 import Checkbox from '../Checkbox';
 import RadioButton from '../RadioButton';
 import { Box, AnimatedLabel } from '../styled-components/styles';
 
-export default function SubjectList({ toggle, callback, multi }) {
+export default function SubjectList({ toggle, multi }) {
   const [subjectMatters, setSubjectMatters] = useState([]);
   const [subjects, setSubjects] = useState([]);
 
   const [subjectsId, setSubjectsId] = useState([]);
-  const [subjectMattersId, setSubjectMattersId] = useState([]);
 
   const [subjectId, setSubjectId] = useState(0);
-  const [subjectMatterId, setSubjectMatterId] = useState(0);
+
+  const { setSM, subjectMatterId, setSubjectMatterId } = useContext(SubjectMatterContext);
 
   const boxProps = useSpring({
     height: toggle ? 310 : 0,
@@ -29,13 +30,9 @@ export default function SubjectList({ toggle, callback, multi }) {
   });
 
   useEffect(() => {
-    callback(subjectMattersId);
-  }, [subjectMattersId, callback]);
-
-  useEffect(() => {
     if (!toggle) {
       setSubjectsId([]);
-      setSubjectMattersId([]);
+      setSubjectMatterId([]);
     }
   }, [toggle]);
 
@@ -64,43 +61,46 @@ export default function SubjectList({ toggle, callback, multi }) {
     fetchSubjectMatters();
   }, [subjectsId, subjectId]);
 
-  function handleMultiSubjectCallback(id, selected) {
+  function handleMultiSubjectCallback(item, selected) {
     let index;
 
     if (selected) {
-      setSubjectsId(subjectsId => [...subjectsId, id]);
+      setSubjectsId(subjectsId => [...subjectsId, item.id]);
     } else {
-      index = subjectsId.indexOf(id);
+      index = subjectsId.indexOf(item.id);
       subjectsId.splice(index, 1);
       setSubjectsId([...subjectsId]);
     }
   }
-  function handleSubjectCallback(id, selected) {
+
+  function handleMultiSubjectMattersCallback(item, selected) {
+    let index;
+
     if (selected) {
-      setSubjectId(id);
+      setSubjectMatterId(subjectMatterId => [...subjectMatterId, item.id]);
+    } else {
+      index = subjectMatterId.indexOf(item.id);
+      subjectMatterId.splice(index, 1);
+      setSubjectMatterId([...subjectMatterId]);
+    }
+  }
+
+  function handleSubjectCallback(item, selected) {
+    if (selected) {
+      setSubjectId(item.id);
     } else {
       setSubjectId(null);
     }
   }
 
-  function handleMultiSubjectMattersCallback(id, selected) {
-    let index;
-
+  function handleSubjectMattersCallback(item, selected) {
     if (selected) {
-      setSubjectMattersId(subjectMattersId => [...subjectMattersId, id]);
-    } else {
-      index = subjectMattersId.indexOf(id);
-      subjectMattersId.splice(index, 1);
-      setSubjectMattersId([...subjectMattersId]);
-    }
-  }
-
-  function handleSubjectMattersCallback(id, selected) {
-    if (selected) {
-      setSubjectMatterId(id);
+      setSubjectMatterId(item.id);
     } else {
       setSubjectMatterId(null);
     }
+
+    setSM(item);
   }
 
   return (

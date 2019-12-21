@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Spring } from 'react-spring/renderprops';
 
 import './styles.css';
@@ -13,26 +13,8 @@ import {
   Button
 } from '../../components/styled-components/styles';
 import SubjectList from '../../components/SubjectList';
-import api from '../../services/api';
 
 export default function SearchTutor({ history }) {
-  const [smId, setSmId] = useState(0);
-  const [subjectMatter, setSubjectMatter] = useState({});
-
-  localStorage.setItem('subject_matter_description', subjectMatter.subject_matter_description);
-
-  function subjectMattersCallback(id) {
-    setSmId(id);
-  }
-
-  useEffect(() => {
-    async function getSubjectMatter() {
-      const response = await api.get(`/subjectmatters/${smId}`);
-      setSubjectMatter(response.data);
-    }
-    getSubjectMatter();
-  }, [smId]);
-
   return (
     <>
       <Nav isLight />
@@ -49,7 +31,7 @@ export default function SearchTutor({ history }) {
             <Spring from={{ opacity: 0, height: 0 }} to={{ opacity: 1, height: 400 }} delay={100}>
               {props => (
                 <Box style={props} marginBottom="30px">
-                  <SubjectList toggle callback={subjectMattersCallback} />
+                  <SubjectList toggle />
                 </Box>
               )}
             </Spring>
