@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Spring } from 'react-spring/renderprops';
 
-import api from '../../services/api';
-
 import './styles.css';
 
 import Nav from '../../components/Nav';
-import SubjectList from '../../components/SubjectList';
 import {
   Container,
   CardContainer,
@@ -17,6 +14,8 @@ import {
   SubTitle,
   Button
 } from '../../components/styled-components/styles';
+import SubjectList from '../../components/SubjectList';
+import api from '../../services/api';
 
 export default function SearchTutor({ history }) {
   const [subjectMatters, setSubjectMatters] = useState('');

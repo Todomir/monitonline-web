@@ -1,6 +1,7 @@
-import styled from 'styled-components';
-import { animated } from 'react-spring';
 import { Link } from 'react-router-dom';
+import { animated } from 'react-spring';
+
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: grid;

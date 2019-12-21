@@ -1,16 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import { isAuthenticated } from './services/auth';
-
+import ContinueRegister from './pages/ContinueRegister';
+import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import ContinueRegister from './pages/ContinueRegister';
-import Dashboard from './pages/Dashboard';
 import Schedules from './pages/Schedules';
 import SearchTutor from './pages/SearchTutor';
 import TutorProfile from './pages/TutorProfile';
+import { isAuthenticated } from './services/auth';
 
 const PrivateRoute = ({ component, ...options }) => {
   if (isAuthenticated) {

@@ -1,12 +1,7 @@
 import React, { useContext } from 'react';
 import { Spring } from 'react-spring/renderprops';
-import { UserContext } from '../../store/UserContext';
 
 import Nav from '../../components/Nav';
-import SubjectList from '../../components/SubjectList';
-
-import api from '../../services/api';
-
 import {
   Container,
   CardContainer,
@@ -18,6 +13,9 @@ import {
   RadioButton,
   Button
 } from '../../components/styled-components/styles';
+import SubjectList from '../../components/SubjectList';
+import api from '../../services/api';
+import { UserContext } from '../../store/UserContext';
 
 export default function ContinueRegister({ history }) {
   const {

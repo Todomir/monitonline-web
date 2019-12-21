@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { NavBar, NavLink } from '../styled-components/styles';
 
 export default function Nav({ isLight }) {

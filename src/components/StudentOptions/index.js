@@ -1,6 +1,11 @@
 import React, { useState, useContext } from 'react';
-
 import { MdDateRange, MdMessage } from 'react-icons/md';
+
+import { AssistanceContext } from '../../store/AssistanceContext';
+import { UserContext } from '../../store/UserContext';
+import Assistances from '../Assistances';
+import Comments from '../Comments';
+import Modal from '../Modal';
 import {
   StyledLink,
   SubTitle,
@@ -9,15 +14,7 @@ import {
   TextSmall,
   SmallLink
 } from '../styled-components/styles';
-
 import ToggleContainer from '../ToggleContainer';
-import Assistances from '../Assistances';
-
-import { UserContext } from '../../store/UserContext';
-import { AssistanceContext } from '../../store/AssistanceContext';
-
-import Modal from '../Modal';
-import Comments from '../Comments';
 
 export default function StudentOptions() {
   const { name } = useContext(UserContext);

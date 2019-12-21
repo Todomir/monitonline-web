@@ -1,6 +1,7 @@
 import React from 'react';
-import { UserProvider } from './UserContext';
+
 import { AssistanceProvider } from './AssistanceContext';
+import { UserProvider } from './UserContext';
 
 function ProviderComposer({ contexts, children }) {
   return contexts.reduceRight(

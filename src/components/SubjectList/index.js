@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { animated, useSpring } from 'react-spring';
+
 import api from '../../services/api';
 
 import './styles.css';
 
 import Checkbox from '../Checkbox';
 import RadioButton from '../RadioButton';
-
 import { Box, AnimatedLabel } from '../styled-components/styles';
 
 export default function SubjectList({ toggle, callback, multi }) {

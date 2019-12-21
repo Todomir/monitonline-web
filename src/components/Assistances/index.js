@@ -1,5 +1,7 @@
 import React from 'react';
+
 import dateFormat from 'dateformat';
+
 import Status from '../Status';
 
 export default function Assistances({ assistance, name }) {

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import DateTimePicker from 'react-datetime-picker';
-import dateFormat from 'dateformat';
 
-import api from '../../services/api';
+import dateFormat from 'dateformat';
 
 import {
   CardContainer,
@@ -12,6 +11,7 @@ import {
   SubTitle,
   Button
 } from '../../components/styled-components/styles';
+import api from '../../services/api';
 
 export default function Schedules({ history }) {
   const [schedule_start, setScheduleStart] = useState(new Date());

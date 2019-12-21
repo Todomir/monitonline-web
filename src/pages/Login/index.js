@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 
 import auth from '../../assets/undraw_authentication_fsn5.svg';
-
-import api from '../../services/api';
-import { login } from '../../services/auth';
-
 import {
   FormLabel,
   TextInput,
@@ -15,6 +11,8 @@ import {
   Container,
   Form
 } from '../../components/styled-components/styles';
+import api from '../../services/api';
+import { login } from '../../services/auth';
 
 // import { Container } from './styles';
 

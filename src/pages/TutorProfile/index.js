@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
+import dayGridPlugin from '@fullcalendar/daygrid';
+import FullCalendar from '@fullcalendar/react';
 import dateFormat from 'dateformat';
 
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import api from '../../services/api';
+import Modal from '../../components/Modal';
 import {
   CardContainer,
   CardContent,
@@ -14,8 +14,7 @@ import {
   EditableButton,
   FlexWrapper
 } from '../../components/styled-components/styles';
-
-import Modal from '../../components/Modal';
+import api from '../../services/api';
 
 export default function TutorProfile() {
   const tutor_id = parseInt(localStorage.getItem('tutor_id'));

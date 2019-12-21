@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { AssistanceContext } from '../../store/AssistanceContext';
 
 import api from '../../services/api';
+import { AssistanceContext } from '../../store/AssistanceContext';
 import { TextSmall, Button, FormLabel } from '../styled-components/styles';
 
 // import { Container } from './styles';

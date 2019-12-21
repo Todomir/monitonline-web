@@ -1,4 +1,8 @@
 import React, { useState, useContext } from 'react';
+
+import api from '../../services/api';
+import { UserContext } from '../../store/UserContext';
+import Modal from '../Modal';
 import {
   StyledLink,
   SubTitle,
@@ -7,12 +11,6 @@ import {
   FlexWrapper,
   EditableButton
 } from '../styled-components/styles';
-
-import Modal from '../Modal';
-
-import api from '../../services/api';
-
-import { UserContext } from '../../store/UserContext';
 
 // import { Container } from './styles';
 

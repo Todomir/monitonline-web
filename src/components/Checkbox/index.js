@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { Box, HiddenCheckbox, StyledCbItem } from '../styled-components/styles';
 
 export default function Checkbox({ callback, item, text, ...props }) {

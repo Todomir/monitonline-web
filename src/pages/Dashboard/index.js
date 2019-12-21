@@ -1,11 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Spring } from 'react-spring/renderprops';
-
-import dateFormat from 'dateformat';
-
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-
 import {
   MdDashboard,
   MdAccessTime,
@@ -14,14 +7,17 @@ import {
   MdAssignmentInd,
   MdExitToApp
 } from 'react-icons/md';
+import { Spring } from 'react-spring/renderprops';
 
-import api from '../../services/api';
-import { logout } from '../../services/auth';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import FullCalendar from '@fullcalendar/react';
+import dateFormat from 'dateformat';
 
 import Status from '../../components/Status';
-
-import { UserContext } from '../../store/UserContext';
+import api from '../../services/api';
+import { logout } from '../../services/auth';
 import { AssistanceContext } from '../../store/AssistanceContext';
+import { UserContext } from '../../store/UserContext';
 
 import '@fullcalendar/core/main.css';
 import '@fullcalendar/daygrid/main.css';

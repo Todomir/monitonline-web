@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { UserContext } from '../../store/UserContext';
 
+import register from '../../assets/undraw_click_here_2li1.svg';
 import {
   Button,
   FormLabel,
@@ -11,8 +11,7 @@ import {
   Form,
   StyledLink
 } from '../../components/styled-components/styles';
-
-import register from '../../assets/undraw_click_here_2li1.svg';
+import { UserContext } from '../../store/UserContext';
 
 export default function Register({ history }) {
   const { setEmail, setPassword } = useContext(UserContext);
