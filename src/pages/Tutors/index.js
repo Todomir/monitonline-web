@@ -1,19 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { MdSearch, MdAssignment } from 'react-icons/md';
+import { MdAssignment } from 'react-icons/md';
 
-import './styles.css';
-
-import Modal from '../../components/Modal';
-import {
-  CardContainer,
-  CardContent,
-  FormLabel,
-  TextInput,
-  SmallLink,
-  SubTitle,
-  Button,
-  Box
-} from '../../components/styled-components/styles';
+import { FormLabel, SubTitle, Box } from '../../components/styled-components/styles';
 import api from '../../services/api';
 
 export default function Tutors() {
