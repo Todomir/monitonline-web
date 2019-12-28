@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import {
   MdDashboard,
   MdAccessTime,
@@ -9,19 +9,7 @@ import {
 } from 'react-icons/md';
 import { Spring } from 'react-spring/renderprops';
 
-import dayGridPlugin from '@fullcalendar/daygrid';
-import FullCalendar from '@fullcalendar/react';
-import dateFormat from 'dateformat';
-
 import Status from '../../components/Status';
-import api from '../../services/api';
-import { logout } from '../../services/auth';
-import { AssistanceContext } from '../../store/AssistanceContext';
-import { UserContext } from '../../store/UserContext';
-
-import '@fullcalendar/core/main.css';
-import '@fullcalendar/daygrid/main.css';
-
 import {
   Box,
   MenuLogo,
@@ -32,37 +20,15 @@ import {
   TextSmall,
   CardContainer
 } from '../../components/styled-components/styles';
+import api from '../../services/api';
+import { logout } from '../../services/auth';
+import { AssistanceContext } from '../../store/AssistanceContext';
+import { UserContext } from '../../store/UserContext';
 
 export default function Dashboard({ history }) {
-  const [schedules, setSchedules] = useState([]);
-
-  const {
-    tutorAssistances,
-    studentAssistances,
-    setTutorAssistances,
-    setStudentAssistances
-  } = useContext(AssistanceContext);
+  const { studentAssistances } = useContext(AssistanceContext);
 
   const { user, setUser } = useContext(UserContext);
-
-  const [scheduleToggle, setScheduleToggle] = useState(false);
-  const [assistanceToggle, setAssistanceToggle] = useState(false);
-
-  const events = schedules.map(schedule => ({
-    title: 'Atendimento',
-    start: dateFormat(schedule.schedule_start, 'yyyy-mm-dd HH:MM-04:00'),
-    end: dateFormat(schedule.schedule_end, 'yyyy-mm-dd HH:MM-04:00'),
-    timezone: 'UTC',
-    id: schedule.id
-  }));
-
-  const handleScheduleClick = () => {
-    setScheduleToggle(!scheduleToggle);
-  };
-
-  const handleAssistanceClick = () => {
-    setAssistanceToggle(!assistanceToggle);
-  };
 
   useEffect(() => {
     async function getUser() {
@@ -71,33 +37,6 @@ export default function Dashboard({ history }) {
     }
     getUser();
   }, []);
-
-  useEffect(() => {
-    async function fetchSchedules() {
-      const response = await api.get(`/users/schedules/${user.id}`);
-      setSchedules(response.data);
-    }
-
-    fetchSchedules();
-  }, [user.id]);
-
-  useEffect(() => {
-    async function fetchTutorAssistances() {
-      const response = await api.get(`/user/assistances/tutor/${user.id}`);
-      setTutorAssistances(response.data);
-    }
-
-    fetchTutorAssistances();
-  }, [user.id]);
-
-  useEffect(() => {
-    async function fetchStudentAssistances() {
-      const response = await api.get(`/user/assistances/student/${user.id}`);
-      setStudentAssistances(response.data);
-    }
-
-    fetchStudentAssistances();
-  }, [user.id]);
 
   function handleLogout() {
     logout();
