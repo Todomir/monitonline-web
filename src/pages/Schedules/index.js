@@ -13,11 +13,10 @@ import { Spring } from 'react-spring/renderprops';
 
 import dayGridPlugin from '@fullcalendar/daygrid';
 import FullCalendar from '@fullcalendar/react';
+import { parseISO, formatISO } from 'date-fns';
 
 import '@fullcalendar/core/main.css';
 import '@fullcalendar/daygrid/main.css';
-
-import dateFormat from 'dateformat';
 
 import Modal from '../../components/Modal';
 import {
@@ -64,8 +63,8 @@ export default function Schedules({ history }) {
 
   const events = schedules.map(schedule => ({
     title: 'Atendimento',
-    start: dateFormat(schedule.schedule_start, 'yyyy-mm-dd HH:MM-04:00'),
-    end: dateFormat(schedule.schedule_end, 'yyyy-mm-dd HH:MM-04:00'),
+    start: parseISO(schedule.schedule_start),
+    end: parseISO(schedule.schedule_end),
     timezone: 'UTC',
     id: schedule.id
   }));
@@ -81,8 +80,8 @@ export default function Schedules({ history }) {
   async function handleSubmit() {
     try {
       await api.post('/schedules', {
-        schedule_start: dateFormat(schedule_start, 'yyyy-mm-dd HH:MM'),
-        schedule_end: dateFormat(schedule_end, 'yyyy-mm-dd HH:MM')
+        schedule_start: formatISO(schedule_start),
+        schedule_end: formatISO(schedule_end)
       });
 
       window.location.reload(false);
