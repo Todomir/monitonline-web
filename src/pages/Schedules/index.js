@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import DateTimePicker from 'react-datetime-picker';
 import {
   MdDashboard,
   MdAccessTime,
@@ -18,6 +19,7 @@ import '@fullcalendar/daygrid/main.css';
 
 import dateFormat from 'dateformat';
 
+import Modal from '../../components/Modal';
 import {
   Box,
   MenuLogo,
@@ -26,6 +28,7 @@ import {
   Calendar,
   SubTitle,
   TextSmall,
+  FormLabel,
   CardContainer,
   Button
 } from '../../components/styled-components/styles';
@@ -35,6 +38,7 @@ import { UserContext } from '../../store/UserContext';
 
 export default function Schedules({ history }) {
   const [schedules, setSchedules] = useState([]);
+  const [modalToggle, setModalToggle] = useState(false);
 
   const { user, setUser } = useContext(UserContext);
 
@@ -81,7 +85,7 @@ export default function Schedules({ history }) {
         schedule_end: dateFormat(schedule_end, 'yyyy-mm-dd HH:MM')
       });
 
-      history.push('/user-profile');
+      window.location.reload(false);
     } catch (err) {
       console.log(err.response);
     }
@@ -90,6 +94,10 @@ export default function Schedules({ history }) {
   function handleLogout() {
     logout();
     history.push('/');
+  }
+
+  function handleToggle() {
+    setModalToggle(!modalToggle);
   }
 
   return (
@@ -156,7 +164,7 @@ export default function Schedules({ history }) {
 
             <Calendar>
               <FullCalendar
-                contentHeight={450}
+                contentHeight={500}
                 defaultView="dayGridMonth"
                 plugins={[dayGridPlugin]}
                 locale="pt-br"
@@ -169,11 +177,27 @@ export default function Schedules({ history }) {
               />
             </Calendar>
 
-            <Button type="submit">
+            <Button type="submit" onClick={handleToggle}>
               <MdAlarmAdd /> Cadastrar novo horário
             </Button>
           </CardContainer>
         </Container>
+
+        <Modal toggle={modalToggle}>
+          <SubTitle marginBottom="7px">Novo horário</SubTitle>
+          <FormLabel>Início do atendimento</FormLabel>
+          <DateTimePicker onChange={handleStart} value={schedule_start} />
+
+          <FormLabel>Término do atendimento</FormLabel>
+          <DateTimePicker onChange={handleEnd} value={schedule_end} />
+
+          <Box marginTop="45px" isInline>
+            <Button onClick={handleSubmit}>
+              <MdAlarmAdd /> Cadastrar horário
+            </Button>
+            <Button onClick={handleToggle}>Voltar</Button>
+          </Box>
+        </Modal>
       </Box>
     </Box>
   );
