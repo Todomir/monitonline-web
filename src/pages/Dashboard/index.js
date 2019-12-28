@@ -135,7 +135,12 @@ export default function Dashboard({ history }) {
                     <MdChatBubbleOutline /> Comentários
                   </MenuItem>
 
-                  <MenuItem style={props}>
+                  <MenuItem
+                    style={props}
+                    onClick={() => {
+                      history.push('/search-tutors');
+                    }}
+                  >
                     <MdPermIdentity /> Procurar monitor
                   </MenuItem>
 
