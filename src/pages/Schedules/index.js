@@ -1,21 +1,70 @@
-import React, { useState } from 'react';
-import DateTimePicker from 'react-datetime-picker';
+import React, { useState, useEffect, useContext } from 'react';
+import {
+  MdDashboard,
+  MdAccessTime,
+  MdChatBubbleOutline,
+  MdPermIdentity,
+  MdAssignmentInd,
+  MdExitToApp,
+  MdAlarmAdd
+} from 'react-icons/md';
+import { Spring } from 'react-spring/renderprops';
+
+import dayGridPlugin from '@fullcalendar/daygrid';
+import FullCalendar from '@fullcalendar/react';
+
+import '@fullcalendar/core/main.css';
+import '@fullcalendar/daygrid/main.css';
 
 import dateFormat from 'dateformat';
 
 import {
-  CardContainer,
-  CardContent,
-  FormLabel,
-  Title,
+  Box,
+  MenuLogo,
+  MenuItem,
+  Container,
+  Calendar,
   SubTitle,
+  TextSmall,
+  CardContainer,
   Button
 } from '../../components/styled-components/styles';
 import api from '../../services/api';
+import { logout } from '../../services/auth';
+import { UserContext } from '../../store/UserContext';
 
 export default function Schedules({ history }) {
+  const [schedules, setSchedules] = useState([]);
+
+  const { user, setUser } = useContext(UserContext);
+
   const [schedule_start, setScheduleStart] = useState(new Date());
   const [schedule_end, setScheduleEnd] = useState(new Date());
+
+  useEffect(() => {
+    async function getUser() {
+      const response = await api.get('/users/auth/getUser');
+      setUser(response.data);
+    }
+    getUser();
+  }, []);
+
+  useEffect(() => {
+    async function fetchSchedules() {
+      const response = await api.get(`/users/schedules/${user.id}`);
+      setSchedules(response.data);
+    }
+
+    fetchSchedules();
+  }, [user.id]);
+
+  const events = schedules.map(schedule => ({
+    title: 'Atendimento',
+    start: dateFormat(schedule.schedule_start, 'yyyy-mm-dd HH:MM-04:00'),
+    end: dateFormat(schedule.schedule_end, 'yyyy-mm-dd HH:MM-04:00'),
+    timezone: 'UTC',
+    id: schedule.id
+  }));
 
   const handleStart = date => {
     setScheduleStart(date);
@@ -38,22 +87,94 @@ export default function Schedules({ history }) {
     }
   }
 
+  function handleLogout() {
+    logout();
+    history.push('/');
+  }
+
   return (
-    <>
-      <Title>MONITONLINE | HORÁRIOS</Title>
+    <Box height="100%" bgColor="#FAF6FF" isInline>
+      <Spring from={{ width: 0, opacity: 0 }} to={{ width: 256, opacity: 1 }}>
+        {props => (
+          <Box style={props} height="100%" width="256px" marginRight="75px" bgColor="#FFF" elevated>
+            <Spring
+              from={{ paddingRight: -10, opacity: 0 }}
+              to={{ paddingRight: 0, opacity: 1 }}
+              delay={500}
+            >
+              {props => (
+                <>
+                  <MenuLogo style={props}>Monitonline</MenuLogo>
+                  <Box style={props} marginLeft="24px" marginBottom="40px" isInline>
+                    <Box>
+                      <TextSmall>{user.name}</TextSmall>
+                      <TextSmall>{user.is_tutor ? 'Monitor(a)' : 'Aluno'}</TextSmall>
+                    </Box>
+                  </Box>
+                  <MenuItem style={props}>
+                    <MdDashboard /> Dashboard
+                  </MenuItem>
 
-      <CardContainer>
-        <CardContent>
-          <SubTitle marginBottom="7px">Cadastrar um novo horário</SubTitle>
-          <FormLabel>determine o horário de início do atendimento</FormLabel>
-          <DateTimePicker onChange={handleStart} value={schedule_start} />
+                  <MenuItem style={props} isSelected>
+                    <MdAccessTime /> Horários
+                  </MenuItem>
 
-          <FormLabel>determine o horário de término do atendimento</FormLabel>
-          <DateTimePicker onChange={handleEnd} value={schedule_end} />
+                  <MenuItem style={props}>
+                    <MdChatBubbleOutline /> Comentários
+                  </MenuItem>
 
-          <Button onClick={handleSubmit}>cadastrar</Button>
-        </CardContent>
-      </CardContainer>
-    </>
+                  <MenuItem
+                    style={props}
+                    onClick={() => {
+                      history.push('/search-tutors');
+                    }}
+                  >
+                    <MdPermIdentity /> Procurar monitor
+                  </MenuItem>
+
+                  <MenuItem style={props}>
+                    <MdAssignmentInd /> Atendimentos
+                  </MenuItem>
+
+                  <MenuItem style={props} onClick={handleLogout}>
+                    <MdExitToApp /> Logout
+                  </MenuItem>
+                </>
+              )}
+            </Spring>
+          </Box>
+        )}
+      </Spring>
+      <Box width="100%" height="100%">
+        <SubTitle marginTop="45px" marginBottom="20px">
+          Horários
+        </SubTitle>
+
+        <Container width="100%" height="150px">
+          <CardContainer padding="36px" marginRight bgColor="#FFF" gridColumn="1/9">
+            <h3>MEUS HORÁRIOS</h3>
+
+            <Calendar>
+              <FullCalendar
+                contentHeight={450}
+                defaultView="dayGridMonth"
+                plugins={[dayGridPlugin]}
+                locale="pt-br"
+                events={events}
+                eventTimeFormat={{
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  meridiem: false
+                }}
+              />
+            </Calendar>
+
+            <Button type="submit">
+              <MdAlarmAdd /> Cadastrar novo horário
+            </Button>
+          </CardContainer>
+        </Container>
+      </Box>
+    </Box>
   );
 }
