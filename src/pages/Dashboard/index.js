@@ -127,7 +127,12 @@ export default function Dashboard({ history }) {
                     <MdDashboard /> Dashboard
                   </MenuItem>
 
-                  <MenuItem style={props}>
+                  <MenuItem
+                    style={props}
+                    onClick={() => {
+                      history.push('/schedules');
+                    }}
+                  >
                     <MdAccessTime /> Horários
                   </MenuItem>
 

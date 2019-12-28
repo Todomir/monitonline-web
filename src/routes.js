@@ -27,7 +27,7 @@ export default function Routes() {
         <Route path="/register" component={Register} />
         <Route path="/proceed-register" component={ContinueRegister} />
         <PrivateRoute path="/user-profile" component={Dashboard} />
-        <PrivateRoute path="/add-schedules" component={Schedules} />
+        <PrivateRoute path="/schedules" component={Schedules} />
         <Route path="/search-tutors" component={SearchTutor} />
         <Route path="/tutors" component={Tutors} />
         <PrivateRoute path="/schedule-assistance" component={TutorProfile} />
