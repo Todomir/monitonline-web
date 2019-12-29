@@ -9,6 +9,7 @@ import {
   Button
 } from '../../components/styled-components/styles';
 import api from '../../services/api';
+import { isAuthenticated } from '../../services/auth';
 import { SubjectMatterContext } from '../../store/SubjectMatterContext';
 
 export default function Tutors() {
@@ -31,7 +32,7 @@ export default function Tutors() {
 
   return (
     <>
-      <Nav isLight />
+      <Nav isLight isLogged={isAuthenticated()} />
       <CardContainer
         padding="60px 40px"
         marginTop="180px"

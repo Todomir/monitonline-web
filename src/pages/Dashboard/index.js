@@ -44,7 +44,6 @@ export default function Dashboard({ history }) {
     history.push('/');
   }
 
-  console.log(studentAssistances);
   return (
     <Box height="100%" bgColor="#FAF6FF" isInline>
       <Spring from={{ width: 0, opacity: 0 }} to={{ width: 256, opacity: 1 }}>

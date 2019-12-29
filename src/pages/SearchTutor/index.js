@@ -2,7 +2,6 @@ import React from 'react';
 import { Spring } from 'react-spring/renderprops';
 
 import './styles.css';
-
 import Nav from '../../components/Nav';
 import {
   Container,
@@ -13,11 +12,12 @@ import {
   Button
 } from '../../components/styled-components/styles';
 import SubjectList from '../../components/SubjectList';
+import { isAuthenticated } from '../../services/auth';
 
 export default function SearchTutor({ history }) {
   return (
     <>
-      <Nav isLight />
+      <Nav isLight isLogged={isAuthenticated()} />
       <Container height="100%">
         <Box marginTop="141px" alignItems="center" gridColumn="2/12">
           <CardContainer padding="85px 100px" width="100%">

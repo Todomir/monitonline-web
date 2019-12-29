@@ -4,11 +4,12 @@ import coffee from '../../assets/undraw_getting_coffee_wntr.svg';
 import studying from '../../assets/undraw_studying_s3l7.svg';
 import Nav from '../../components/Nav';
 import { Box, Title, Button, Paragraph } from '../../components/styled-components/styles';
+import { isAuthenticated } from '../../services/auth';
 
 export default function Home({ history }) {
   return (
     <Box height="100%">
-      <Nav />
+      <Nav isLogged={isAuthenticated()} />
       <Box bgColor="#B276FF" color="#FFF" padding="0 230px" isInline>
         <Box marginRight="auto">
           <Title paddingTop="163px">Monitonline</Title>
