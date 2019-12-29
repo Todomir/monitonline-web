@@ -16,7 +16,9 @@ export default function Nav({ isLight, isLogged }) {
 
       <span>
         {isLogged ? (
-          <NavLink to="/user-profile">{user.name}</NavLink>
+          <NavLink light={isLight} to="/user-profile">
+            {user.name}
+          </NavLink>
         ) : (
           <>
             <NavLink light={isLight} to="/login">
