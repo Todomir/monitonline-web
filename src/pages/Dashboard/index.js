@@ -18,7 +18,8 @@ import {
   Title,
   SubTitle,
   TextSmall,
-  CardContainer
+  CardContainer,
+  SmallLink
 } from '../../components/styled-components/styles';
 import api from '../../services/api';
 import { logout } from '../../services/auth';
@@ -43,6 +44,7 @@ export default function Dashboard({ history }) {
     history.push('/');
   }
 
+  console.log(studentAssistances);
   return (
     <Box height="100%" bgColor="#FAF6FF" isInline>
       <Spring from={{ width: 0, opacity: 0 }} to={{ width: 256, opacity: 1 }}>
@@ -118,22 +120,40 @@ export default function Dashboard({ history }) {
         <Container width="100%" height="150px">
           <CardContainer padding="36px" marginRight bgColor="#FFF" gridColumn="1/9">
             <h3>MEUS ATENDIMENTOS</h3>
-
-            {studentAssistances.map(assistance => (
-              <Box marginTop="10px">
-                <p>
-                  <strong>Assunto: </strong>
-                  {assistance.subjectMatter.subject_matter_description}
-                </p>
-                <p>
-                  <strong>Monitor: </strong>
-                  {assistance.name}
-                </p>
-                <p>
-                  <Status statusId={assistance.status_id} assistanceId={assistance.id} />
-                </p>
-              </Box>
-            ))}
+            <Box marginTop="10px">
+              {studentAssistances.length !== 0 ? (
+                studentAssistances.map(assistance => (
+                  <>
+                    <p>
+                      <strong>Assunto: </strong>
+                      {assistance.subjectMatter.subject_matter_description}
+                    </p>
+                    <p>
+                      <strong>Monitor: </strong>
+                      {assistance.name}
+                    </p>
+                    <p>
+                      <Status statusId={assistance.status_id} assistanceId={assistance.id} />
+                    </p>
+                  </>
+                ))
+              ) : (
+                <>
+                  <span>
+                    Você ainda não realizou nenhum atendimento, que tal{' '}
+                    <SmallLink
+                      color="#B276FF"
+                      fontWeight="700"
+                      onClick={() => {
+                        history.push('/search-tutors');
+                      }}
+                    >
+                      marcar um agora?
+                    </SmallLink>
+                  </span>
+                </>
+              )}
+            </Box>
           </CardContainer>
         </Container>
       </Box>
