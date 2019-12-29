@@ -27,8 +27,7 @@ import { AssistanceContext } from '../../store/AssistanceContext';
 import { UserContext } from '../../store/UserContext';
 
 export default function Dashboard({ history }) {
-  const { studentAssistances } = useContext(AssistanceContext);
-
+  const { studentAssistances, setStudentAssistances } = useContext(AssistanceContext);
   const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
@@ -38,6 +37,15 @@ export default function Dashboard({ history }) {
     }
     getUser();
   }, []);
+
+  useEffect(() => {
+    async function fetchStudentAssistances() {
+      const response = await api.get(`/user/assistances/student/${user.id}`);
+      setStudentAssistances(response.data);
+    }
+
+    fetchStudentAssistances();
+  }, [user.id]);
 
   function handleLogout() {
     logout();
