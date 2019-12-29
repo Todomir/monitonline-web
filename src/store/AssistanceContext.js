@@ -1,7 +1,5 @@
 import React, { useState, createContext } from 'react';
 
-// import { Container } from './styles';
-
 export const AssistanceContext = createContext();
 
 export function AssistanceProvider({ children }) {
