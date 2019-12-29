@@ -19,16 +19,16 @@ export default function Status({ statusId, assistanceId }) {
   const statusMessage = id => {
     switch (id) {
       case 1:
-        return 'Marcado';
+        return <span style={{ color: '#B276FF' }}>Marcado</span>;
 
       case 2:
-        return 'Realizado';
+        return <span style={{ color: '#2FB63C' }}>Realizado</span>;
 
       case 3:
-        return 'Cancelado pelo aluno';
+        return <span style={{ color: '#FA5959' }}>Cancelado pelo aluno</span>;
 
       case 4:
-        return 'Cancelado pelo monitor';
+        return <span style={{ color: '#FA5959' }}>Cancelado pelo monitor</span>;
 
       default:
         return '404';
