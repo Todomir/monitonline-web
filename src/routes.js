@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
+import Assistances from './pages/Assistances';
 import AuthError from './pages/AuthError';
 import ContinueRegister from './pages/ContinueRegister';
 import Dashboard from './pages/Dashboard';
@@ -33,6 +34,7 @@ export default function Routes() {
         <Route path="/auth-error" component={AuthError} />
         <PrivateRoute path="/user-profile" component={Dashboard} />
         <PrivateRoute path="/schedules" component={Schedules} />
+        <PrivateRoute path="/assistances" component={Assistances} />
         <PrivateRoute path="/schedule-assistance" component={TutorProfile} />
       </Switch>
     </BrowserRouter>
