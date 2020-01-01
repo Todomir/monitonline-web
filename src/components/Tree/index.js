@@ -5,7 +5,7 @@ import { useSpring, a } from 'react-spring';
 import { useMeasure, usePrevious } from '../../hooks';
 import { Box, toggle } from '../styled-components/styles';
 
-export const Tree = memo(({ color, children, name, style, defaultOpen = true }) => {
+export const Tree = memo(({ color, children, name, style, defaultOpen }) => {
   const [isOpen, setOpen] = useState(defaultOpen);
   const previous = usePrevious(isOpen);
   const [bind, { height: viewHeight }] = useMeasure();

@@ -35,20 +35,25 @@ export default function AssistancesBlock() {
                   name={sm.subject_matter_description.toUpperCase()}
                   key={sm.id}
                 >
-                  {tutorAssistances.map(assistance => {
-                    if (assistance.subject_matter_id === sm.id) {
-                      return (
-                        <Box key={assistance.id} marginBottom="10px">
-                          <p>
-                            <strong>Aluno:</strong> {assistance.student.name}
-                          </p>
-                          <p>
-                            <Status statusId={assistance.status_id} assistanceId={assistance.id} />
-                          </p>
-                        </Box>
-                      );
-                    }
-                  })}
+                  <Tree name="Atendimentos" defaultOpen>
+                    {tutorAssistances.map(assistance => {
+                      if (assistance.subject_matter_id === sm.id) {
+                        return (
+                          <Box key={assistance.id} marginBottom="10px">
+                            <p>
+                              <strong>Aluno:</strong> {assistance.student.name}
+                            </p>
+                            <p>
+                              <Status
+                                statusId={assistance.status_id}
+                                assistanceId={assistance.id}
+                              />
+                            </p>
+                          </Box>
+                        );
+                      }
+                    })}
+                  </Tree>
                 </Tree>
               );
             }
