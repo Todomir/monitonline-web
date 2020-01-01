@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import AuthError from './pages/AuthError';
 import ContinueRegister from './pages/ContinueRegister';
@@ -16,9 +16,8 @@ import { isAuthenticated } from './services/auth';
 const PrivateRoute = ({ component, ...options }) => {
   if (isAuthenticated()) {
     return <Route {...options} component={component} />;
-  } 
-    return <AuthError />;
-  
+  }
+  return <Redirect to="/auth-error" />;
 };
 
 export default function Routes() {
@@ -29,10 +28,11 @@ export default function Routes() {
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/proceed-register" component={ContinueRegister} />
-        <PrivateRoute path="/user-profile" component={Dashboard} />
-        <PrivateRoute path="/schedules" component={Schedules} />
         <Route path="/search-tutors" component={SearchTutor} />
         <Route path="/tutors" component={Tutors} />
+        <Route path="/auth-error" component={AuthError} />
+        <PrivateRoute path="/user-profile" component={Dashboard} />
+        <PrivateRoute path="/schedules" component={Schedules} />
         <PrivateRoute path="/schedule-assistance" component={TutorProfile} />
       </Switch>
     </BrowserRouter>
