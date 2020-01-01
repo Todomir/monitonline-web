@@ -57,10 +57,10 @@ export default function Assistances({ history }) {
     history.push('/');
   }
   return (
-    <Box bgColor="#FAF6FF" isInline>
+    <Box height="100%" bgColor="#FAF6FF" isInline>
       <Spring from={{ width: 0, opacity: 0 }} to={{ width: 256, opacity: 1 }}>
         {props => (
-          <Box style={props} width="256px" marginRight="75px" bgColor="#FFF" elevated>
+          <Box height="100%" style={props} width="256px" marginRight="75px" bgColor="#FFF" elevated>
             <Spring
               from={{ paddingRight: -10, opacity: 0 }}
               to={{ paddingRight: 0, opacity: 1 }}
@@ -75,7 +75,12 @@ export default function Assistances({ history }) {
                       <TextSmall>{user.is_tutor ? 'Monitor(a)' : 'Aluno'}</TextSmall>
                     </Box>
                   </Box>
-                  <MenuItem style={props} isSelected>
+                  <MenuItem
+                    style={props}
+                    onClick={() => {
+                      history.push('/user-profile');
+                    }}
+                  >
                     <MdDashboard /> Dashboard
                   </MenuItem>
 
@@ -101,7 +106,7 @@ export default function Assistances({ history }) {
                     <MdPermIdentity /> Procurar monitor
                   </MenuItem>
 
-                  <MenuItem style={props}>
+                  <MenuItem style={props} isSelected>
                     <MdAssignmentInd /> Atendimentos
                   </MenuItem>
 
@@ -114,7 +119,7 @@ export default function Assistances({ history }) {
           </Box>
         )}
       </Spring>
-      <Box width="100%" height="100%" marginBottom="90px">
+      <Box width="100%" marginBottom="90px">
         <SubTitle marginTop="45px" marginBottom="20px">
           Atendimentos
         </SubTitle>

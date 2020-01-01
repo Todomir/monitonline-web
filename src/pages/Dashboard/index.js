@@ -97,7 +97,12 @@ export default function Dashboard({ history }) {
                     <MdPermIdentity /> Procurar monitor
                   </MenuItem>
 
-                  <MenuItem style={props}>
+                  <MenuItem
+                    style={props}
+                    onClick={() => {
+                      history.push('/assistances');
+                    }}
+                  >
                     <MdAssignmentInd /> Atendimentos
                   </MenuItem>
 
