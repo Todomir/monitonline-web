@@ -142,7 +142,7 @@ export default function Dashboard({ history }) {
             <Box marginTop="10px">
               {studentAssistances.length !== 0 ? (
                 studentAssistances.map(assistance => (
-                  <>
+                  <Box marginBottom="15px">
                     <p>
                       <strong>Assunto: </strong>
                       {assistance.subjectMatter.subject_matter_description}
@@ -154,10 +154,10 @@ export default function Dashboard({ history }) {
                     <p>
                       <Status statusId={assistance.status_id} assistanceId={assistance.id} />
                     </p>
-                  </>
+                  </Box>
                 ))
               ) : (
-                <>
+                <Box>
                   <span>
                     Você ainda não realizou nenhum atendimento, que tal{' '}
                     <SmallLink
@@ -170,7 +170,7 @@ export default function Dashboard({ history }) {
                       marcar um agora?
                     </SmallLink>
                   </span>
-                </>
+                </Box>
               )}
             </Box>
           </CardContainer>
