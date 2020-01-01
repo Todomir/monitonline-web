@@ -57,7 +57,14 @@ export default function Assistances({ history }) {
     <Box isInline>
       <Spring from={{ width: 0, opacity: 0 }} to={{ width: 256, opacity: 1 }}>
         {props => (
-          <Box style={props} width="256px" marginRight="75px" bgColor="#FFF" elevated>
+          <Box
+            minHeight="100vh"
+            style={props}
+            width="256px"
+            marginRight="75px"
+            bgColor="#FFF"
+            elevated
+          >
             <Spring
               from={{ paddingRight: -10, opacity: 0 }}
               to={{ paddingRight: 0, opacity: 1 }}

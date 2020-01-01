@@ -20,8 +20,9 @@ export const Container = styled.div`
   margin-right: ${props => props.marginRight};
 `;
 
-export const Box = styled.div`
+export const Box = styled(animated.div)`
   display: flex;
+  will-change: transform, opacity, height;
 
   grid-column: ${props => props.gridColumn};
   flex-direction: ${props => (props.isInline ? 'row' : 'column')};
@@ -29,6 +30,7 @@ export const Box = styled.div`
   align-items: ${props => props.alignItems};
   text-align: ${props => props.align};
   width: ${props => props.width};
+  min-height: ${props => props.minHeight};
   height: ${props => props.height};
   background-color: ${props => props.bgColor};
   padding: ${props => props.padding};
@@ -374,3 +376,11 @@ export const NavLink = styled(Link)`
 
   color: ${props => (props.light ? '#b276ff' : '#fff')};
 `;
+
+export const toggle = {
+  width: '1em',
+  height: '1em',
+  marginRight: 10,
+  cursor: 'pointer',
+  verticalAlign: 'middle'
+};

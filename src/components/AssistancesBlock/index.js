@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { AssistanceContext } from '../../store/AssistanceContext';
 import Status from '../Status';
 import { Box } from '../styled-components/styles';
+import { Tree } from '../Tree';
 
 export default function AssistancesBlock() {
   const { tutorAssistances } = useContext(AssistanceContext);
@@ -25,19 +26,19 @@ export default function AssistancesBlock() {
   return (
     <Box>
       {subjectsArray.map(subject => (
-        <>
-          <h3 style={{ paddingTop: '20px' }}>{subject.subject_description.toUpperCase()}</h3>
+        <Tree name={subject.subject_description.toUpperCase()}>
           {subjectMattersArray.map(sm => {
             if (sm.subject_id === subject.id) {
               return (
-                <Box paddingLeft="44px" marginLeft="44px">
-                  <p style={{ marginTop: '20px', color: '#B276FF' }}>
-                    {sm.subject_matter_description.toUpperCase()}
-                  </p>
+                <Tree
+                  color="#b276ff"
+                  name={sm.subject_matter_description.toUpperCase()}
+                  key={sm.id}
+                >
                   {tutorAssistances.map(assistance => {
                     if (assistance.subject_matter_id === sm.id) {
                       return (
-                        <Box marginTop="10px">
+                        <Box key={assistance.id} marginBottom="10px">
                           <p>
                             <strong>Aluno:</strong> {assistance.student.name}
                           </p>
@@ -48,11 +49,11 @@ export default function AssistancesBlock() {
                       );
                     }
                   })}
-                </Box>
+                </Tree>
               );
             }
           })}
-        </>
+        </Tree>
       ))}
     </Box>
   );
