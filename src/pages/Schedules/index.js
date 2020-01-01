@@ -118,7 +118,12 @@ export default function Schedules({ history }) {
                       <TextSmall>{user.is_tutor ? 'Monitor(a)' : 'Aluno'}</TextSmall>
                     </Box>
                   </Box>
-                  <MenuItem style={props}>
+                  <MenuItem
+                    style={props}
+                    onClick={() => {
+                      history.push('/user-profile');
+                    }}
+                  >
                     <MdDashboard /> Dashboard
                   </MenuItem>
 
@@ -139,7 +144,12 @@ export default function Schedules({ history }) {
                     <MdPermIdentity /> Procurar monitor
                   </MenuItem>
 
-                  <MenuItem style={props}>
+                  <MenuItem
+                    style={props}
+                    onClick={() => {
+                      history.push('/assistances');
+                    }}
+                  >
                     <MdAssignmentInd /> Atendimentos
                   </MenuItem>
 
