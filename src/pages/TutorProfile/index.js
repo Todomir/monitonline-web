@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import dayGridPlugin from '@fullcalendar/daygrid';
 import FullCalendar from '@fullcalendar/react';
-import dateFormat from 'dateformat';
+import { parseISO } from 'date-fns';
 
 import Modal from '../../components/Modal';
 import {
@@ -26,8 +26,8 @@ export default function TutorProfile() {
 
   const events = schedules.map(schedule => ({
     title: 'Horário Disponível',
-    start: dateFormat(schedule.schedule_start, 'yyyy-mm-dd HH:MM-04:00'),
-    end: dateFormat(schedule.schedule_end, 'yyyy-mm-dd HH:MM-04:00'),
+    start: parseISO(schedule.schedule_start),
+    end: parseISO(schedule.schedule_end),
     timezone: 'UTC',
     id: schedule.id
   }));
