@@ -117,11 +117,23 @@ export default function Dashboard({ history }) {
         <Container marginBottom="50px" width="100%" height="150px">
           <CardContainer padding="36px" marginRight bgColor="#FFF" gridColumn="1/5">
             <h3>ATENDIMENTOS REALIZADOS</h3>
-            <Title>14</Title>
+            <Title>
+              {
+                studentAssistances.filter(assistance => {
+                  return assistance.status_id === 2;
+                }).length
+              }
+            </Title>
           </CardContainer>
           <CardContainer padding="36px" bgColor="#FFF" gridColumn="5/9">
             <h3>ATENDIMENTOS CANCELADOS</h3>
-            <Title>3</Title>
+            <Title>
+              {
+                studentAssistances.filter(assistance => {
+                  return assistance.status_id === 3 || assistance.status_id === 4;
+                }).length
+              }
+            </Title>
           </CardContainer>
         </Container>
         <Container width="100%" height="150px">
