@@ -83,10 +83,9 @@ export default function ContinueRegister({ history }) {
                 type="course"
                 name="course"
                 id="course"
-                placeholder="Selecione um curso"
                 onChange={event => setCourse(parseInt(event.target.value))}
               >
-                <option value="1">Tecnologia da Informação</option>
+                <option selected value="1">Tecnologia da Informação</option>
                 <option value="2">Eletromecânica</option>
               </Select>
               <FormLabel>Deseja ser monitor? *</FormLabel>

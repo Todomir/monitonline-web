@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
+import AuthError from './pages/AuthError';
 import ContinueRegister from './pages/ContinueRegister';
 import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
@@ -13,9 +14,11 @@ import Tutors from './pages/Tutors';
 import { isAuthenticated } from './services/auth';
 
 const PrivateRoute = ({ component, ...options }) => {
-  if (isAuthenticated) {
+  if (isAuthenticated()) {
     return <Route {...options} component={component} />;
-  }
+  } 
+    return <AuthError />;
+  
 };
 
 export default function Routes() {
