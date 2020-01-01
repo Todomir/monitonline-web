@@ -53,10 +53,10 @@ export default function Dashboard({ history }) {
   }
 
   return (
-    <Box height="100%" bgColor="#FAF6FF" isInline>
+    <Box height="100vh" bgColor="#FAF6FF" isInline>
       <Spring from={{ width: 0, opacity: 0 }} to={{ width: 256, opacity: 1 }}>
         {props => (
-          <Box style={props} height="100%" width="256px" marginRight="75px" bgColor="#FFF" elevated>
+          <Box style={props} width="256px" marginRight="75px" bgColor="#FFF" elevated>
             <Spring
               from={{ paddingRight: -10, opacity: 0 }}
               to={{ paddingRight: 0, opacity: 1 }}
@@ -115,7 +115,7 @@ export default function Dashboard({ history }) {
           </Box>
         )}
       </Spring>
-      <Box width="100%" height="100%">
+      <Box width="100%">
         <SubTitle marginTop="45px" marginBottom="20px">
           Dashboard
         </SubTitle>

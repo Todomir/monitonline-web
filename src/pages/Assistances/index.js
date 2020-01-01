@@ -31,9 +31,6 @@ import { UserContext } from '../../store/UserContext';
 export default function Assistances({ history }) {
   const { tutorAssistances, setTutorAssistances } = useContext(AssistanceContext);
   const { user, setUser } = useContext(UserContext);
-  const subjects = tutorAssistances.filter(assistance => {
-    return assistance.subjectMatter.subject;
-  });
 
   useEffect(() => {
     async function getUser() {
@@ -57,10 +54,10 @@ export default function Assistances({ history }) {
     history.push('/');
   }
   return (
-    <Box height="100%" bgColor="#FAF6FF" isInline>
+    <Box isInline>
       <Spring from={{ width: 0, opacity: 0 }} to={{ width: 256, opacity: 1 }}>
         {props => (
-          <Box height="100%" style={props} width="256px" marginRight="75px" bgColor="#FFF" elevated>
+          <Box style={props} width="256px" marginRight="75px" bgColor="#FFF" elevated>
             <Spring
               from={{ paddingRight: -10, opacity: 0 }}
               to={{ paddingRight: 0, opacity: 1 }}
@@ -119,12 +116,12 @@ export default function Assistances({ history }) {
           </Box>
         )}
       </Spring>
-      <Box width="100%" marginBottom="90px">
+      <Box width="100%" height="auto" marginBottom="90px">
         <SubTitle marginTop="45px" marginBottom="20px">
           Atendimentos
         </SubTitle>
         <Container marginBottom="50px" width="100%" height="150px">
-          <CardContainer padding="36px" marginRight bgColor="#FFF" gridColumn="1/5">
+          <CardContainer padding="36px" bgColor="#FFF" gridColumn="1/5">
             <h3>ATENDIMENTOS REALIZADOS</h3>
             <Title>
               {
@@ -138,8 +135,10 @@ export default function Assistances({ history }) {
         <SubTitle marginTop="45px" marginBottom="20px">
           Meus assuntos
         </SubTitle>
-        <Container width="100%" height="100%">
-          <AssistancesBlock />
+        <Container width="100%">
+          <CardContainer padding="36px" bgColor="#FFF" gridColumn="1/12">
+            <AssistancesBlock />
+          </CardContainer>
         </Container>
       </Box>
     </Box>
