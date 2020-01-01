@@ -85,7 +85,7 @@ export default function ContinueRegister({ history }) {
                 id="course"
                 onChange={event => setCourse(parseInt(event.target.value))}
               >
-                <option selected value="1">Tecnologia da Informação</option>
+                <option value="1">Tecnologia da Informação</option>
                 <option value="2">Eletromecânica</option>
               </Select>
               <FormLabel>Deseja ser monitor? *</FormLabel>
