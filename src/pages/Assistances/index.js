@@ -144,7 +144,11 @@ export default function Assistances({ history }) {
         </SubTitle>
         <Container width="100%">
           <CardContainer padding="36px" bgColor="#FFF" gridColumn="1/12">
-            <AssistancesBlock />
+            {tutorAssistances.length !== 0 ? (
+              <AssistancesBlock />
+            ) : (
+              <Paragraph>Ainda não foram solicitados atendimentos... Talvez mais tarde?</Paragraph>
+            )}
           </CardContainer>
         </Container>
       </Box>
