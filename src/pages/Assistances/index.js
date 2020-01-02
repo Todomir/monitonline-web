@@ -55,74 +55,51 @@ export default function Assistances({ history }) {
   }
   return (
     <Box isInline>
-      <Spring from={{ width: 0, opacity: 0 }} to={{ width: 256, opacity: 1 }}>
-        {props => (
-          <Box
-            minHeight="100vh"
-            style={props}
-            width="256px"
-            marginRight="75px"
-            bgColor="#FFF"
-            elevated
-          >
-            <Spring
-              from={{ paddingRight: -10, opacity: 0 }}
-              to={{ paddingRight: 0, opacity: 1 }}
-              delay={500}
-            >
-              {props => (
-                <>
-                  <MenuLogo style={props}>Monitonline</MenuLogo>
-                  <Box style={props} marginLeft="24px" marginBottom="40px" isInline>
-                    <Box>
-                      <TextSmall>{user.name}</TextSmall>
-                      <TextSmall>{user.is_tutor ? 'Monitor(a)' : 'Aluno'}</TextSmall>
-                    </Box>
-                  </Box>
-                  <MenuItem
-                    style={props}
-                    onClick={() => {
-                      history.push('/user-profile');
-                    }}
-                  >
-                    <MdDashboard /> Dashboard
-                  </MenuItem>
-
-                  <MenuItem
-                    style={props}
-                    onClick={() => {
-                      history.push('/schedules');
-                    }}
-                  >
-                    <MdAccessTime /> Horários
-                  </MenuItem>
-
-                  <MenuItem style={props}>
-                    <MdChatBubbleOutline /> Comentários
-                  </MenuItem>
-
-                  <MenuItem
-                    style={props}
-                    onClick={() => {
-                      history.push('/search-tutors');
-                    }}
-                  >
-                    <MdPermIdentity /> Procurar monitor
-                  </MenuItem>
-
-                  <MenuItem style={props} isSelected>
-                    <MdAssignmentInd /> Atendimentos
-                  </MenuItem>
-
-                  <MenuItem style={props} onClick={handleLogout}>
-                    <MdExitToApp /> Logout
-                  </MenuItem>
-                </>
-              )}
-            </Spring>
+      <Box minHeight="100vh" width="256px" marginRight="75px" bgColor="#FFF" elevated>
+        <MenuLogo>Monitonline</MenuLogo>
+        <Box marginLeft="24px" marginBottom="40px" isInline>
+          <Box>
+            <TextSmall>{user.name}</TextSmall>
+            <TextSmall>{user.is_tutor ? 'Monitor(a)' : 'Aluno'}</TextSmall>
           </Box>
-        )}
-      </Spring>
+        </Box>
+        <MenuItem
+          onClick={() => {
+            history.push('/user-profile');
+          }}
+        >
+          <MdDashboard /> Dashboard
+        </MenuItem>
+
+        <MenuItem
+          onClick={() => {
+            history.push('/schedules');
+          }}
+        >
+          <MdAccessTime /> Horários
+        </MenuItem>
+
+        <MenuItem>
+          <MdChatBubbleOutline /> Comentários
+        </MenuItem>
+
+        <MenuItem
+          onClick={() => {
+            history.push('/search-tutors');
+          }}
+        >
+          <MdPermIdentity /> Procurar monitor
+        </MenuItem>
+
+        <MenuItem isSelected>
+          <MdAssignmentInd /> Atendimentos
+        </MenuItem>
+
+        <MenuItem onClick={handleLogout}>
+          <MdExitToApp /> Logout
+        </MenuItem>
+      </Box>
+
       <Box width="100%" height="auto" marginBottom="90px">
         <SubTitle marginTop="45px" marginBottom="20px">
           Atendimentos
