@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 import { AssistanceContext } from '../../store/AssistanceContext';
+import Graph from '../Graph';
 import Status from '../Status';
 import { Box } from '../styled-components/styles';
 import { Tree } from '../Tree';
@@ -35,6 +36,9 @@ export default function AssistancesBlock() {
                   name={sm.subject_matter_description.toUpperCase()}
                   key={sm.id}
                 >
+                  <Tree name="Avaliações" defaultOpen>
+                    <Graph id={sm.id} />
+                  </Tree>
                   <Tree name="Atendimentos" defaultOpen>
                     {tutorAssistances.map(assistance => {
                       if (assistance.subject_matter_id === sm.id) {
