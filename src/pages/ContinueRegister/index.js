@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useSpring } from 'react-spring';
 import { Spring } from 'react-spring/renderprops';
 
 import Nav from '../../components/Nav';
@@ -32,6 +33,8 @@ export default function ContinueRegister({ history }) {
     is_tutor,
     setTutor
   } = useContext(UserContext);
+
+  const selectProps = useSpring({ opacity: is_tutor ? 1 : 0 });
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -106,18 +109,10 @@ export default function ContinueRegister({ history }) {
                 Não
               </Box>
 
-              <Spring
-                hold={is_tutor}
-                from={{ opacity: 0, height: 0 }}
-                to={{ opacity: is_tutor ? 1 : 0, height: is_tutor ? 400 : 0 }}
-                delay={100}
-              >
-                {props => (
-                  <Box style={props} marginBottom="30px">
-                    <SubjectList multi toggle={is_tutor} />
-                  </Box>
-                )}
-              </Spring>
+              <Box style={selectProps} marginBottom="30px">
+                <SubjectList multi toggle={is_tutor} />
+              </Box>
+
               <Button type="submit">Cadastrar</Button>
             </Form>
           </CardContainer>

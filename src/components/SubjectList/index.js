@@ -21,7 +21,7 @@ export default function SubjectList({ toggle, multi }) {
   const { setSM, subjectMatterId, setSubjectMatterId } = useContext(SubjectMatterContext);
 
   const boxProps = useSpring({
-    height: toggle ? 310 : 0,
+    height: toggle ? 350 : 0,
     opacity: toggle ? 1 : 0
   });
 
@@ -104,10 +104,10 @@ export default function SubjectList({ toggle, multi }) {
   }
 
   return (
-    <Box isInline>
+    <Box style={boxProps} isInline>
       <Box marginRight="120px">
         <AnimatedLabel style={labelProps}>Disciplinas</AnimatedLabel>
-        <animated.div style={boxProps} className="subject-matter-list">
+        <div className="subject-matter-list">
           {multi
             ? subjects.map(item => (
                 <label key={item.id}>
@@ -131,12 +131,12 @@ export default function SubjectList({ toggle, multi }) {
                   />
                 </label>
               ))}
-        </animated.div>
+        </div>
       </Box>
 
       <Box>
         <AnimatedLabel style={labelProps}>Assuntos</AnimatedLabel>
-        <animated.div style={boxProps} className="subject-matter-list">
+        <div className="subject-matter-list">
           {multi
             ? subjectMatters.map(item => (
                 <label key={item.id}>
@@ -160,7 +160,7 @@ export default function SubjectList({ toggle, multi }) {
                   />
                 </label>
               ))}
-        </animated.div>
+        </div>
       </Box>
     </Box>
   );
