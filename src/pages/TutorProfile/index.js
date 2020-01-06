@@ -6,6 +6,7 @@ import { parseISO } from 'date-fns';
 
 import AssistancesBlock from '../../components/AssistancesBlock';
 import Modal from '../../components/Modal';
+import Nav from '../../components/Nav';
 import {
   Container,
   Paragraph,
@@ -20,6 +21,7 @@ import {
   FlexWrapper
 } from '../../components/styled-components/styles';
 import api from '../../services/api';
+import { isAuthenticated } from '../../services/auth';
 import { AssistanceContext } from '../../store/AssistanceContext';
 
 export default function TutorProfile() {
@@ -80,48 +82,52 @@ export default function TutorProfile() {
 
   return (
     <>
-      <Modal toggle={toggle}>
-        <SubTitle marginBottom="7px">Confirmação de atendimento</SubTitle>
-        Tem certeza que deseja solicitar um atendimento com {tutor.name}?
-        <FlexWrapper isInline marginTop="40px">
-          <EditableButton width="200px" onClick={handleConfirmAssistance}>
-            Sim
-          </EditableButton>
-          <EditableButton width="200px" onClick={handleScheduleClick}>
-            Não
-          </EditableButton>
-        </FlexWrapper>
-      </Modal>
-      <Box width="100%" height="auto" marginBottom="90px">
-        <Container marginBottom="50px" width="100%" height="150px">
-          <CardContainer padding="36px" bgColor="#FFF" gridColumn="1/5">
-            <h3 style={{ fontWeight: 400 }}>ATENDIMENTOS REALIZADOS</h3>
-            <Title>
-              {
-                tutorAssistances.filter(assistance => {
-                  return assistance.status_id === 2;
-                }).length
-              }
-            </Title>
-          </CardContainer>
-        </Container>
-        <Container width="100%">
-          <CardContainer padding="36px" bgColor="#FFF" gridColumn="1/12">
-            {tutorAssistances.length !== 0 ? (
-              <AssistancesBlock />
-            ) : (
-              <Paragraph>Este monitor ainda não tem atendimentos marcados.</Paragraph>
-            )}
-          </CardContainer>
-        </Container>
-      </Box>
+      <Nav isLight isLogged={isAuthenticated()} />
+      <Container>
+        <Box marginBottom="54px" alignItems="center" gridColumn="1/13">
+          <h1>{tutor.name}</h1>
+        </Box>
+        <Modal toggle={toggle}>
+          <SubTitle marginBottom="7px">Confirmação de atendimento</SubTitle>
+          Tem certeza que deseja solicitar um atendimento com {tutor.name}?
+          <FlexWrapper isInline marginTop="40px">
+            <EditableButton width="200px" onClick={handleConfirmAssistance}>
+              Sim
+            </EditableButton>
+            <EditableButton width="200px" onClick={handleScheduleClick}>
+              Não
+            </EditableButton>
+          </FlexWrapper>
+        </Modal>
 
-      <CardContainer>
-        <CardContent>
-          <SubTitle>{tutor.name}</SubTitle>
-          <TextSmall>Horários do tutor</TextSmall>
+        <CardContainer marginBottom="55px" padding="36px" bgColor="#FFF" gridColumn="5/9">
+          <h3 style={{ fontWeight: 400 }}>ATENDIMENTOS REALIZADOS</h3>
+          <Title>
+            {
+              tutorAssistances.filter(assistance => {
+                return assistance.status_id === 2;
+              }).length
+            }
+          </Title>
+        </CardContainer>
+
+        <CardContainer marginBottom="55px" padding="36px" bgColor="#FFF" gridColumn="5/9">
+          <h3 style={{ fontWeight: 400, marginBottom: 20 }}>AVALIAÇÕES DO MONITOR</h3>
+          {tutorAssistances.length !== 0 ? (
+            <AssistancesBlock />
+          ) : (
+            <Paragraph>Este monitor ainda não tem atendimentos marcados.</Paragraph>
+          )}
+        </CardContainer>
+
+        <CardContainer marginBottom="55px" padding="36px" bgColor="#FFF" gridColumn="3/11">
+          <h3 style={{ fontWeight: 400 }}>HORÁRIOS DISPONÍVEIS</h3>
+          <TextSmall>
+            Basta clicar em um dos horários disponíveis para solicitar um atendimento.
+          </TextSmall>
           <Calendar>
             <FullCalendar
+              contentHeight={500}
               defaultView="dayGridMonth"
               plugins={[dayGridPlugin]}
               locale="pt-br"
@@ -137,8 +143,8 @@ export default function TutorProfile() {
               }}
             />
           </Calendar>
-        </CardContent>
-      </CardContainer>
+        </CardContainer>
+      </Container>
     </>
   );
 }
