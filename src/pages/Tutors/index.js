@@ -12,7 +12,7 @@ import api from '../../services/api';
 import { isAuthenticated } from '../../services/auth';
 import { SubjectMatterContext } from '../../store/SubjectMatterContext';
 
-export default function Tutors() {
+export default function Tutors({ history }) {
   const [tutors, setTutors] = useState([]);
   const { sm } = useContext(SubjectMatterContext);
 
@@ -29,6 +29,12 @@ export default function Tutors() {
     }
     getTutors();
   }, [tutors]);
+
+  function handleTutorClick(tutor) {
+    localStorage.setItem('tutor_id', tutor.id);
+    localStorage.setItem('subject_matter_id', sm.id);
+    history.push('/schedule-assistance');
+  }
 
   return (
     <>
@@ -50,7 +56,12 @@ export default function Tutors() {
         {tutors.map(tutor => (
           <>
             <FormLabel key={tutor.name}>{tutor.name}</FormLabel>
-            <Button key={tutor.id}>
+            <Button
+              key={tutor.id}
+              onClick={() => {
+                handleTutorClick(tutor);
+              }}
+            >
               <MdAssignment /> Marcar atendimento
             </Button>
           </>
