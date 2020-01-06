@@ -367,7 +367,7 @@ export const NavBar = styled.nav`
   max-width: 100%;
   padding: 30px 250px;
 
-  background-color: ${props => (props.light ? '#fff' : '#b276ff')};
+  background-color: ${props => (props.light ? '#faf6ff' : '#b276ff')};
 `;
 
 export const NavLink = styled(Link)`

@@ -20,7 +20,7 @@ export default function SearchTutor({ history }) {
       <Nav isLight isLogged={isAuthenticated()} />
       <Container height="100%">
         <Box marginTop="141px" alignItems="center" gridColumn="2/12">
-          <CardContainer padding="85px 100px" width="100%">
+          <CardContainer bgColor="#fff" padding="85px 100px" width="100%">
             <SubTitle>O processo é bastante simples.</SubTitle>
             <Paragraph>
               Basta você selecionar a disciplina que você deseja tutoria, em seguida o assunto.
