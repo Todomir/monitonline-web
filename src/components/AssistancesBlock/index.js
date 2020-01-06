@@ -52,6 +52,7 @@ export default function AssistancesBlock({ isTutor }) {
                                 <Status
                                   statusId={assistance.status_id}
                                   assistanceId={assistance.id}
+                                  isTutor
                                 />
                               </p>
                             </Box>
