@@ -18,7 +18,22 @@ export default function Graph({ id }) {
   return (
     <Box width="500px">
       <Line
-        options={{ responsive: true }}
+        options={{
+          responsive: true,
+          scales: {
+            yAxes: [
+              {
+                display: true,
+                ticks: {
+                  beginAtZero: true,
+                  steps: 5,
+                  stepValue: 5,
+                  max: 5
+                }
+              }
+            ]
+          }
+        }}
         data={{
           labels: ['', '', '', '', '', ''],
           datasets: [
