@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import dayGridPlugin from '@fullcalendar/daygrid';
 import FullCalendar from '@fullcalendar/react';
 import { parseISO } from 'date-fns';
 
+import AssistancesBlock from '../../components/AssistancesBlock';
 import Modal from '../../components/Modal';
 import {
+  Container,
+  Paragraph,
+  Title,
+  Box,
   CardContainer,
   CardContent,
   SubTitle,
@@ -15,6 +20,7 @@ import {
   FlexWrapper
 } from '../../components/styled-components/styles';
 import api from '../../services/api';
+import { AssistanceContext } from '../../store/AssistanceContext';
 
 export default function TutorProfile() {
   const tutor_id = parseInt(localStorage.getItem('tutor_id'));
@@ -23,6 +29,17 @@ export default function TutorProfile() {
   const [schedules, setSchedules] = useState([]);
   const [scheduleId, setScheduleId] = useState([]);
   const [toggle, setToggle] = useState(false);
+
+  const { tutorAssistances, setTutorAssistances } = useContext(AssistanceContext);
+
+  useEffect(() => {
+    async function fetchTutorAssistances() {
+      const response = await api.get(`/user/assistances/tutor/${tutor_id}`);
+      setTutorAssistances(response.data);
+    }
+
+    fetchTutorAssistances();
+  }, [tutor_id]);
 
   const events = schedules.map(schedule => ({
     title: 'Horário Disponível',
@@ -75,6 +92,29 @@ export default function TutorProfile() {
           </EditableButton>
         </FlexWrapper>
       </Modal>
+      <Box width="100%" height="auto" marginBottom="90px">
+        <Container marginBottom="50px" width="100%" height="150px">
+          <CardContainer padding="36px" bgColor="#FFF" gridColumn="1/5">
+            <h3 style={{ fontWeight: 400 }}>ATENDIMENTOS REALIZADOS</h3>
+            <Title>
+              {
+                tutorAssistances.filter(assistance => {
+                  return assistance.status_id === 2;
+                }).length
+              }
+            </Title>
+          </CardContainer>
+        </Container>
+        <Container width="100%">
+          <CardContainer padding="36px" bgColor="#FFF" gridColumn="1/12">
+            {tutorAssistances.length !== 0 ? (
+              <AssistancesBlock />
+            ) : (
+              <Paragraph>Este monitor ainda não tem atendimentos marcados.</Paragraph>
+            )}
+          </CardContainer>
+        </Container>
+      </Box>
 
       <CardContainer>
         <CardContent>
