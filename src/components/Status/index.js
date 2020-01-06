@@ -1,22 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { MdModeEdit } from 'react-icons/md';
 
 import api from '../../services/api';
-import { UserContext } from '../../store/UserContext';
-import {
-  Box,
-  SubTitle,
-  TextSmall,
-  Select,
-  FlexWrapper,
-  EditableButton
-} from '../styled-components/styles';
+import { Box, TextSmall, Select, EditableButton } from '../styled-components/styles';
 import ToggleContainer from '../ToggleContainer';
 
-// import { Container } from './styles';
-
-export default function Status({ statusId, assistanceId }) {
-  const { user } = useContext(UserContext);
+export default function Status({ statusId, assistanceId, isTutor }) {
   const statusMessage = id => {
     switch (id) {
       case 1:
@@ -52,7 +41,7 @@ export default function Status({ statusId, assistanceId }) {
   return (
     <span>
       <strong>Status: </strong>{' '}
-      {user.is_tutor ? (
+      {isTutor ? (
         <>
           <span>
             {status} <MdModeEdit style={{ cursor: 'pointer' }} onClick={handleToggle} />
