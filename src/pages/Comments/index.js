@@ -1,29 +1,26 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import api from '../../services/api';
-import { AssistanceContext } from '../../store/AssistanceContext';
 import { TextSmall, Button, FormLabel } from '../styled-components/styles';
 
-// import { Container } from './styles';
-
 export default function Comments() {
-  const { currentAssistance } = useContext(AssistanceContext);
+  const assistance = JSON.parse(localStorage.getItem('assistance'));
   const [comments, setComments] = useState([]);
   const [content, setContent] = useState('');
 
   useEffect(() => {
     async function fetchComments() {
-      const response = await api.get(
-        `user/${currentAssistance.tutor_id}/comments/subject-matter/${currentAssistance.subject_matter_id}`
-      );
+      const response = await api.post(`comments/subject-matter/${assistance.subject_matter_id}`, {
+        tutor_id: assistance.tutor_id
+      });
       setComments(response.data);
     }
     fetchComments();
-  }, [currentAssistance]);
+  }, []);
 
   async function handleComment(event) {
     event.preventDefault();
-    await api.post(`/comments/${currentAssistance.id}`, { content });
+    await api.post(`/comments/${assistance.id}`, { content });
     window.location.reload(false);
   }
 

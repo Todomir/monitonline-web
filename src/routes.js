@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import Assistances from './pages/Assistances';
 import AuthError from './pages/AuthError';
+import Comments from './pages/Comments';
 import ContinueRegister from './pages/ContinueRegister';
 import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
@@ -36,6 +37,7 @@ export default function Routes() {
         <PrivateRoute path="/schedules" component={Schedules} />
         <PrivateRoute path="/assistances" component={Assistances} />
         <PrivateRoute path="/schedule-assistance" component={TutorProfile} />
+        <PrivateRoute path="/comments" component={Comments} />
       </Switch>
     </BrowserRouter>
   );

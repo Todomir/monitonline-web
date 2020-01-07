@@ -19,7 +19,8 @@ import {
   SubTitle,
   TextSmall,
   CardContainer,
-  SmallLink
+  SmallLink,
+  Button
 } from '../../components/styled-components/styles';
 import api from '../../services/api';
 import { logout } from '../../services/auth';
@@ -154,11 +155,22 @@ export default function Dashboard({ history }) {
                     </p>
                     <p>
                       <strong>Monitor: </strong>
-                      {assistance.name}
+                      {assistance.tutor_name}
                     </p>
                     <p>
                       <Status statusId={assistance.status_id} assistanceId={assistance.id} />
                     </p>
+                    {assistance.status_id === 2 && (
+                      <Button
+                        marginTop="15px"
+                        onClick={() => {
+                          localStorage.setItem('assistance', JSON.stringify(assistance));
+                          history.push('/comments');
+                        }}
+                      >
+                        <MdChatBubbleOutline /> Deixar comentário
+                      </Button>
+                    )}
                   </Box>
                 ))
               ) : (
