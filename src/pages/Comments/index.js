@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { TextSmall, Button, FormLabel } from '../../components/styled-components/styles';
 import api from '../../services/api';
-import { UserContext } from '../../store/UserContext';
 
 export default function Comments() {
   const assistanceId = localStorage.getItem('assistance_id');
   const tutorId = localStorage.getItem('tutor_id');
   const subjectMatterId = localStorage.getItem('subject_matter_id');
-  const commentable = localStorage.getItem('commentable');
+  const commentable = JSON.parse(localStorage.getItem('commentable'));
 
   const [comments, setComments] = useState([]);
   const [content, setContent] = useState('');

@@ -1,13 +1,16 @@
 import React, { useContext } from 'react';
+import { MdChatBubbleOutline } from 'react-icons/md';
+import { useHistory } from 'react-router-dom';
 
 import { AssistanceContext } from '../../store/AssistanceContext';
 import Graph from '../Graph';
 import Status from '../Status';
-import { Box } from '../styled-components/styles';
+import { Box, Button } from '../styled-components/styles';
 import { Tree } from '../Tree';
 
 export default function AssistancesBlock({ isTutor }) {
   const { tutorAssistances } = useContext(AssistanceContext);
+  const history = useHistory();
 
   const rawSubjects = tutorAssistances.map(assistance =>
     JSON.stringify(assistance.subjectMatter.subject)
@@ -61,6 +64,17 @@ export default function AssistancesBlock({ isTutor }) {
                       })}
                     </Tree>
                   )}
+
+                  <Button
+                    marginTop="15px"
+                    onClick={() => {
+                      localStorage.setItem('subject_matter_id', sm.id);
+                      localStorage.setItem('commentable', false);
+                      history.push('/comments');
+                    }}
+                  >
+                    <MdChatBubbleOutline /> Comentários
+                  </Button>
                 </Tree>
               );
             }
