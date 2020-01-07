@@ -219,7 +219,6 @@ export const StyledLink = styled(Link)`
   padding: ${props => props.padding};
   border-radius: 3px;
   text-decoration: none;
-  color: #fff;
   max-width: 100%;
   width: 200px;
   cursor: pointer;
