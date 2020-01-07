@@ -4,14 +4,16 @@ import { TextSmall, Button, FormLabel } from '../../components/styled-components
 import api from '../../services/api';
 
 export default function Comments() {
-  const assistance = JSON.parse(localStorage.getItem('assistance'));
+  const assistanceId = localStorage.getItem('assistance_id');
+  const tutorId = localStorage.getItem('tutor_id');
+  const subjectMatterId = localStorage.getItem('subject_matter_id');
   const [comments, setComments] = useState([]);
   const [content, setContent] = useState('');
 
   useEffect(() => {
     async function fetchComments() {
-      const response = await api.post(`comments/subject-matter/${assistance.subject_matter_id}`, {
-        tutor_id: assistance.tutor_id
+      const response = await api.post(`comments/subject-matter/${subjectMatterId}`, {
+        tutor_id: tutorId
       });
       setComments(response.data);
     }
@@ -20,7 +22,7 @@ export default function Comments() {
 
   async function handleComment(event) {
     event.preventDefault();
-    await api.post(`/comments/${assistance.id}`, { content });
+    await api.post(`/comments/${assistanceId}`, { content });
     window.location.reload(false);
   }
 

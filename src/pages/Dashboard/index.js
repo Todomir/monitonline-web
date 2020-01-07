@@ -164,7 +164,9 @@ export default function Dashboard({ history }) {
                       <Button
                         marginTop="15px"
                         onClick={() => {
-                          localStorage.setItem('assistance', JSON.stringify(assistance));
+                          localStorage.setItem('assistance_id', assistance.id);
+                          localStorage.setItem('tutor_id', assistance.tutor_id);
+                          localStorage.setItem('subject_matter_id', assistance.subject_matter_id);
                           history.push('/comments');
                         }}
                       >
