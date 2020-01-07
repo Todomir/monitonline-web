@@ -167,6 +167,7 @@ export default function Dashboard({ history }) {
                           localStorage.setItem('assistance_id', assistance.id);
                           localStorage.setItem('tutor_id', assistance.tutor_id);
                           localStorage.setItem('subject_matter_id', assistance.subject_matter_id);
+                          localStorage.setItem('commentable', true);
                           history.push('/comments');
                         }}
                       >
