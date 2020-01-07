@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import { TextSmall, Button, FormLabel } from '../../components/styled-components/styles';
 import api from '../../services/api';
-import { TextSmall, Button, FormLabel } from '../styled-components/styles';
 
 export default function Comments() {
   const assistance = JSON.parse(localStorage.getItem('assistance'));
