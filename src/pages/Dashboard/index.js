@@ -171,7 +171,7 @@ export default function Dashboard({ history }) {
                           history.push('/comments');
                         }}
                       >
-                        <MdChatBubbleOutline /> Deixar comentário
+                        <MdChatBubbleOutline /> Comentar
                       </Button>
                     )}
                   </Box>
