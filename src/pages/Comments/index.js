@@ -7,7 +7,7 @@ import './styles.css';
 
 import {
   Form,
-  StyledLink,
+  SmallLink,
   SubTitle,
   Paragraph,
   Button,
@@ -55,9 +55,14 @@ export default function Comments({ history }) {
           padding="40px"
           gridColumn="4/10"
         >
-          <StyledLink color="#000" to="/user-profile">
-            <IoIosReturnLeft /> Voltar ao dashboard
-          </StyledLink>
+          <SmallLink
+            onClick={() => {
+              history.goBack();
+            }}
+            color="#000"
+          >
+            <IoIosReturnLeft /> Voltar à pagina anterior
+          </SmallLink>
           <SubTitle marginTop="20px">Comentários</SubTitle>
           <Paragraph style={{ marginBottom: 20 }}>
             Esta é a seção de comentários. Por favor, mantenha as críticas construtivas.

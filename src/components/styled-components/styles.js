@@ -191,7 +191,7 @@ export const SmallLink = styled.label`
   padding: ${props => props.padding};
   border-radius: 3px;
   max-width: 100%;
-  width: 200px;
+  width: fit-content;
   cursor: pointer;
   -webkit-transition: all 500ms ease;
   -moz-transition: all 500ms ease;
@@ -204,7 +204,7 @@ export const SmallLink = styled.label`
     margin: 0 5px;
     color: #fff;
     font-weight: 700;
-    background: #6a11cb;
+    background: #b276ff;
     border-radius: 3px;
   }
 `;
