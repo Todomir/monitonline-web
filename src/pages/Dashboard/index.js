@@ -145,7 +145,7 @@ export default function Dashboard({ history }) {
         <Container width="100%" height="150px">
           <CardContainer padding="36px" marginRight bgColor="#FFF" gridColumn="1/9">
             <h3>MEUS ATENDIMENTOS</h3>
-            <Box marginTop="10px">
+            <Box height="500px" style={{ overflow: 'auto' }} marginTop="10px">
               {studentAssistances.length !== 0 ? (
                 studentAssistances.map(assistance => (
                   <Box marginBottom="15px">
