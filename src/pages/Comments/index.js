@@ -44,8 +44,6 @@ export default function Comments({ history }) {
     window.location.reload(false);
   }
 
-  console.log(comments);
-
   return (
     <>
       <Nav isLight isLogged={isAuthenticated()} />
