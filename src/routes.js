@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import Assistances from './pages/Assistances';
@@ -14,9 +14,19 @@ import SearchTutor from './pages/SearchTutor';
 import TutorProfile from './pages/TutorProfile';
 import Tutors from './pages/Tutors';
 import { isAuthenticated } from './services/auth';
+import { UserContext } from './store/UserContext';
 
 const PrivateRoute = ({ component, ...options }) => {
   if (isAuthenticated()) {
+    return <Route {...options} component={component} />;
+  }
+  return <Redirect to="/auth-error" />;
+};
+
+const PrivateTutorRoute = ({ component, ...options }) => {
+  const { user } = useContext(UserContext);
+
+  if (isAuthenticated() && user.is_tutor) {
     return <Route {...options} component={component} />;
   }
   return <Redirect to="/auth-error" />;
@@ -34,8 +44,8 @@ export default function Routes() {
         <Route path="/tutors" component={Tutors} />
         <Route path="/auth-error" component={AuthError} />
         <PrivateRoute path="/user-profile" component={Dashboard} />
-        <PrivateRoute path="/schedules" component={Schedules} />
-        <PrivateRoute path="/assistances" component={Assistances} />
+        <PrivateTutorRoute path="/schedules" component={Schedules} />
+        <PrivateTutorRoute path="/assistances" component={Assistances} />
         <PrivateRoute path="/schedule-assistance" component={TutorProfile} />
         <PrivateRoute path="/comments" component={Comments} />
       </Switch>
