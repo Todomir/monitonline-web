@@ -9,6 +9,7 @@ import {
   SubTitle,
   Paragraph
 } from '../../components/styled-components/styles';
+import { isAuthenticated } from '../../services/auth';
 
 export default function TutorError({ history }) {
   function handleReturn() {
@@ -17,7 +18,7 @@ export default function TutorError({ history }) {
 
   return (
     <>
-      <Nav isLight />
+      <Nav isLight isLogged={isAuthenticated()} />
       <Container height="100%">
         <Box marginTop="141px" alignItems="center" gridColumn="2/12">
           <SubTitle>Calma lá, meu consagrado...</SubTitle>
