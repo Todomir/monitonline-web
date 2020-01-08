@@ -8654,7 +8654,7 @@ react-dev-utils@^9.1.0:
     strip-ansi "5.2.0"
     text-table "0.2.0"
 
-react-dom@^16.11.0:
+react-dom@^16.0.0, react-dom@^16.11.0:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.12.0.tgz#0da4b714b8d13c2038c9396b54a92baea633fe11"
   integrity sha512-LMxFfAGrcS3kETtQaCkTKjMiifahaMySFDn71fZUNpPHZQEzmk/GiAeIT8JSOrHB23fnuCOMruL2a8NYlw+8Gw==
@@ -8693,6 +8693,15 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-rater@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/react-rater/-/react-rater-5.1.1.tgz#0d066cf816c182277bee8ca48748ca9b9f32feea"
+  integrity sha512-eQYZySMU/jA9y8PVE91u3GTYBs4extBnd0MpRyJ/6IAT8iPSA9liKFMkD54/Y2CKh/Pj0mhMHa0pXQxoSub9xw==
+  dependencies:
+    prop-types "^15.7.2"
+    react "^16.0.0"
+    react-dom "^16.0.0"
 
 react-router-dom@^5.1.2:
   version "5.1.2"
@@ -8806,7 +8815,7 @@ react-time-picker@^3.7.0:
     react-lifecycles-compat "^3.0.4"
     update-input-width "^1.1.1"
 
-react@^16.11.0:
+react@^16.0.0, react@^16.11.0:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.12.0.tgz#0c0a9c6a142429e3614834d5a778e18aa78a0b83"
   integrity sha512-fglqy3k5E+81pA8s+7K0/T3DBCF0ZDOher1elBFzF7O6arXJgzyu/FW+COxFvAWXJoJN9KIZbT2LXlukwphYTA==

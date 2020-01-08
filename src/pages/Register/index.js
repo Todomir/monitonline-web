@@ -71,7 +71,9 @@ export default function Register({ history }) {
           <p style={{ alignSelf: 'center' }}>
             Já possui uma conta?{' '}
             <strong>
-              <StyledLink to="/login">Fazer login!</StyledLink>
+              <StyledLink color="#fff" to="/login">
+                Fazer login!
+              </StyledLink>
             </strong>
           </p>
         </Form>
