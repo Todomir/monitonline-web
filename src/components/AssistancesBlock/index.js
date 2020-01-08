@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { MdChatBubbleOutline } from 'react-icons/md';
 import { useHistory } from 'react-router-dom';
 
+import { parseISO, format } from 'date-fns';
+
 import { AssistanceContext } from '../../store/AssistanceContext';
 import Graph from '../Graph';
 import Status from '../Status';
@@ -52,6 +54,18 @@ export default function AssistancesBlock({ isTutor }) {
                                 <strong>Aluno:</strong> {assistance.student.name}
                               </p>
                               <p>
+                                <strong>Horário:</strong> De{' '}
+                                {format(
+                                  parseISO(assistance.schedule.schedule_start),
+                                  'dd/MM/yyyy HH:mm'
+                                )}{' '}
+                                à{' '}
+                                {format(
+                                  parseISO(assistance.schedule.schedule_end),
+                                  'dd/MM/yyyy HH:mm'
+                                )}
+                              </p>
+                              <p>
                                 <Status
                                   statusId={assistance.status_id}
                                   assistanceId={assistance.id}
@@ -67,6 +81,7 @@ export default function AssistancesBlock({ isTutor }) {
 
                   <Button
                     marginTop="15px"
+                    marginBottom="15px"
                     onClick={() => {
                       localStorage.setItem('subject_matter_id', sm.id);
                       localStorage.setItem('commentable', false);
