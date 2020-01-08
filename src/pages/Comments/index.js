@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { IoIosReturnLeft } from 'react-icons/io';
 import { MdChatBubble } from 'react-icons/md';
 import Rater from 'react-rater';
@@ -28,8 +28,10 @@ export default function Comments({ history }) {
   const commentable = JSON.parse(localStorage.getItem('commentable'));
 
   const [comments, setComments] = useState([]);
-  const [content, setContent] = useState('');
+  const content = useRef('');
   const [review, setReview] = useState(0);
+
+  const handleReview = useCallback(event => setReview(event.rating), [review]);
 
   useEffect(() => {
     async function fetchComments() {
@@ -43,13 +45,9 @@ export default function Comments({ history }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    await api.post(`/comments/${assistanceId}`, { content });
+    await api.post(`/comments/${assistanceId}`, { content: content.current });
     await api.post(`/assistances/${assistanceId}/reviews`, { review });
     window.location.reload(false);
-  }
-
-  function handleRating(event) {
-    setReview(event.rating);
   }
 
   return (
@@ -95,7 +93,7 @@ export default function Comments({ history }) {
           {commentable && (
             <Form style={{ marginTop: 30 }} onSubmit={handleSubmit}>
               <FormLabel>AVALIAÇÃO</FormLabel>
-              <Rater onRate={handleRating} style={{ fontSize: 25 }} interactive total={5} />
+              <Rater onRate={handleReview} style={{ fontSize: 25 }} interactive total={5} />
 
               <FormLabel htmlFor="comment">SEU COMENTÁRIO *</FormLabel>
               <textarea
@@ -103,7 +101,8 @@ export default function Comments({ history }) {
                 name="comment"
                 rows="5"
                 cols="33"
-                onChange={event => setContent(event.target.value)}
+                defaultValue={content.current}
+                onChange={event => (content.current = event.target.value)}
               />
 
               <Button marginTop="20px" type="submit">
