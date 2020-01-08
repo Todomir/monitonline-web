@@ -24,7 +24,7 @@ import api from '../../services/api';
 import { isAuthenticated } from '../../services/auth';
 import { AssistanceContext } from '../../store/AssistanceContext';
 
-export default function TutorProfile() {
+export default function TutorProfile({ history }) {
   const tutor_id = parseInt(localStorage.getItem('tutor_id'));
   const subject_matter_id = parseInt(localStorage.getItem('subject_matter_id'));
   const [tutor, setTutor] = useState({});
@@ -76,7 +76,7 @@ export default function TutorProfile() {
       subject_matter_id,
       schedule_id: scheduleId
     });
-    alert('Atendimento realizado com sucesso!');
+    history.push('/user-profile');
     setToggle(!toggle);
   }
 
