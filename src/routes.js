@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Schedules from './pages/Schedules';
 import SearchTutor from './pages/SearchTutor';
+import TutorError from './pages/TutorError';
 import TutorProfile from './pages/TutorProfile';
 import Tutors from './pages/Tutors';
 import { isAuthenticated } from './services/auth';
@@ -29,7 +30,7 @@ const PrivateTutorRoute = ({ component, ...options }) => {
   if (isAuthenticated() && user.is_tutor) {
     return <Route {...options} component={component} />;
   }
-  return <Redirect to="/auth-error" />;
+  return <Redirect to="/tutor-error" />;
 };
 
 export default function Routes() {
@@ -43,6 +44,7 @@ export default function Routes() {
         <Route path="/search-tutors" component={SearchTutor} />
         <Route path="/tutors" component={Tutors} />
         <Route path="/auth-error" component={AuthError} />
+        <Route path="/tutor-error" component={TutorError} />
         <PrivateRoute path="/user-profile" component={Dashboard} />
         <PrivateTutorRoute path="/schedules" component={Schedules} />
         <PrivateTutorRoute path="/assistances" component={Assistances} />
