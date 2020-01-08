@@ -73,27 +73,32 @@ export default function Assistances({ history }) {
 
         <MenuItem
           onClick={() => {
-            history.push('/schedules');
-          }}
-        >
-          <MdAccessTime /> Horários
-        </MenuItem>
-
-        <MenuItem>
-          <MdChatBubbleOutline /> Comentários
-        </MenuItem>
-
-        <MenuItem
-          onClick={() => {
             history.push('/search-tutors');
           }}
         >
           <MdPermIdentity /> Procurar monitor
         </MenuItem>
 
-        <MenuItem isSelected>
-          <MdAssignmentInd /> Atendimentos
-        </MenuItem>
+        {user.is_tutor ? (
+          <>
+            <MenuItem
+              onClick={() => {
+                history.push('/schedules');
+              }}
+            >
+              <MdAccessTime /> Horários
+            </MenuItem>
+
+            <MenuItem
+              isSelected
+              onClick={() => {
+                history.push('/assistances');
+              }}
+            >
+              <MdAssignmentInd /> Atendimentos
+            </MenuItem>
+          </>
+        ) : null}
 
         <MenuItem onClick={handleLogout}>
           <MdExitToApp /> Logout

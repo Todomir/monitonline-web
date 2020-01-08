@@ -79,33 +79,33 @@ export default function Dashboard({ history }) {
                   <MenuItem
                     style={props}
                     onClick={() => {
-                      history.push('/schedules');
-                    }}
-                  >
-                    <MdAccessTime /> Horários
-                  </MenuItem>
-
-                  <MenuItem style={props}>
-                    <MdChatBubbleOutline /> Comentários
-                  </MenuItem>
-
-                  <MenuItem
-                    style={props}
-                    onClick={() => {
                       history.push('/search-tutors');
                     }}
                   >
                     <MdPermIdentity /> Procurar monitor
                   </MenuItem>
 
-                  <MenuItem
-                    style={props}
-                    onClick={() => {
-                      history.push('/assistances');
-                    }}
-                  >
-                    <MdAssignmentInd /> Atendimentos
-                  </MenuItem>
+                  {user.is_tutor ? (
+                    <>
+                      <MenuItem
+                        style={props}
+                        onClick={() => {
+                          history.push('/schedules');
+                        }}
+                      >
+                        <MdAccessTime /> Horários
+                      </MenuItem>
+
+                      <MenuItem
+                        style={props}
+                        onClick={() => {
+                          history.push('/assistances');
+                        }}
+                      >
+                        <MdAssignmentInd /> Atendimentos
+                      </MenuItem>
+                    </>
+                  ) : null}
 
                   <MenuItem style={props} onClick={handleLogout}>
                     <MdExitToApp /> Logout

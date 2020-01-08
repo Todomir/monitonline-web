@@ -127,14 +127,6 @@ export default function Schedules({ history }) {
                     <MdDashboard /> Dashboard
                   </MenuItem>
 
-                  <MenuItem style={props} isSelected>
-                    <MdAccessTime /> Horários
-                  </MenuItem>
-
-                  <MenuItem style={props}>
-                    <MdChatBubbleOutline /> Comentários
-                  </MenuItem>
-
                   <MenuItem
                     style={props}
                     onClick={() => {
@@ -144,15 +136,22 @@ export default function Schedules({ history }) {
                     <MdPermIdentity /> Procurar monitor
                   </MenuItem>
 
-                  <MenuItem
-                    style={props}
-                    onClick={() => {
-                      history.push('/assistances');
-                    }}
-                  >
-                    <MdAssignmentInd /> Atendimentos
-                  </MenuItem>
+                  {user.is_tutor ? (
+                    <>
+                      <MenuItem style={props} isSelected>
+                        <MdAccessTime /> Horários
+                      </MenuItem>
 
+                      <MenuItem
+                        style={props}
+                        onClick={() => {
+                          history.push('/assistances');
+                        }}
+                      >
+                        <MdAssignmentInd /> Atendimentos
+                      </MenuItem>
+                    </>
+                  ) : null}
                   <MenuItem style={props} onClick={handleLogout}>
                     <MdExitToApp /> Logout
                   </MenuItem>
