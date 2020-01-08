@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { IoIosReturnLeft } from 'react-icons/io';
-import { MdDashboard, MdChatBubble } from 'react-icons/md';
+import { MdChatBubble } from 'react-icons/md';
+import Rater from 'react-rater';
+import 'react-rater/lib/react-rater.css';
 
 import Nav from '../../components/Nav';
 import './styles.css';
@@ -27,6 +29,7 @@ export default function Comments({ history }) {
 
   const [comments, setComments] = useState([]);
   const [content, setContent] = useState('');
+  const [review, setReview] = useState(0);
 
   useEffect(() => {
     async function fetchComments() {
@@ -38,10 +41,15 @@ export default function Comments({ history }) {
     fetchComments();
   }, []);
 
-  async function handleComment(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     await api.post(`/comments/${assistanceId}`, { content });
+    await api.post(`/assistances/${assistanceId}/reviews`, { review });
     window.location.reload(false);
+  }
+
+  function handleRating(event) {
+    setReview(event.rating);
   }
 
   return (
@@ -85,7 +93,10 @@ export default function Comments({ history }) {
           )}
 
           {commentable && (
-            <Form onSubmit={handleComment}>
+            <Form style={{ marginTop: 30 }} onSubmit={handleSubmit}>
+              <FormLabel>AVALIAÇÃO</FormLabel>
+              <Rater onRate={handleRating} style={{ fontSize: 25 }} interactive total={5} />
+
               <FormLabel htmlFor="comment">SEU COMENTÁRIO *</FormLabel>
               <textarea
                 id="comment"
